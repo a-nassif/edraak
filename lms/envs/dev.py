@@ -41,7 +41,7 @@ FEATURES['IS_EDX_DOMAIN'] = True  # Is this an edX-owned domain? (used on instru
 
 FEEDBACK_SUBMISSION_EMAIL = "dummy@example.com"
 
-WIKI_ENABLED = True
+WIKI_ENABLED = False
 
 LOGGING = get_logger_config(ENV_ROOT / "log",
                             logging_env="dev",
@@ -140,7 +140,7 @@ VIRTUAL_UNIVERSITIES = []
 # Organization that contain other organizations
 META_UNIVERSITIES = {'UTx': ['UTAustinX']}
 
-COMMENTS_SERVICE_KEY = "PUT_YOUR_API_KEY_HERE"
+COMMENTS_SERVICE_KEY = "abdallah123"
 
 ############################## Course static files ##########################
 if os.path.isdir(DATA_DIR):
