@@ -500,3 +500,7 @@ urlpatterns += (
     url(r'404', handler404),
     url(r'500', handler500),
 )
+if settings.FEATURES.get("ENABLE_LANGUAGE_CHANGE"):
+    urlpatterns += (
+        url(r'^i18n/', include('django.conf.urls.i18n')),
+    )

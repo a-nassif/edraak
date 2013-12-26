@@ -3,6 +3,7 @@
 ## Please see lms/templates/instructor for instructor dashboard templates ##
 
 <%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import get_language_bidi %>
 <%! from django.core.urlresolvers import reverse %>
 
 <%inherit file="../main.html" />
@@ -15,7 +16,11 @@
 <%static:css group='style-course-vendor'/>
 <%static:css group='style-vendor-tinymce-content'/>
 <%static:css group='style-vendor-tinymce-skin'/>
-<%static:css group='style-course'/>
+% if get_language_bidi():
+    <%static:css group='style-course-rtl'/>
+% else:
+    <%static:css group='style-course'/>
+% endif
 
   <script type="text/javascript">
     // This is a hack to get tinymce to work correctly in Firefox until the annotator tool is refactored to not include

@@ -8,8 +8,9 @@
 <!--[if IE 9]><html class="ie9 lte9" lang="${LANGUAGE_CODE}"><![endif]-->
 <!--[if gt IE 9]><!--><html lang="${LANGUAGE_CODE}"><!--<![endif]-->
   <head>
-    <meta charset="utf-8">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>
         <%block name="title"></%block> |
         % if context_course:
@@ -22,12 +23,20 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="path_prefix" content="${EDX_ROOT_URL}">
 
+    <meta name="path_prefix" content="${EDX_ROOT_URL}">
+    % if get_language_bidi():
+    <%static:css group='style-vendor'/>
+    <%static:css group='style-app-rtl'/>
+    <%static:css group='style-app-extend1-rtl'/>
+    <%static:css group='style-xmodule-rtl'/>
+    % else:
     <%static:css group='style-vendor'/>
     <%static:css group='style-vendor-tinymce-content'/>
     <%static:css group='style-vendor-tinymce-skin'/>
     <%static:css group='style-app'/>
     <%static:css group='style-app-extend1'/>
     <%static:css group='style-xmodule'/>
+    % endif
 
     <%include file="widgets/segment-io.html" />
 

@@ -246,7 +246,7 @@ XBLOCK_SELECT_FUNCTION = prefer_xmodules
 
 ############################ DJANGO_BUILTINS ################################
 # Change DEBUG/TEMPLATE_DEBUG in your environment settings files, not here
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 
 # Site info
@@ -339,17 +339,35 @@ PIPELINE_CSS = {
         ],
         'output_filename': 'css/cms-style-app.css',
     },
+    'style-app-rtl': {
+        'source_filenames': [
+            'sass/style-app-rtl.css',
+        ],
+        'output_filename': 'css/cms-style-app-rtl.css',
+    },
     'style-app-extend1': {
         'source_filenames': [
             'sass/style-app-extend1.css',
         ],
         'output_filename': 'css/cms-style-app-extend1.css',
     },
+    'style-app-extend1-rtl': {
+        'source_filenames': [
+            'sass/style-app-extend1-rtl.css',
+        ],
+        'output_filename': 'css/cms-style-app-extend1-rtl.css',
+    },
     'style-xmodule': {
         'source_filenames': [
             'sass/style-xmodule.css',
         ],
         'output_filename': 'css/cms-style-xmodule.css',
+    },
+    'style-xmodule-rtl': {
+        'source_filenames': [
+            'sass/style-xmodule-rtl.css',
+        ],
+        'output_filename': 'css/cms-style-xmodule-rtl.css',
     },
 }
 
@@ -617,3 +635,17 @@ for app_name in OPTIONAL_APPS:
 ### ADVANCED_SECURITY_CONFIG
 # Empty by default
 ADVANCED_SECURITY_CONFIG = {}
+############### Language Support #################
+if FEATURES['ENABLE_LANGUAGE_CHANGE']:
+    TEMPLATE_CONTEXT_PROCESSORS += (
+        'django.core.context_processors.i18n',
+    )
+    USE_I18N = True
+    TIME_ZONE = 'Asia/Amman'
+    LANGUAGE_CODE = 'en-us'
+
+    ugettext = lambda s: s
+    LANGUAGES = (
+        ('ar', ugettext('Arabic')),
+        ('en', ugettext('English')),
+    )

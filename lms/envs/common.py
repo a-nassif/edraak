@@ -516,7 +516,7 @@ COURSES_WITH_UNSAFE_CODE = []
 
 ############################### DJANGO BUILT-INS ###############################
 # Change DEBUG/TEMPLATE_DEBUG in your environment settings files, not here
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 USE_TZ = True
 
@@ -907,9 +907,22 @@ PIPELINE_CSS = {
         ],
         'output_filename': 'css/lms-style-app.css',
     },
+    'style-app-rtl': {
+        'source_filenames': [
+            'sass/application-rtl.css',
+            'sass/ie.css'
+        ],
+        'output_filename': 'css/lms-style-app-rtl.css',
+    },
     'style-app-extend1': {
         'source_filenames': [
             'sass/application-extend1.css',
+        ],
+        'output_filename': 'css/lms-style-app-extend1.css',
+    },
+    'style-app-extend1-rtl': {
+        'source_filenames': [
+            'sass/application-extend1-rtl.css',
         ],
         'output_filename': 'css/lms-style-app-extend1.css',
     },
@@ -919,6 +932,12 @@ PIPELINE_CSS = {
         ],
         'output_filename': 'css/lms-style-app-extend2.css',
     },
+    'style-app-extend2-rtl': {
+        'source_filenames': [
+            'sass/application-extend2-rtl.css',
+        ],
+        'output_filename': 'css/lms-style-app-extend2-rtl.css',
+    },
     'style-course-vendor': {
         'source_filenames': [
             'js/vendor/CodeMirror/codemirror.css',
@@ -927,12 +946,20 @@ PIPELINE_CSS = {
         ],
         'output_filename': 'css/lms-style-course-vendor.css',
     },
+
     'style-course': {
         'source_filenames': [
             'sass/course.css',
             'xmodule/modules.css',
         ],
         'output_filename': 'css/lms-style-course.css',
+    },
+    'style-course-rtl': {
+        'source_filenames': [
+            'sass/course-rtl.css',
+            'xmodule/modules.css',
+        ],
+        'output_filename': 'css/lms-style-course-rtl.css',
     },
 }
 
@@ -1605,3 +1632,17 @@ THIRD_PARTY_AUTH = {}
 ### ADVANCED_SECURITY_CONFIG
 # Empty by default
 ADVANCED_SECURITY_CONFIG = {}
+############### Language Support #################
+if FEATURES['ENABLE_LANGUAGE_CHANGE']:
+    TEMPLATE_CONTEXT_PROCESSORS += (
+        'django.core.context_processors.i18n',
+    )
+    USE_I18N = True
+    TIME_ZONE = 'Asia/Amman'
+    LANGUAGE_CODE = 'en-us'
+
+    ugettext = lambda s: s
+    LANGUAGES = (
+        ('ar', ugettext('Arabic')),
+        ('en', ugettext('English')),
+    )

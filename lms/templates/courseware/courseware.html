@@ -1,5 +1,6 @@
 <%! from django.utils.translation import ugettext as _ %>
 <%! from microsite_configuration import page_title_breadcrumbs %>
+<%! from django.utils.translation import get_language_bidi %>
 <%inherit file="/main.html" />
 <%namespace name='static' file='/static_content.html'/>
 <%def name="course_name()">
@@ -25,8 +26,13 @@ ${page_title_breadcrumbs(course_name())}
 
 
 <%block name="headextra">
-<%static:css group='style-course-vendor'/>
-<%static:css group='style-course'/>
+    % if get_language_bidi():
+        <%static:css group='style-course-vendor'/>
+        <%static:css group='style-course-rtl'/>
+    % else:
+        <%static:css group='style-course-vendor'/>
+        <%static:css group='style-course'/>
+    % endif
 
 <%block name="nav_skip">${"#seq_content" if section_title else "#course-content"}</%block>
 
