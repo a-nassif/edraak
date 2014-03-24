@@ -1,0 +1,16 @@
+@import "settings";
+
+.view-settings{
+  .group-settings{
+    &.schedule {
+      .field-group {
+        .field.time{
+          .tip{
+            right: auto;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+}

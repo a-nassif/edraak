@@ -62,10 +62,11 @@ if Backbone?
             $elem,
             =>
               @hideDiscussion()
-              DiscussionUtil.discussionAlert(
-                gettext("Sorry"),
-                gettext("We had some trouble loading the discussion. Please try again.")
-              )
+              console.log('We had some trouble loading the discussion. Please try again.')
+#              DiscussionUtil.discussionAlert(
+#                gettext("Sorry"),
+#                gettext("We had some trouble loading the discussion. Please try again.")
+#              )
           )
 
     loadPage: ($elem, error) =>
@@ -144,8 +145,9 @@ if Backbone?
         $(event.target),
         =>
           @page = currPage
-          DiscussionUtil.discussionAlert(
-            gettext("Sorry"),
-            gettext("We had some trouble loading the threads you requested. Please try again.")
-          )
+          console.log('We had some trouble loading the threads you requested. Please try again.')
+#          DiscussionUtil.discussionAlert(
+#            gettext("Sorry"),
+#            gettext("We had some trouble loading the threads you requested. Please try again.")
+#          )
       )

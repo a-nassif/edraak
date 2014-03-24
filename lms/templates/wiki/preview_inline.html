@@ -2,8 +2,14 @@
 {% load wiki_tags i18n %}{% load compressed %}
 <html lang="{{LANGUAGE_CODE}}">
 <head>
-  {% compressed_css 'course' %}  
-  {% compressed_js 'main_vendor' %}
+
+    {% compressed_js 'main_vendor' %}
+    {% if LANGUAGE_BIDI %}
+        {% compressed_css 'course-rtl' %}
+    {% else %}
+        {% compressed_css 'course' %}
+    {% endif %}
+
 </head>
 <body class="modal-preview">
   <section class="container wiki view">

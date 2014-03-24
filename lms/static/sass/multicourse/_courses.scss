@@ -1,7 +1,23 @@
 .find-courses, .university-profile {
-  background: $course-profile-bg;
-  padding-bottom: 60px;
 
+.highlighted-courses {
+    margin-bottom: 20px;
+    z-index: 1;
+    margin-top:59px;
+    background-position: 0 -8px;
+
+    .courses{
+      margin:0;
+    }
+    h2, .main-title{
+      position: relative;
+      top:-9px;
+      text-align: center;
+      div{
+        height: 43px;
+      }
+    }
+  }
   header.search {
     background: $course-profile-bg;
     background-size: cover;

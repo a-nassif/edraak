@@ -31,7 +31,7 @@ class Thread(models.Model):
 
     initializable_fields = updatable_fields
 
-    base_url = "{prefix}/threads".format(prefix=settings.PREFIX)
+    base_url = u"{prefix}/threads".format(prefix=settings.PREFIX)
     default_retrieve_params = {'recursive': False}
     type = 'thread'
 
@@ -89,13 +89,13 @@ class Thread(models.Model):
     @classmethod
     def url_for_threads(cls, params={}):
         if params.get('commentable_id'):
-            return "{prefix}/{commentable_id}/threads".format(prefix=settings.PREFIX, commentable_id=params['commentable_id'])
+            return u"{prefix}/{commentable_id}/threads".format(prefix=settings.PREFIX, commentable_id=params['commentable_id'])
         else:
-            return "{prefix}/threads".format(prefix=settings.PREFIX)
+            return u"{prefix}/threads".format(prefix=settings.PREFIX)
 
     @classmethod
     def url_for_search_threads(cls, params={}):
-        return "{prefix}/search/threads".format(prefix=settings.PREFIX)
+        return u"{prefix}/search/threads".format(prefix=settings.PREFIX)
 
     @classmethod
     def url(cls, action, params={}):
@@ -194,16 +194,16 @@ class Thread(models.Model):
 
 
 def _url_for_flag_abuse_thread(thread_id):
-    return "{prefix}/threads/{thread_id}/abuse_flag".format(prefix=settings.PREFIX, thread_id=thread_id)
+    return u"{prefix}/threads/{thread_id}/abuse_flag".format(prefix=settings.PREFIX, thread_id=thread_id)
 
 
 def _url_for_unflag_abuse_thread(thread_id):
-    return "{prefix}/threads/{thread_id}/abuse_unflag".format(prefix=settings.PREFIX, thread_id=thread_id)
+    return u"{prefix}/threads/{thread_id}/abuse_unflag".format(prefix=settings.PREFIX, thread_id=thread_id)
 
 
 def _url_for_pin_thread(thread_id):
-    return "{prefix}/threads/{thread_id}/pin".format(prefix=settings.PREFIX, thread_id=thread_id)
+    return u"{prefix}/threads/{thread_id}/pin".format(prefix=settings.PREFIX, thread_id=thread_id)
 
 
 def _url_for_un_pin_thread(thread_id):
-    return "{prefix}/threads/{thread_id}/unpin".format(prefix=settings.PREFIX, thread_id=thread_id)
+    return u"{prefix}/threads/{thread_id}/unpin".format(prefix=settings.PREFIX, thread_id=thread_id)

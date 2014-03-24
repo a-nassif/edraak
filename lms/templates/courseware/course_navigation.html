@@ -22,7 +22,7 @@ def url_class(is_active):
 <%! from courseware.views import notification_image_for_tab %>
 <% import waffle %>
 
-<nav class="${active_page} course-material">
+<nav class="${active_page}-page course-material">
   <div class="inner-wrapper">
     <ol class="course-tabs">
       % for tab in CourseTabList.iterate_displayable(course, settings, user.is_authenticated(), has_access(user, 'staff', course, course.id)):

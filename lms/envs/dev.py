@@ -41,7 +41,7 @@ FEATURES['IS_EDX_DOMAIN'] = True  # Is this an edX-owned domain? (used on instru
 
 FEEDBACK_SUBMISSION_EMAIL = "dummy@example.com"
 
-WIKI_ENABLED = False
+WIKI_ENABLED = True
 
 LOGGING = get_logger_config(ENV_ROOT / "log",
                             logging_env="dev",
@@ -54,7 +54,7 @@ LOGGING = get_logger_config(ENV_ROOT / "log",
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ENV_ROOT / "db" / "edx.db",
+        'NAME': ENV_ROOT / "db" / "qrf-edx.db",
     }
 }
 

@@ -8,7 +8,7 @@ import uuid
 import time
 from collections import defaultdict
 from pytz import UTC
-
+import requests
 from django.conf import settings
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User, AnonymousUser
@@ -20,8 +20,7 @@ from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.core.validators import validate_email, validate_slug, ValidationError
 from django.db import IntegrityError, transaction
-from django.http import (HttpResponse, HttpResponseBadRequest, HttpResponseForbidden,
-                         Http404)
+from django.http import (HttpResponse, HttpResponseBadRequest, HttpResponseForbidden, Http404)
 from django.shortcuts import redirect
 from django.utils.translation import ungettext
 from django_future.csrf import ensure_csrf_cookie
@@ -29,7 +28,8 @@ from django.utils.http import cookie_date, base36_to_int
 from django.utils.translation import ugettext as _, get_language
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_POST, require_GET
-
+from util.cache import cache, cache_if_anonymous
+from django.utils.encoding import smart_str
 from django.template.response import TemplateResponse
 
 from ratelimitbackend.exceptions import RateLimitException
@@ -59,6 +59,7 @@ from collections import namedtuple
 
 from courseware.courses import get_courses, sort_by_announcement
 from courseware.access import has_access
+from student.models import BaytPublishedCertificate
 
 from django_comment_common.models import Role
 
@@ -78,7 +79,8 @@ from util.json_request import JsonResponse
 from util.bad_request_rate_limiter import BadRequestRateLimiter
 
 from microsite_configuration import microsite
-
+from httplib2 import Http
+from urllib import urlencode
 from util.password_policy_validators import (
     validate_password_length, validate_password_complexity,
     validate_password_dictionary
@@ -119,7 +121,7 @@ def index(request, extra_context={}, user=AnonymousUser()):
     if domain is False:
         domain = request.META.get('HTTP_HOST')
 
-    courses = get_courses(user, domain=domain)
+    courses = get_courses(user, domain=domain)[:9]
     courses = sort_by_announcement(courses)
 
     context = {'courses': courses}
@@ -1197,12 +1199,12 @@ def create_account(request, post_override=None):  # pylint: disable-msg=too-many
         js['field'] = 'email'
         return JsonResponse(js, status=400)
 
-    try:
-        validate_slug(post_vars['username'])
-    except ValidationError:
-        js['value'] = _("Username should only consist of A-Z and 0-9, with no spaces.").format(field=a)
-        js['field'] = 'username'
-        return JsonResponse(js, status=400)
+    # try:
+    #     validate_slug(post_vars['username'])
+    # except ValidationError:
+    #     js['value'] = _("Username should only consist of A-Z and 0-9, with no spaces.").format(field=a)
+    #     js['field'] = 'username'
+    #     return JsonResponse(js, status=400)
 
     # enforce password complexity as an optional feature
     if settings.FEATURES.get('ENFORCE_PASSWORD_POLICY', False):

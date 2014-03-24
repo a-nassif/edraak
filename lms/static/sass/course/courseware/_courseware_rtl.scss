@@ -1,0 +1,45 @@
+@import "courseware";
+
+.xmodule_display.xmodule_SequenceModule nav.sequence-nav ul li.next {
+  right: auto;
+  left: -10px;
+  border-radius: 35px 35px 0;
+
+  a{
+    background-image: url("../images/sequence-nav/previous-icon.png");
+    margin-left: 0;
+    margin-right: 30px;
+  }
+}
+
+.xmodule_display.xmodule_SequenceModule nav.sequence-nav ul li.prev {
+  left: auto;
+  right: -10px;
+  border-radius: 0 35px 35px;
+
+  a{
+    background-image: url("../images/sequence-nav/next-icon.png");
+
+  }
+}
+
+
+.xmodule_display.xmodule_SequenceModule nav.sequence-bottom ul li {
+  float: right;
+}
+
+.xmodule_display.xmodule_SequenceModule nav.sequence-bottom ul li.next {
+  border-radius: 35px 0 0 35px;
+
+  a {
+    background-image: url("../images/sequence-nav/previous-icon.png");
+  }
+}
+
+.xmodule_display.xmodule_SequenceModule nav.sequence-bottom ul li.prev {
+  border-radius: 0 35px 35px 0;
+
+  a {
+    background-image: url("../images/sequence-nav/next-icon.png");
+  }
+}

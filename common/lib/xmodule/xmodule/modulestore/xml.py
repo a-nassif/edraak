@@ -127,9 +127,9 @@ class ImportSystem(XMLParsingSystem, MakoDescriptorSystem):
                     # put it in the error tracker--content folks need to see it.
 
                     if tag in need_uniq_names:
-                        error_tracker("PROBLEM: no name of any kind specified for {tag}.  Student "
-                                      "state will not be properly tracked for this module.  Problem xml:"
-                                      " '{xml}...'".format(tag=tag, xml=xml[:100]))
+                        error_tracker(u"PROBLEM: no name of any kind specified for {tag}.  Student "
+                                      u"state will not be properly tracked for this module.  Problem xml:"
+                                      u" '{xml}...'".format(tag=tag, xml=xml[:100]))
                     else:
                         # TODO (vshnayder): We may want to enable this once course repos are cleaned up.
                         # (or we may want to give up on the requirement for non-state-relevant issues...)
@@ -142,8 +142,8 @@ class ImportSystem(XMLParsingSystem, MakoDescriptorSystem):
                     # doesn't store state, don't complain about things that are
                     # hashed.
                     if tag in need_uniq_names:
-                        msg = ("Non-unique url_name in xml.  This may break state tracking for content."
-                               "  url_name={0}.  Content={1}".format(url_name, xml[:100]))
+                        msg = (u"Non-unique url_name in xml.  This may break state tracking for content."
+                               u"  url_name={0}.  Content={1}".format(url_name, xml[:100]))
                         error_tracker("PROBLEM: " + msg)
                         log.warning(msg)
                         # Just set name to fallback_name--if there are multiple things with the same fallback name,
@@ -484,7 +484,7 @@ class XMLModuleStore(ModuleStoreReadBase):
 
         returns a CourseDescriptor for the course
         """
-        log.debug('========> Starting course import from {0}'.format(course_dir))
+        log.debug(u'========> Starting course import from {0}'.format(course_dir))
 
         with open(self.data_dir / course_dir / "course.xml") as course_file:
 
@@ -592,7 +592,7 @@ class XMLModuleStore(ModuleStoreReadBase):
 
             self.load_extra_content(system, course_descriptor, 'about', self.data_dir / course_dir / 'about', course_dir, url_name)
 
-            log.debug('========> Done with course import from {0}'.format(course_dir))
+            log.debug(u'========> Done with course import from {0}'.format(course_dir))
             return course_descriptor
 
     def load_extra_content(self, system, course_descriptor, category, base_dir, course_dir, url_name):

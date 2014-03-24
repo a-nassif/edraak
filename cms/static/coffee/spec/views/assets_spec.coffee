@@ -5,7 +5,7 @@ define ["jquery", "jasmine", "js/spec_helpers/create_sinon", "squire"],
     assetLibraryTpl = readFixtures('asset-library.underscore')
     assetTpl = readFixtures('asset.underscore')
     pagingHeaderTpl = readFixtures('paging-header.underscore')
-    pagingFooterTpl = readFixtures('paging-footer.underscore')
+    pagingFooterTpl = readFixtures('paging-footer-rtl.underscore')
 
     describe "Asset view", ->
         beforeEach ->

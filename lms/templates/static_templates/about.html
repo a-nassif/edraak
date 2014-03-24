@@ -1,9 +1,73 @@
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language %>
+<%! from django.core.urlresolvers import reverse %>
 <%inherit file="../main.html" />
 
 <%block name="pagetitle">${_("Vision")}</%block>
-
+</br>
+</br>
+% if get_language() == 'ar':
+    <h1>من نحن</h1>
+% else:
+    <h1>About Us</h1>
+% endif
 <section class="container about">
-<h1>${_("Vision")}</h1>
-<p>${_("This page left intentionally blank. It is not used by edx.org but is left here for possible use by installations of Open edX.")}</p>
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div id="about_tab_1">
+                  % if get_language() == 'ar':
+                    <div class="row">
+                        <h2>عن منصة إدراك</h2>
+                        <img src="/static/images/HMQ_About_Us_Page.jpg" style="float: left; height: 470px; margin-right: 20px;">
+                        <p>"إدراك" هي منصة إلكترونية عربية للمساقات الجماعية مفتوحة المصادر، وتعرف باللغة الإنجليزية بإسم (موكس)، وهذه المنصة تأتي بمبادرة من مؤسسة الملكة رانيا للتعليم والتنمية.
+وتحرص مؤسسة الملكة رانيا على بذل كافة الجهود والمساعي للمساهمة في وضع العالم العربي في المقدمة في مجال التربية والتعليم كونهما حجر الأساس لتطور و ازدهار الشعوب.</p>
+                        <p>وإيماناً من جلالة الملكة رانيا العبدالله بأهمية التعليم وما له من أثر في تحسين نوعية حياتنا، سواء كأفراد أو كمجتمعات ودول ستوفر إدراك التعليم النوعي للعالم العربي من خلال تقديم مساقات منتقاه يقوم على تطويرها أفضل المحترفين والخبراء في العالم العربي وأخرى مترجمة ومعربة عن الأفضل عالمياً.</p>
+                        <p>ولذلك، فان المؤسسة ستقوم بتسخير الموارد البشرية العربية الموجودة في المنطقة لانشاء "إدراك" كأول منصة عربية إلكترونية "للموكس" بالشراكة مع "اد اكس"، وهي مؤسسة مشتركة بين جامعتي هارفرد ومعهد ماسشوستس للتكنولوجيا، ومختصة في هذا المجال.</p>
+                        <p>وستشكل هذه المنصة فرصة فريدة ومهمة للوطن العربي، وستفتح المجال للمتعلمين العرب للإلتحاق عبر شبكة الإنترنت بمساقات متوفرة من قبل أفضل الجامعات العالمية مثل هارفرد، معهد ماسشوستس للتكنولوجيا، ويوسي بركلي مع امكانية الحصول على شهادات اتقان في بعض منها، وستفتح المجال أيضاً للإلتحاق بمساقات جديدة باللغة العربية لأفضل الأكاديمين العرب لإثراء التعليم عربياً. و من الجدير بالذكر أن كافة المساقات على منصة "إدراك" مجانية. وتتطلع أيضاً مؤسسة الملكة رانيا إلى استخدام المنصة لدعم وإبراز القدوات العربية من خلال تطوير مساقات قصيرة يعدها محترفون و خبراء في مجالات مختلفة من الفنون والعلوم.</p>
+                        <p>وأخيراً، فان مؤسسة الملكة رانيا تؤمن بأن هذه المنصة ستمكّن العالم العربي من البناء على الإهتمام العالمي بتطورات المنطقة، ليتمكن العالم العربي من رواية قصته بنفسه. ومن خلال "إدراك" سيتمكن أساتذة الجامعات العرب وخبراء المنطقة من تقديم مساقات باللغة الإنجليزية عن تطورات المنطقة وتاريخها العريق، وستساهم هذه المساقات بتعريف وتثقيف الجمهور العالمي المهتم بتطورات المنطقة.</p>
+                    </div>
+                    <br/><br/><br/>
+                    <div class="row">
+                        <h2>الشركاء المؤسسون</h2>
+                        <img src="/static/images/MBZ_Home_Page.jpeg" style="float: left; height: 360px; margin-right: 20px; margin-bottom: 20px">
+                        <p>منذ أن كانت مجرد فكرة، كانت منصة إدراك مبادرة عربية، هدفها خدمة كافة الشعوب العربية من المحيط إلى الخليج. وبناءً على ذلك فقد التمست مؤسسة الملكة رانيا الدعم في هذه المبادرة من القادة العرب ذوي الرؤية، الذين يعملون لمستقبل أفضل لمنطقتنا العربية.</p>
+                        <p>تفتخر مؤسسة الملكة رانيا بالإعلان عن انضمام الفريق أول سمو الشيخ محمد بن زايد آل نهيان، ولي عهد أبوظبي، نائب القائد الأعلى للقوات المسلحة لدولة الإمارات العربية المتحدة ورئيس المجلس التنفيذي في أبوظبي، كأول شريك مؤسس لمنصة إدراك، إيماناًمن سموه بأهمية التعليم للشباب في الوطن العربي. </p>
+
+                    </div>
+                    <br/><br/><br/>
+                    <div class="row">
+                        <h2>الجهات الراعية</h2>
+                        <img src="/static/images/mikati_foundation.jpg" style="float: left; height: 275px; margin-right: 20px; margin-bottom: 20px">
+                        <p>تفتخر مؤسسة الملكة رانيا برعاية مؤسسة الميقاتي لمنصة إدراك وهي الشراكة التي ستقوم بتوفر تعليم نوعي للشعوب العربية على نطاق أوسع.</p>
+                        <p>مؤسسة الميقاتي هي مؤسسة عالمية غير ربحية أسسها الإخوان طه و نجيب ميقاتي. تعمل المؤسسة على تحسين سبل المعيشة و توفير الفرص للأقل حظاً في الدول النامية، خصيصاً في العالم العربي و إفريقيا. تشمل مشاريع المؤسسة العديد من مقومات الحياة مثل التعليم، البحث العلمي، و خدمات تنمية المجتمع، إضافةً إلى المجالات الثقافية من الحرف اليدوية، و العمارة، و الموسيقى، و الفن و الرياضة.</p>
+                    </div>
+                    % else:
+                    <div class="row">
+                        <h2>About Edraak</h2>
+                        <img src="/static/images/HMQ_About_Us_Page.jpg" style="float: right; height: 470px; margin-left: 20px;">
+                        <p>Edraak, is a massive open online course (MOOC) platform, that is an initiative of the Queen Rania Foundation (QRF). QRF is determined to ensure that the Arab world is at the forefront of educational innovation. As such, QRF has capitalized on regional Arab talent to leverage technology developed by the Harvard-MIT consortium, edX, to create the first non-profit Arabic MOOC platform. The new MOOC platform will present the Arab world with unique and vital opportunities that can be part of a necessary revolution in education and learning.</p>
+                        <p>First, the platform will broadcast the best Arab professors to the region, offering original Arabic courses - developed by QRF - to further enrich Arab education. Through its partnership with edX, the platform will also give Arab learners access in Arabic to courses taught and developed at top tier institutions like HarvardX, MITX, and UC BerkelyX. All courses are delivered at no cost to the learner.</p>
+                        <p>Second, QRF envisions the use of the platform to showcase Arab role models by broadcasting short online courses by practitioners and professionals from a variety of fields spanning the arts and sciences.</p>
+                        <p>Finally, QRF believes that the platform will enable the Arab world to take advantage of the international interest in regional affairs to tell its own story to the world. Arab university professors and regional experts can use the platform to give courses in English about the region and its history. This will serve to inform a global audience that is interested in the region’s development.</p>
+                    </div>
+                    <br/><br/><br/>
+                    <div class="row">
+                        <h2>Founding Partners</h2>
+                        <img src="/static/images/MBZ_Home_Page.jpeg" style="float: right; height: 360px; margin-left: 20px; margin-bottom: 20px">
+                        <p>From its inception, Edraak has been a pan-Arab effort meant to serve the entire Arab region.  As such, the Queen Rania Foundation (QRF), has sought support from visionary leaders across the Arab world, as founding partners. </p>
+                        <p>QRF is proud to acknowledge His Highness General Sheikh Mohamed bin Zayed Al Nahyan, Crown Prince of Abu Dhabi, Deputy Supreme Commander of the UAE Armed Forces and Chairman of the Abu Dhabi Executive Council, as the first Founding Partner of Edraak. </p>
+                    </div>
+                    <br/><br/><br/>
+                    <div class="row">
+                        <h2>Sponsors</h2>
+                        <img src="/static/images/mikati_foundation.jpg" style="float: right; height: 275px; margin-left: 20px; margin-bottom: 20px">
+                        <p>The Queen Rania Foundation is proud to recognize the Mikati Foundation as a sponsor of the Edraak platform  and to acknowledge it’s commitment to increasing access to quality education for Arab learners.</p>
+                        <p>The Mikati Foundation is an international non-profit founded by the brothers Taha A. Mikati & Najib A. Mikati. The Foundation works to improve the welfare and prospects of people in the developing world, particularly in the Arab World and Africa. Its projects encompass many of the determinants of the quality of life, including education, scientific research, access to community development services, as well as the cultural areas of traditional handicrafts, architecture, art, music & sports.</p>
+                    </div>
+                    % endif
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

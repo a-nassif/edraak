@@ -1,47 +1,82 @@
 .home {
   padding: 0px;
+  .carousel-control.right{
+    right: -136px;
+    background-image:none;
+  }
+  .carousel-control.left{
+    left: -136px;
+    background-image:none;
+  }
 
   > .container {
     @include box-sizing(border-box);
-    width: flex-grid(12);
   }
 
   > header {
-    @include linear-gradient($homepage__header--gradient__color--alpha, $homepage__header--gradient__color--bravo);
+//    @include linear-gradient($homepage__header--gradient__color--alpha, $homepage__header--gradient__color--bravo);
     background-size: cover;
     background-image: $homepage-bg-image;
-    border-bottom: 1px solid $border-color-3;
+    background-position: right;
+//    border-bottom: 1px solid $border-color-3;
     box-shadow: 0 1px 0 0 $course-header-bg, inset 0 -1px 5px 0 rgba(0,0,0, 0.1);
     @include clearfix;
-    height: 460px;
+    min-height: 440px;
     overflow: hidden;
-    margin-top: $header_image_margin;
     padding: 0px;
-    width: flex-grid(12);
 
     .outer-wrapper {
-      @extend .animation-home-header-pop-up;
-      margin: 0 auto;
-      padding: 240px 10px 0px;
+//      @extend .animation-home-header-pop-up;
+      margin: 10px auto;
+      margin: 10px auto;
       position: relative;
-      max-width: 1200px;
-      min-width: 760px;
       @include clearfix;
-    }
 
+      #learn-more {
+        margin-top:23px;
+        font-weight: normal;
+        color: #0b4141;
+        border: 1px solid #0b4141;
+        line-height: 28px;
+        padding: 10px 15px;
+        font-size: 16px;
+        background-color: #cfe5e3;
+        padding-bottom: 14px;
+      }
+      #learn-more:hover {
+        background-color: transparent;
+      }
+    }
+    #learn-more{
+      margin-top:23px;
+      font-weight: bold;
+      float:left;
+      color: #093434;
+      border: 1px solid #093434;
+      line-height: 28px;
+      padding: 10px 15px;
+    }
+    .trans-bg{
+//      background:rgba(0,0,0, 0.1);
+//      padding-right: 0px;
+//      margin-top:168px;
+      height:150px
+
+    }
+    .slider-video-container{
+      padding-left: 0px;
+      margin-top: 15px;
+      box-shadow: 0 0 5px #626262;
+      padding-right: 0;
+
+    }
     .title {
-      background: #FFF;
-      background: $course-header-bg;
-      border: 1px solid $border-color-3;
-      box-shadow: 0 4px 25px 0 rgba(0,0,0, 0.5);
-      @include box-sizing(border-box);
-      min-height: 120px;
-      margin-left: grid-width(2) + $gw-gutter;
-      width: flex-grid(6);
-      float: left;
+//          @include background-image(linear-gradient(left, rgba(0,0,0, 0.0) 10% , rgba(0,0,0, 1)));
+      min-height: 150px;
       position: relative;
       @include transition(all 0.2s linear 0s);
-      vertical-align: top;
+//      float:left;
+      text-align: left;
 
       &:hover, &:focus {
         .actions {
@@ -54,22 +89,44 @@
         display: inline-block;
         left: 0px;
         opacity: 1.0;
-        padding: 20px 30px;
+        padding-right: 20px ;
         top: 0px;
         @include transition(all 0.2s linear 0s);
         text-align: left;
-
         h1 {
           margin-bottom: 0px;
+          margin-top: 60px;
           text-align: left;
+          color:white;
           text-shadow: 0 1px rgba(255,255,255, 0.6);
           text-transform: none;
+          font-size: 35px;
+          line-height:42px;
+          font-weight: bold;
+          @media (max-width: 800px) {
+
+          font-size: 25px !important;
+  }
+          @media (max-width: 1000px) {
+
+          font-size: 40px;
+  }
+
         }
 
         h2 {
-          font-style: italic;
-          margin-bottom: 0px;
+          margin-bottom: 0;
+          font-size: 24px;
           text-transform: lowercase;
+          color:white;
+          text-align: left;
+        }
+        p{
+          color: white;
+          width: 390px;
+          margin-top: 16px;
+          font-size: 16px;
+          line-height: 22px;
         }
       }
     }
@@ -79,25 +136,25 @@
     }
 
     .media {
-      background: #FFF;
-      background: $course-header-bg;
-      border: 1px solid $border-color-3;
-      border-left: 0;
-      @include box-sizing(border-box);
-      // box-shadow: 0 4px 25px 0 rgba(0,0,0, 0.5);
-      height: 120px;
+//      background: #FFF;
+//      background: $course-header-bg;
+//      border: 1px solid $border-color-3;
+//      border-left: 0;
+//      @include box-sizing(border-box);
+//      box-shadow: 0 4px 25px 0 rgba(0,0,0, 0.5);
+      height: 285px;
       float: left;
-      padding: 4px;
+//      padding: 4px;
       position: relative;
       vertical-align: top;
-      width: flex-grid(2) + flex-gutter();
+      width: 100%;
       z-index: 2;
 
       &:hover, &:focus {
         text-decoration: underline;
       }
 
-      .hero {
+      .hero1 {
         height: 100%;
         overflow: hidden;
         position: relative;
@@ -105,26 +162,14 @@
         background-size: cover;
 
         .play-intro {
-          @include background-image(linear-gradient(-90deg, rgba(0,0,0, 0.65), rgba(0,0,0, 0.75)));
-          border-radius: 4px;
-          box-shadow: 0 1px 12px 0 rgba(0,0,0, 0.4);
-          @include box-sizing(border-box);
-          border: 2px solid rgba(255,255,255, 0.8);
-          height: 60px;
-          left: 50%;
-          margin-top: -30px;
-          margin-left: -30px;
-          position: absolute;
-          top: 50%;
-          @include transition(all 0.15s linear 0s);
-          width: 60px;
 
           &::after {
+//            background-image: url('../images/play_video2.png');
             color: #fff;
             color: rgba(255,255,255, 0.8);
-            content: "\25B6";
+//            content: "\25B6";
             display: block;
-            font: normal 2em/1em $sans-serif;
+            font: normal 2em/1em $droid-sans;
             left: 50%;
             margin-left: -11px;
             margin-top: -16px;
@@ -142,43 +187,253 @@
 
       &:hover, &:focus {
         .play-intro {
-          @include background-image(linear-gradient(-90deg, rgba(0,0,0, 0.75), rgba(0,0,0, 0.8)));
-          box-shadow: 0 1px 12px 0 rgba(0,0,0, 0.5);
-          border-color: rgba(255,255,255, 0.9);
+          img {
+            opacity: 1!important;
+          }
+//          @include background-image(linear-gradient(-90deg, rgba(0,0,0, 0.75), rgba(0,0,0, 0.8)));
+//          box-shadow: 0 1px 12px 0 rgba(0,0,0, 0.5);
+//          border-color: rgba(255,255,255, 0.9);
 
           &::after {
-            color: #fff;
-            color: rgba(255,255,255, 1);
+//            color: #fff;
+//            color: rgba(255,255,255, 1);
           }
         }
       }
     }
+    .header-title{
+
+      background: rgba(0,166,170,0.7);
+      font-size:15px;
+      height: 95px;
+      color:white;
+      color:white;
+      line-height: 20px;
+      padding:10px;
+          @media (max-width: 800px) {
+          font-size: 14px !important;
   }
-
-  .highlighted-courses {
-    @include box-sizing(border-box);
-    margin-bottom: 40px;
-    position: relative;
-    width: flex-grid(12);
-    z-index: 1;
-
-    > h2 {
-      @include background-image(linear-gradient(-90deg, rgb(250,250,250), rgb(230,230,230)));
-      border: 1px solid $border-color-2;
-      border-radius: 4px;
-      border-top-color: $border-color-1;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255, 0.4), 0 0px 12px 0 rgba(0,0,0, 0.2);
-      color: $lighter-base-font-color;
-      letter-spacing: 1px;
-      margin-bottom: 0px;
-      margin-top: -15px;
-      padding: 10px 10px 8px;
-      text-align: center;
-      text-transform: uppercase;
-      text-shadow: 0 1px rgba(255,255,255, 0.6);
+          @media (max-width: 1000px) {
+          font-size: 15px !important;
+  }
     }
   }
 
+  .highlighted-courses {
+    margin-bottom: 20px;
+    z-index: 1;
+    margin-top:59px;
+    background-position: 0 -8px;
+
+    .courses{
+
+    }
+    h2.main-title{
+      position: relative;
+      top:-9px;
+      div{
+        height: 43px;
+        font-size: 24px !important;
+        text-align: center;
+      }
+    }
+  }
+
+    #browse-all-courses {
+      margin-top: 23px;
+      font-weight: normal;
+      color: #0b4141;
+      border: 1px solid #0b4141;
+      line-height: 28px;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 0px;
+      padding-bottom: 14px;
+    }
+  #browse-all-courses:hover {
+    background-color: #cfe5e3;
+  }
+
+  #how-it-work {
+    background-color: #f0f0f0;
+    position: relative;
+    z-index: 1;
+    margin-top: 51px;
+    height: 440px;
+    overflow: hidden;
+    h1 {
+      margin-top: 60px;
+      margin-bottom: -10px;
+      font-weight: bold;
+      color: #018C8F;
+      float: left;
+      width: 100%;
+      text-align: center;
+    }
+    .image {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      width: 480px;
+      margin: 0 auto;
+      color: #8c8c8c;
+    }
+    .row {
+      padding-top: 40px;
+    }
+    .point-holder {
+      margin-bottom: 40px;
+    }
+    .carousel-indicators {
+
+      li {
+        background-color: #f0f0f0;
+        border: 1px solid #bcbcbc;
+        border-radius: 10px;
+        cursor: pointer;
+        display: inline-block;
+        height: 15px;
+        margin: 1px;
+        text-indent: -999px;
+        width: 15px;
+      }
+      .active {
+        background-color: #cfe5e3;
+        border: 1px solid #bcbcbc;
+        border-radius: 10px;
+        cursor: pointer;
+        display: inline-block;
+        height: 15px;
+        margin: 1px;
+        text-indent: -999px;
+        width: 15px;
+      }
+    }
+
+  }
+  #collaborate-with-edraak {
+    position: relative;
+    z-index: 1;
+    margin-top: 5px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #c8c8c8;
+    h3{
+      text-align: center;
+      margin-top: 0px;
+      float: left;
+      width: 100%;
+      color: #727272;
+      font-size: 24px;
+    }
+    p {
+      color: #018C8F;
+      font-size: 22px;
+      float: left;
+      width: 100%;
+      margin-top: 20px;
+      line-height: 28px;
+    }
+    .collab-steps {
+      color: #018C8F;
+      float: left;
+      margin-top: 25px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      h1{
+        text-align: left;
+        font-weight: bold;
+        color: #018C8F;
+        margin-bottom: 5px;
+        font-size: 1.5em !important;
+        line-height: 28px;
+      }
+
+      p {
+        color: #727272;
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 5px;
+      }
+    }
+    #contact-us {
+      text-align: center;
+      color: #093434;
+      border: 1px solid #093434;
+      padding: 25px 10px;
+      border-radius: 0;
+      font-size: 20px;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+    .row {
+      padding-top:36px;
+    }
+    .point-holder {
+      margin-bottom:40px;
+    }
+
+  }
+
+  .edraak-icon{
+    background: url(../images/edraak_7up.png) no-repeat;
+    width:62px;
+    height:62px;
+    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
+
+  }
+  .icon-learn{
+    background-position: 0 -10px;
+  }
+  .icon-join{
+    background-position: -315px -10px;
+    float:left;
+  }
+  .icon-achieve{
+    background-position: -623px -10px;
+  }
+  .icon-earn{
+    background-position: -408px -10px;
+  }
+  .icon-professors{
+    background-position: -214px -10px;
+    float:left;
+  }
+  .icon-education{
+    background-position: -511px -10px;
+    float:left;
+  }
+  .icon-companies{
+    background-position: -110px -10px;
+  }
+   .sub-title-home{
+     font-size:30px;
+   }
+
+    h2.main-title {
+      padding-top:0px;
+      margin-top:0;
+      margin-bottom: 0;
+      text-align: left;
+      div {
+        background:white;
+        display: block;
+        margin:auto;
+        font-size:28px;
+        color: #6e6f71;
+        height: 25px;
+        width:70%;
+        text-transform: none;
+        text-align: center;
+      }
+    }
   .university-partners {
     border-bottom: 1px solid $border-color-2;
     margin-bottom: 0px;
@@ -291,7 +546,7 @@
 
           > span {
             color: $base-font-color;
-            font: 800 italic 1.4em/1.4em $sans-serif;
+            font: 800 italic 1.4em/1.4em $droid-sans;
             text-shadow: 0 1px rgba(255,255,255, 0.6);
             @include transition(all 0.15s ease-in-out 0s);
 
@@ -465,7 +720,7 @@
 
             a {
               color: $base-font-color;
-              font: 700 1em/1.2em $sans-serif;
+              font: 700 1em/1.2em $droid-sans;
 
               &:hover, &:focus {
                 color: $blue;
@@ -507,6 +762,48 @@
           }
         }
       }
+    }
+  }
+
+  .static-paragraph {
+    width:100%;
+    margin-top: 20px;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    .image{
+      padding-right:0px;
+    }
+    .static-paragraph-body{
+      padding-left:0px;
+      .body{
+
+      padding-left:52px;
+      padding-top:30px;
+      }
+    }
+    img{
+      width:100%
+    }
+    .title{
+      background: $light-blue;
+      font-size:50px;
+      height: 111px;
+      line-height: 111px;
+      color:white;
+      font-weight: bold;
+      h3{
+        font-weight: bold;
+        font-size:30px;
+        color:#7d7d7d;
+      }
+      h4{
+        margin:5px 0;
+        font-size:25px;
+        color:#7d7d7d;
+      }
+      padding-left:50px;
+      padding-top:40px;
+      color:white;
+      line-height: 20px;
     }
   }
 }

@@ -4,12 +4,13 @@
 <!--[if IE 9]><html class="ie ie9 lte9" lang="${LANGUAGE_CODE}"><![endif]-->
 <!--[if gt IE 9]><!--><html lang="${LANGUAGE_CODE}"><!--<![endif]-->
 <head>
+##    <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language_bidi, get_language %>
 <%! from microsite_configuration import microsite %>
 <%! from microsite_configuration import page_title_breadcrumbs %>
-<%! from django.utils.translation import get_language_bidi %>
+<%! import branding %>
 
 <%namespace name='static' file='static_content.html'/>
 <%! from django.utils import html %>
@@ -38,6 +39,24 @@
        ${page_title_breadcrumbs(self.pagetitle())}
       </title>
   </%block>
+##<link rel="stylesheet" media="screen" href="https://openfontlibrary.org/face/droid-arabic-kufi" rel="stylesheet" type="text/css"/>
+% if get_language() == 'ar':
+<meta content="وأخيراً صار بإمكاني أتعلم من افضل الخبراء  عبر الإنترنت! انضموا إلي وسجلوا مجانا" name="description">
+<meta content="https://www.edraak.org/static/images/social/Edraak_Picture.png" itemprop="image">
+<meta property="og:title" content="إدراك"/>
+<meta property="og:image" content="https://www.edraak.org/static/images/social/Edraak_Picture.png"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="www.edraak.org"/>
+<meta property="og:description" content="وأخيراً صار بإمكاني أتعلم من افضل الخبراء  عبر الإنترنت! انضموا إلي وسجلوا مجانا"/>
+% else:
+<meta content="Finally I can learn from the best experts through the Internet." name="description">
+<meta content="https://www.edraak.org/static/images/social/Edraak_Picture.png" itemprop="image">
+<meta property="og:title" content="Edraak"/>
+<meta property="og:image" content="https://www.edraak.org/static/images/social/Edraak_Picture.png"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="www.edraak.org"/>
+<meta property="og:description" content="Finally I can learn from the best experts through the Internet."/>
+% endif
 
   <script type="text/javascript">
     /* immediately break out of an iframe if coming from the marketing website */
@@ -51,6 +70,7 @@
   <script type="text/javascript" src="/jsi18n/"></script>
 
   <link rel="icon" type="image/x-icon" href="${static.url(microsite.get_value('favicon_path', settings.FAVICON_PATH))}" />
+
 
 % if get_language_bidi():
   <%static:css group='style-vendor'/>
@@ -133,6 +153,15 @@
   <%static:js group='module-js'/>
 
   <%block name="js_extra"/>
+    ##<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5PKGK2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5PKGK2');</script>
+    ##<!— End Google Tag Manager -->
 </body>
 </html>
 

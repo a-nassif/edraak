@@ -13,6 +13,8 @@ def get_visible_courses():
 
     courses = [c for c in _courses
                if isinstance(c, CourseDescriptor)]
+    # courses = sorted(courses, key=lambda course: course.number)[:9]
+    # commented by AHMAD coz najwan want to see all courses somewhere!
     courses = sorted(courses, key=lambda course: course.number)
 
     subdomain = microsite.get_value('subdomain', 'default')
@@ -63,7 +65,7 @@ def get_logo_url():
     university = microsite.get_value('university')
 
     if university is None:
-        return '{static_url}images/header-logo.png'.format(
+        return '{static_url}images/edraak_logo.png'.format(
             static_url=settings.STATIC_URL
         )
 

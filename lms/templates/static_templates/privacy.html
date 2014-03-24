@@ -1,10 +1,266 @@
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language %>
 
 <%inherit file="../main.html" />
 
 <%block name="pagetitle">${_("Privacy Policy")}</%block>
 
+
 <section class="container about">
-<h1>${_("Privacy Policy")}</h1>
-<p>${_("This page left intentionally blank. It is not used by edx.org but is left here for possible use by installations of Open edX.")}</p>
+    <h1>${_("Privacy Policy")}</h1>
+
+    % if get_language() == 'ar':
+
+    <p>
+من بالغ الأهمية لدينا في إدراك أن نحتفظ بسرية وأمان معلوماتكم الشخصية، ويُشار لأي معلومات عنكم تزودوننا بها عند استخدام موقعنا، مثل المعلومات التي تقدمونها عند التسجيل للحصول على حساب مستخدم أو عند الدخول في تعاملات عبر الموقع والتي قد تتضمن (على سبيل المثال لا الحصر) اسمك ومعلومات الاتصال والجنس وتاريخ الميلاد والمهنة؛ جمعاً بـ"معلومات شخصية"، كما أن أي إشارة لـ "نحن" و"لنا" تُعتبَر إشارة إلى إدراك.    </p>
+
+    <p>
+سوف نبذل الجهود المعقولة تجارياً للحفاظ على أمان معلوماتك الشخصية عملاً بسياسة الخصوصية هذه.
+    </p>
+
+    <p>
+تنطبق سياسة الخصوصية هذه فقط على المعلومات التي نجمعها من خلال موقع إدراك (يشار له فيما يلي بـ "الموقع" وهو يشمل جميع المحتوى والصفحات الموجودة ضمن الموقع الإلكتروني edraak.org) ولا تنطبق على المعلومات التي قد نحصل عليها منك بطرق أخرى.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">الموافقة على نقل المعلومات الشخصية</p>
+
+    <p>
+        بموجب هذه الوثيقة، أنت توافق على جمع إدراك لمعلوماتك الشخصية - كما بينت في سياسة الخصوصية هذه - واستخدامها والإفصاح عنها والاحتفاظ بها، بما في ذلك على سبيل المثال لا الحصر: نقل معلوماتك الشخصية بين إدراك والغير والشركات التابعة والفرعية المبينة في سياسة الخصوصية هذه.
+    </p>
+
+    <p>
+        وتعتبر أي موافقة متعلقة بحق نقل المعلومات المشار إليها في هذه الفقرة أنها تتضمن موافقتكم على نقل المعلومات الشخصية القابلة للتطبيق إلى اختصاص قضائي آخر، وهذا قد ينجم عنه مستوى مختلف من حماية الخصوصية عما هو سارٍ في بلدك.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">المعلومات التي نجمعها وكيف نستخدمها</p>
+
+    <p>
+        نحن نقوم بجمع المعلومات بما فيها المعلومات الشخصية عندما تقوم بالتسجيل للحصول على حساب مستخدم و/أو المشاركة في المساقات و/أو أن ترسل لنا بريداً إلكترونياً و/أو تشارك في منتدياتنا العامة، كما نقوم بجمع بعض معلومات الاستخدام حول أداء الطلبة وأنماط التعلّم، بالإضافة لما سبق فنحن نتتبّع المعلومات التي تبيّن سجلات مثل الصفحات التي تزورها في موقعنا ومواعيد زيارتها والترتيب الذي تمت زيارتها فيه وأي الروابط التشعبية وغيرها من أدوات واجهة المستخدم قد استعملتها.
+    </p>
+
+    <p>
+        قد نقوم بتسجيل عنوان بروتوكول الإنترنت ونظام التشغيل والمتصفح الذي يستخدمه كل مستخدم وقد نتمكن - بناءً على عنوان بروتوكول الإنترنت - من تحديد مزود خدمة الإنترنت الخاص بالمستخدم والموقع الجغرافي لنقطة اتصاله.
+    </p>
+
+    <p>
+    نستخدم مجموعة متنوعة من أدوات تحليل الإنترنت لجمع هذه المعلومات غير أن بعض المعلومات تُجمَع بواسطة الكوكيز، ويجب أن تكون قادراً على أن تتحكم فيما إذا كان متصفحك يقبل الكوكيز وكيفية قبوله لها حيث أن معظم المتصفحات تقدّم تعليمات لكيفية إعادة ضبط المتصفح كي يرفض الكوكيز من خلال قسم "المساعدة" في شريط الأدوات، غير أنك إذا رفضت "الكوكيز" من موقعنا فإن العديد من الخصائص والفوائد التي يقدّمها موقعنا لك قد لا تعمل كما ينبغي.
+        </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">الاستخدام والإفصاح للغير</p>
+
+    <p>
+        يمكن أن نقوم نحن وشركاؤنا في التعليم ممّن يقدّمون المساقات عبر موقع إدراك باستخدام معلوماتك التي تُجمَع من الموقع من بين أمور أخرى (بما فيها معلوماتك الشخصية). في حال مشاركتنا أو إفصاحنا عن معلوماتك الشخصية للغير، يطالب هذا الغير بالتعامل مع معلومات الشخصية بسرية وأن يحافظ على الأمان الكافي لحماية المعلومات من الضياع أو سوء الاستخدام أو الاستخدام غير المسموح أو الإفصاح أو التعديل أو الإتلاف.
+    </p>
+
+    <p>
+        سوف نقوم بالإفصاح عن المعلومات الشخصية المطلوبة من الغير ومشاركتها من أجل تلبية الطلب المذكور عند جمع هذه المعلومات مثل:
+    </p>
+
+    <ul style="list-style-type: circle; line-height: 25px">
+        <li>تمكين المعاهد التعليمية الشريكة لنا من إقامة الدورات وإدارتها وتحسينها.</li>
+        <li>مساعدتنا ومساعدة المؤسسات التعليمية في تحسين العروض التي تقدمها إدراك سواء الصعيد الفردي (مثلاً كادر الدورة عند العمل مع طالب) أو الجماعي، كما تساعدنا في تقييم دخول واستخدام الموقع وتأثير إدراك على مجتمع التعليم على النطاق العالمي.</li>
+        <li>تتبّع الحضور الفردي والجماعي والتقدّم الحاصل والإكمال للدورات الإلكترونية وتحليل إحصائيات أداء الطالب والطريقة المستخدمة من قِبله للتعلّم.</li>
+        <li>نشر المعلومات، غير المعلومات الشخصية، المجموعة حول الدخول إلى موقع إدراك واستخدامه وتأثيره وأداء الطلاب.</li>
+        <li>إرسال تحديثات حول الدورات على الإنترنت التي تقدّمها إدراك أو غيرها من المناسبات، ومراسلتكم حول إخطارات عن منتجات أو خدمات إدراك أو الشركات التابعة لإدراك أو شركاء أعمال مختارين قد يهمك أمرهم، أو إرسال رسائل إلكترونية لك حول أي شؤون تتعلق بصيانة الموقع أو تحديثاته.</li>
+        <li>لأغراض الأبحاث العلمية وخاصة على سبيل المثال: مجالات العلوم المعرفية والتعليم.</li>
+        <li>أرشفة هذه المعلومات و/أو استخدامها من أجل التواصل معكم في المستقبل.</li>
+        <li>الحفاظ على وظائف وأمان الموقع وبرنامجنا وأنظمتنا وشبكتنا وتحسينها.</li>
+    </ul>
+
+    <p>
+        يمكن أن نشارك المعاهد التعليمية بالمعلومات التي نجمعها، ويمكن مشاركة هذه المعلومات (بما فيها المعلومات الشخصية) مع الغير على الشكل التالي:
+    </p>
+
+    <ul style="list-style-type: circle; line-height: 25px">
+        <li>مزودي خدمات أو مقاولين يؤدون خدمات معينة نيابةً عنّا أو عن المؤسسات التعليمية بما في ذلك معالجة المعلومات التي تزودنا بها على الموقع أو تشغيل الموقع أو أقسام منه أو تزويد أو إدارة الدورات أو فيما يتعلق بجوانب أخرى من خدمات إدراك أو المؤسسات الشريكة.</li>
+        <li>لأغراض الأبحاث العلمية (كما ذكرنا سابقاً)، غير أننا سنشارك المعلومات الشخصية الخاصة بك فقط بالمقدار الضروري لتلبية الغرض المذكور في وقت جمع هذه المعلومات.</li>
+        <li>لتزويدكم بفرص التواصل مع مستخدمين آخرين ممّن قد يكون لهم نفس اهتماماتكم أو أهدافكم التعليمية، مثلاً، قد نوصيكم بشركاء دراسة محددين أو تعريفكم بطلاب متلقّين أو مرشدين محتملين. وفي هكذا حال فقد نستخدم المعلومات التي نجمعها حولكم لتحديد من قد يكون مهتماً بالتواصل معكم، لكننا لن نزود المستخدمين الآخرين سوى باسم المستخدم الخاص بكم ولن نفصح لهم عن اسمكم الحقيقي أو عنوان بريدكم الإلكتروني.</li>
+        <li>قد نستضيف لأغراض التكامل مع خدمات الغير بعض المحتوى الذي لا تتحكم به إدراك كاستضافة فيديوهات من موقع يوتيوب.</li>
+    </ul>
+
+    <p>
+        إضافة لما سبق فقد نشارك معلومات جمعناها ولا تشكل إمكانية تعرّف شخصي عليكم مع العموم ومع الغير، بما في ذلك على سبيل المثال لا الحصر: الباحثين وشركاء الأعمال.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">روابط إلى مواقع إلكترونية أخرى</p>
+
+    <p>
+        قد يحتوي الموقع روابط إلى مواقع إلكترونية للغير كمزودي محتوى آخرين وبعض مزودي الخدمات، غير أن هذه المواقع الأخرى ليست تحت إدارتنا وبذلك عليك أن تتفهم وتوافق على أننا لا نتحمل مسؤولية جمع هذه المواقع واستخدامها لمعلوماتك ما لم تتم الإشارة له بغير ذلك في سياسة الخصوصية هذه. نوصيكم بالحرص عندما يتم توجيهكم إلى موقع الغير لتقوموا بمراجعة سياسات الخصوصية لكل موقع تزورونه وتستخدمونه.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">تغييرات سياسة الخصوصية</p>
+
+    <p>
+        يرجى الأخذ بعين الاعتبار أننا نقوم بمراجعة سياسة الخصوصية هذه دورياً وقد نُجري عليها بعض التغييرات، عندما نُجري أية تغييرات فإن رابط سياسة الخصوصية سيحتوي إشارة "مراجعة حديثة (مع التاريخ)" مما يشير إلى وجوب مراجعتك للأحكام الجديدة التي تعتبر سارية فور نشر السياسة الجديدة على هذه الصفحة مع تاريخ نفاذ جديد. ستبقى هذه الإشارة موضوعة إلى جانب رابط سياسة الخصوصية لمدة عشرة (10) أيام على الأقل بعد إجراء التحديثات. ويُعتبَر دخولك الموقع بعد إجراء أي تغييرات موافقةً مسبقة منك على سياسة الخصوصية المعدّلة وأية تغييرات فيها، وفي حال استلامك إشعار بالتعديلات والمذكور أعلاه، احرص على زيارة هذه الصفحة بشكل دوري للتأكد من معرفتك بأحدث نسخة من سياسة الخصوصية.
+    </p>
+
+
+
+
+    % else:
+
+    <p>Your personal information’s confidentiality and security is of significant importance to Edraak.
+        Any information about yourself that you may provide to us when using the Site, such as when you
+        sign up for a user account or enter into a transaction through the Site, which may include (but
+        is not limited to) your name, contact information, gender, date of birth, occupation, shall collectively
+        be referred to as “Personal Information”. In addition, any reference to “we”, “us” and “our”
+        shall be deemed as reference to Edraak.</p>
+
+    <p>We will use commercially reasonable efforts to keep your Personal Information secure in compliance with this
+        Privacy Policy.</p>
+
+    <p>This Privacy Policy only applies to information that we collect through the Edraak Website
+        (the "Site," which consists of all content and pages located within the edraak.org web domain)
+        and does not apply to information that we may collect from you in other ways.</p>
+
+    <br/>
+
+    <p style="text-decoration: underline">
+        CONSENT TO TRANSFER OF PERSONAL INFORMATION
+    </p>
+
+    <p>
+        You hereby consent to the collection, use, disclosure and retention by Edraak of your Personal
+        Information as described under this Privacy Policy, including, but not limited to, the transfer
+        of your personal data between Edraak and the third parties, affiliates and subsidiaries described
+        in this Privacy Policy.
+    </p>
+
+    <p>
+        Any consent relating to a right to transfer information referred to in this paragraph shall
+        be deemed to include your consent to the transfer of the applicable Personal Information to a
+        different jurisdiction, which may provide a different level of privacy protection than that
+        available in your own country.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">INFORMATION WE COLLECT AND HOW WE USE IT</p>
+
+    <p>
+        We collect information, including Personal Information, when you sign up for a user account, participate in
+        online courses, send us email messages and/or participate in our public forums. We also collect certain usage
+        information about student performance and patterns of learning. In addition, we track information that display
+        records such as which pages of our Site were visited, when they were visited, the order in which they were
+        visited and which hyperlinks and other user interface controls were used.
+    </p>
+
+    <p>
+        We may log the IP address, operating system and browser software used by each user, and we may be able to
+        determine, from the IP address, a user's Internet Service Provider and the geographic location of his or her
+        point of connectivity.
+    </p>
+
+    <p>Various web analytics tools are used to collect this information; however, some of the information is collected
+        through cookies. You should be able to control how and whether cookies will be accepted by your web browser.
+        Most browsers offer instructions on how to reset the browser to reject cookies in the "Help" section of the
+        toolbar. If you reject our cookies, many functions and conveniences of this Site may not work properly.</p>
+
+    <br/>
+
+    <p style="text-decoration: underline">USE AND DISCLOSURE TO THIRD PARTIES</p>
+
+    <p>
+        Among other things, we and the educational partners, that provide courses through Edraak, may use your
+        information that will be collected via the Site (including your Personal Information). In the event that we
+        share or disclose your Personal Information to third parties, the third party recipients are required to handle
+        the Personal Information in a confidential manner and to maintain adequate security to protect the information
+        from loss, misuse, unauthorized access or disclosure, alteration, and destruction.
+    </p>
+
+    <p>
+        We will disclose and share the Personal Information that is required by the third party to fulfill the purpose
+        stated at the time of collection, such as:
+    </p>
+
+    <ul style="list-style-type: circle; line-height: 25px">
+        <li>To enable the partner educational institutions to provide, administer and improve the courses.</li>
+        <li>To help us and the educational institutions improve Edraak’s offerings, both individually (e.g., by course
+            staff when working with a student) and in aggregate, and to evaluate the access and use of the Site and the
+            impact of Edraak on the worldwide educational community.
+        </li>
+        <li>To track both individual and aggregate attendance, progress and completion of an online course, and to
+            analyze statistics on student performance and the manner used by students to learn.
+        </li>
+        <li>To publish information, but not Personal Information, gathered about Edraak’s access, use, impact and
+            student performance.
+        </li>
+        <li>To send you updates about online courses offered by Edraak or other events, to send you notifications about
+            products or services of Edraak, Edraak affiliates, or selected business partners that may be of interest to
+            you, or to send you email messages about any Site maintenance or updates.
+        </li>
+        <li>For purposes of scientific research, particularly, for example, in the areas of cognitive science and
+            education.
+        </li>
+        <li>To archive this information and/or use it for future communications with you.</li>
+        <li>To maintain and improve the functioning and security of the Site and our software, systems and network.</li>
+    </ul>
+
+    <p>
+        Information we collect may also be shared with the educational institutions; such information (including
+        Personal Information) may then be shared with third parties as follows:
+    </p>
+
+    <ul style="list-style-type: circle; line-height: 25px">
+        <li>Service providers or contractors that perform certain functions on our or the educational institutions'
+            behalf, including processing information that you provide to us on the Site, operating the Site or portions
+            of it, providing or administering courses, or in connection with other aspects of Edraak’s or partner
+            institutions’ services.
+        </li>
+        <li>For purposes of scientific research (as above), however, we will only share Personal Information about you
+            to the extent required to fulfill the purposes stated at the time of collection.
+        </li>
+        <li>To provide opportunities for you to communicate with other users who may have similar interests or
+            educational goals. In example, we may recommend specific study partners or link potential student mentees
+            and mentors. In such cases, we may use information collected about you to determine who might be interested
+            in communicating with you, but we will only provide other users your username, and not disclose your real
+            name or e-mail address to your contact.
+        </li>
+        <li>For integration with third party services, certain content may be hosted on websites not controlled by
+            Edraak, for example, hosting videos on YouTube.
+        </li>
+    </ul>
+
+    <p>
+        In addition, we may share aggregated information that does not personally identify you with the public and with
+        third parties, including but not limited to researchers and business partners.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">LINKS TO OTHER WEBSITES</p>
+
+    <p>
+        The Site may contain links to third-party websites, including other content providers as well as certain service
+        providers. These other websites are not under our control, and you acknowledge and agree that we are not
+        responsible for the collection and use of your information by such websites, unless we have otherwise indicated
+        in this Privacy Policy. We encourage you to be aware when you are redirected to a third party website and to
+        review the privacy policies of each website you visit and use.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">CHANGINGES TO THE PRIVACY POLICY</p>
+
+    <p>
+        Please note that we periodically review and may make changes to this Privacy Policy. When changes are made, the
+        Privacy Policy link will include a notation "Recently Revised (date)" where you should review the new terms,
+        which will be effective immediately upon posting on this page, with an updated effective date. The notation will
+        be included in the Privacy Policy link for at least ten (10) days after the update has been made. You signify
+        your agreement on a prospective basis to the modified Privacy Policy, and any changes contained therein, by
+        accessing the Site after any changes have been made. In case you miss the notification referenced above, be sure
+        to return to this page periodically to ensure familiarity with the most current version of this Privacy Policy.
+    </p>
+
+    % endif
+
 </section>

@@ -12,7 +12,7 @@
 // ====================
 // base - utilities
 @import 'variables';
-@import 'mixins_rtl';
+@import 'mixins';
 @import 'mixins-inherited';
 
 // base - assets
@@ -27,23 +27,26 @@
 @import 'elements/typography';
 @import 'elements/icons'; // references to icons used
 @import 'elements/controls'; // buttons, link styles, sliders, etc.
+@import 'elements/xblocks'; //  studio rendering chrome for xblocks
 
 // base - specific views
 @import 'views/account_rtl';
-@import 'views/assets';
+@import 'views/assets_rtl';
 @import 'views/updates';
 @import 'views/dashboard_rtl';
 @import 'views/export';
 @import 'views/index';
 @import 'views/import';
 @import 'views/outline_rtl';
-@import 'views/settings';
+@import 'views/settings_rtl';
 @import 'views/static-pages_rtl';
 @import 'views/subsection_rtl';
 @import 'views/unit_rtl';
+@import 'views/container';
 @import 'views/users';
 @import 'views/checklists';
 @import 'views/textbooks';
+@import 'views/export-git';
 
 // base - contexts
 @import 'contexts/ie'; // ie-specific rules (mostly for known/older bugs)
@@ -51,4 +54,5 @@
 // temp - inherited
 @import 'assets/content-types';
 
-@import 'shame'; // shame file - used for any bad-form/orphaned scss that knowingly violate edX FED architecture/standards (see - http://csswizardry.com/2013/04/shame-css/)
+@import 'developer'; // used for any developer-created scss that needs further polish/refactoring
+@import 'shame';     // used for any bad-form/orphaned scss

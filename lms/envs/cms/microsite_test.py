@@ -14,7 +14,7 @@ MICROSITE_CONFIGURATION = {
         "domain_prefix": "openedx",
         "university": "openedx",
         "platform_name": "Open edX",
-        "logo_image_url": "openedx/images/header-logo.png",
+        "logo_image_url": "openedx/images/edraak-logo.jpg",
         "email_from_address": "openedx@edx.org",
         "payment_support_email": "openedx@edx.org",
         "ENABLE_MKTG_SITE": False,

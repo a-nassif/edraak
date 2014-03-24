@@ -1,11 +1,14 @@
 """ Utility functions related to HTTP requests """
 import re
+import urllib
 
 from django.conf import settings
 from microsite_configuration import microsite
 from opaque_keys.edx.locations import SlashSeparatedCourseKey
 
-COURSE_REGEX = re.compile(r'^.*?/courses/(?P<course_id>[^/]+/[^/]+/[^/]+)')
+
+COURSE_REGEX = re.compile("^.*?/courses/(?P<course_id>[^/]+/[^/]+/[^/]+)", re.UNICODE)
+# COURSE_REGEX = re.compile(r'\w\-~.:/courses/(?P<course_id>[^/]+/[^/]+/[^/]+)', re.UNICODE)
 
 
 def safe_get_host(request):

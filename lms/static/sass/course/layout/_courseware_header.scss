@@ -78,6 +78,21 @@ header.global.slim {
   border-bottom: 1px solid $outer-border-color;
   background: $header-bg;
 
+  .container .row {
+    border: 0 none;
+    box-shadow: 0;
+  }
+
+  ol {
+    &.user {
+      margin-top: 5px;
+    }
+
+    &.language-select {
+      margin-top: 11px;
+    }
+  }
+
   .guest .secondary {
     margin-right: 0;
   }
@@ -155,7 +170,7 @@ header.global.slim {
 
   h2 {
     display: block;
-    width: 700px;
+//    width: 700px;
     float: left;
     font-size: 0.9em;
     font-weight: 600;
@@ -168,6 +183,7 @@ header.global.slim {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    height: 25px;
 
     .provider {
       font: inherit;
@@ -184,4 +200,8 @@ header.global.slim {
     font-weight: bold;
     letter-spacing: 0;
   }
+}
+
+.language-select {
+  margin-top: 11px;
 }

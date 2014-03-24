@@ -14,6 +14,7 @@ from util.cache import cache_if_anonymous
 
 
 @ensure_csrf_cookie
+@cache_if_anonymous
 def index(request):
     '''
     Redirects to main page -- info page if user authenticated, or marketing if not
@@ -52,8 +53,8 @@ def index(request):
     return student.views.index(request, user=request.user)
 
 
-
 @ensure_csrf_cookie
+@cache_if_anonymous
 def courses(request):
     """
     Render the "find courses" page. If the marketing site is enabled, redirect
@@ -74,3 +75,25 @@ def courses(request):
     #  we do not expect this case to be reached in cases where
     #  marketing is enabled or the courses are not browsable
     return courseware.views.courses(request)
+
+
+from django.utils.translation import ugettext_lazy as _, check_for_language
+from django import http
+from django.utils.http import is_safe_url
+
+
+def change_lang(request):
+    next = request.REQUEST.get('next')
+    if not is_safe_url(url=next, host=request.get_host()):
+        next = request.META.get('HTTP_REFERER')
+    if not is_safe_url(url=next, host=request.get_host()):
+        next = '/'
+    response = http.HttpResponseRedirect(next)
+    if request.method == 'GET':
+        lang_code = request.GET['language']
+    if lang_code and check_for_language(lang_code):
+        if hasattr(request, 'session'):
+            request.session['django_language'] = lang_code
+        else:
+            response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
+    return response

@@ -2,13 +2,11 @@
 metadata:
     display_name: قائمة منسدلة
     markdown: |
-        Dropdown problems give a limited set of options for students to respond with, and present those options
-        in a format that encourages them to search for a specific answer rather than being immediately presented
-        with options from which to recognize the correct answer.
+        مسائل القائمة العامودية تعطي مجموعة من الخيارات المحددة للطلاب للإجابة، و تقدم هذه الخيارات بالطريقة التي تشجعهم على البحث عن إجابة محددة عوضاً عن تقديم الخيارات مباشرة يميزون من خلالها الإجابة الصحيحة.
 
-        The answer options and the identification of the correct answer is defined in the <b>optioninput</b> tag.
+          خيارات الإجابة و التعرف على الإجابة الصحيحة تعرف بـوسم <b>optioninput</b> tag.
 
-        Translation between Dropdown and __________ is extremely straightforward:
+        الترجمة بين القائمة العامودية __________ باشرة لأبعد حد:
 
         [[(Multiple Choice), Text Input, Numerical Input, External Response, Image Response]]
 
@@ -28,7 +26,7 @@ data: |
   <p>الترجمة بين القائمة العامودية و ـــــــــــــــــــــــــــــ مباشرة لأبعد حد.
 
   <optionresponse>
-        <optioninput options="(الخيارات المتعددة، إدخال مطبوع، إدخال رقمي، إجابة خارجية، إجابة مصورة)" correct="Multiple Choice"></optioninput>
+        <optioninput options="('الخيارات المتعددة','المتعددة','إدخال رقمي','إجابة خارجية','إجابة مصورة')" correct="الخيارات المتعددة" label="Translation between Dropdown and __________ is extremely straightforward"></optioninput>
   </optionresponse>
   </p>
       <solution>

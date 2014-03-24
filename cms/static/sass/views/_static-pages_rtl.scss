@@ -2,3 +2,23 @@
 // ====================
 
 @import "static-pages";
+
+.view-static-pages {
+  .component, .course-nav-tab {
+    .component-actions, .course-nav-tab-actions {
+      float: left;
+      margin-left: ($baseline*2);
+      margin-right: 0;
+
+    }
+    .drag-handle {
+      right: auto;
+      left: 0;
+    }
+    &:hover {
+      .drag-handle {
+        background: url(../img/drag-handles.png) center no-repeat #fff;
+      }
+    }
+  }
+}

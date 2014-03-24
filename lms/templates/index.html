@@ -1,4 +1,4 @@
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language %>
 
 <%! from django.core.urlresolvers import reverse %>
 <%inherit file="main.html" />
@@ -7,110 +7,466 @@
 <%! from microsite_configuration import microsite %>
 
 <%
-  homepage_overlay_html = microsite.get_value('homepage_overlay_html')
+homepage_overlay_html = microsite.get_value('homepage_overlay_html')
 
-  show_homepage_promo_video = microsite.get_value('show_homepage_promo_video', True)
-  homepage_promo_video_youtube_id = microsite.get_value('homepage_promo_video_youtube_id', "XNaiOGxWeto")
+show_homepage_promo_video = microsite.get_value('show_homepage_promo_video', True)
+homepage_promo_video_youtube_id = microsite.get_value('homepage_promo_video_youtube_id', "yY2gsC8bL3U")
 
-  show_partners = microsite.get_value('show_partners', True)
+show_partners = microsite.get_value('show_partners', True)
 
 %>
 
 <section class="home">
-  <header>
-    <div class="outer-wrapper">
-      <div class="title">
-        <hgroup>
-          % if homepage_overlay_html:
-            ${homepage_overlay_html}
-          % else:
-            % if self.stanford_theme_enabled():
-              <h1>${_("Free courses from <strong>{university_name}</strong>").format(university_name="Stanford")}</h1>
-            % else:
-              <h1>${_("The Future of Online Education")}</h1>
+    <header class="">
+        <div class="outer-wrapper container">
+        <div class="">
+
+        % if get_language() == 'ar':
+
+
+
+            <div class="col-md-6  col-sm-6 col-xs-6 trans-bg">
+                <div class="title">
+                    <hgroup>
+                        % if homepage_overlay_html:
+                        ${homepage_overlay_html}
+                        % else:
+                        % if self.stanford_theme_enabled():
+                        <h1>${_("Free courses from <strong>{university_name}</strong>").format(university_name="Stanford")}</h1>
+                        % else:
+                        <h1>
+                        العلم لمن يريد...
+                        </h1>
+                        % endif
+                        <h2>
+                            ${_("For anyone, anywhere, anytime")}
+                        </h2>
+                        <p>
+إدراك هي مبادرة من مؤسسة الملكة رانيا للتعليم والتنمية
+                        </p>
+                        % endif
+                    </hgroup>
+                        <div class="" style="text-align: center">
+                            <a id="learn-more" href="${reverse('see_all_courses')}" class="">
+                                    تصفح جميع المساقات
+                                <img src="${static.url('images/all_courses_left.png')}" />                                
+                            </a>
+                        </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6  col-xs-6 slider-video-container">
+                % if show_homepage_promo_video:
+                <a href="#video-modal" class="media" rel="leanModal">
+                    <div class="hero1">
+                        <div class="play-intro"><img src="${static.url('images/play_video2.png')}" style="width: 50px; height: 50px; opacity: 0.75; margin: 115px auto"></div>
+                    </div>
+                </a>
+                    <br clear="all"/>
+                % endif
+            </div>
+
+        % else:
+
+            <div class="pull-right col-lg-6 col-md-6 col-sm-6  col-xs-6 slider-video-container">
+
+            % if show_homepage_promo_video:
+            <a href="#video-modal" class="media" rel="leanModal">
+                <div class="hero1">
+                    <div class="play-intro"><img src="${static.url('images/play_video2.png')}" style="width: 50px; height: 50px; opacity: 0.75; margin: 115px auto"></div>
+                </div>
+            </a>
+                <br clear="all"/>
+
+
             % endif
-            <h2>${_("For anyone, anywhere, anytime")}</h2>
-          % endif
-        </hgroup>
-
-        ## Disable social buttons for non-edX sites
-        % if not self.theme_enabled():
-          <section class="actions">
-            <div class="main-cta">
-              <a href="#signup-modal" id="signup_action" class="find-courses" rel="leanModal">${_("Sign Up")}</a>
             </div>
 
-            <div class="secondary-actions">
-              <div class="social-sharing">
-                <div class="sharing-message">${_("Stay up to date with all {platform_name} has to offer!").format(platform_name=settings.PLATFORM_NAME)}</div>
-                <a href="https://twitter.com/edXOnline" class="share">
-                  <img src="${static.url('images/social/twitter-sharing.png')}">
-                </a>
-                <a href="http://www.facebook.com/EdxOnline" class="share">
-                  <img src="${static.url('images/social/facebook-sharing.png')}">
-                </a>
-                <a href="https://plus.google.com/108235383044095082735/posts" class="share">
-                  <img src="${static.url('images/social/google-plus-sharing.png')}">
-                </a>
-              </div>
+        <div class="pull-left col-md-6  col-sm-6 col-xs-6 trans-bg">
+            <div class="title">
+                <hgroup>
+                    % if homepage_overlay_html:
+                    ${homepage_overlay_html}
+                    % else:
+                    % if self.stanford_theme_enabled():
+                    <h1>${_("Free courses from <strong>{university_name}</strong>").format(university_name="Stanford")}</h1>
+                    % else:
+                    <h1 style="margin-top: 40px;font-size: 32px; !important;">
+                ${_('Massive Open Online Courses in Arabic')}
+                    </h1>
+                    % endif
+                    <h2>
+                        ${_("For anyone, anywhere, anytime")}
+                    </h2>
+                    <p>
+                        An initiative of the Queen Rania Foundation
+                    </p>
+                    % endif
+                </hgroup>
+                % if get_language() == 'ar':
+                    <div class="" style="text-align: center">
+                        <a id="learn-more" href="#" class="">
+
+                                تصفح جميع المساقات
+
+                        </a>
+                    </div>
+                 % else:
+                    <div class="" style="text-align: center">
+                        <a id="learn-more" href="${reverse('see_all_courses')}" class="">
+                        ${_('See All Courses')}
+
+                                <img src="${static.url('images/all_courses_right.png')}" />
+                        </a>
+                    </div>
+                % endif
             </div>
-          </section>
-          % endif
-      </div>
+        </div>
 
-      % if show_homepage_promo_video:
-        <a href="#video-modal" class="media" rel="leanModal">
-          <div class="hero">
-            <div class="play-intro"></div>
-          </div>
-        </a>
-      % endif
-    </div>
-  </header>
-  <section class="container">
-    <section class="highlighted-courses">
+        % endif
 
-      % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
-        <section class="courses">
-            <ul class="courses-listing">
-            %for course in courses:
-              <li class="courses-listing-item">
-                <%include file="course.html" args="course=course" />
-              </li>
-            %endfor
-            </ul>
+
+        </div>
+        <div class="row">
+
+        </div>
+        </div>
+            <br/>
+
+        <div class="row" style="min-height: 97px; margin-top: 7px; background-color: rgba(255,255,255,0.80);">
+
+            <div class="container">
+                <!--<div class="col-md-10 col-md-offset-1">-->
+                    <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
+
+      <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
+                      <!--<div class="carousel-inner">-->
+                        <!--<div class="item active" style="text-align: center;">-->
+                    <div class="row nart-partners">
+                        <a href="http://odl.mit.edu/mitx/" target="_blank"><div class="nart-mit"></div></a>
+                        <a href="http://harvardx.harvard.edu/" target="_blank"><div class="nart-harvard"></div></a>
+                        <a href="https://www.edx.org/" target="_blank"><div class="nart-aub"></div></a>
+                        <a href="http://www.aub.edu.lb" target="_blank"><div class="nart-edx"></div></a>
+                        <a href="http://www.bayt.com" target="_blank"><div class="nart-bayt"></div></a>
+                        <a href="http://www.qrta.edu.jo/" target="_blank"><div class="nart-qrta"></div></a>
+                    </div>
+                        <!--</div>-->
+                        <!--<div class="item" style="text-align: center">-->
+                            <!--<img src="${static.url('images/partners_slider/AUB_2.png')}"/>-->
+                        <!--</div>-->
+                      <!--</div>-->
+
+      <!--&lt;!&ndash; Controls &ndash;&gt;-->
+                      <!--<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">-->
+                        <!--<img src="${static.url('images/all_courses_left.png')}" />-->
+                      <!--</a>-->
+                      <!--<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">-->
+                        <!--<img src="${static.url('images/all_courses_right.png')}" />-->
+                      <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </header>
+
+    <section class="container">
+        <section class="highlighted-courses" id="highlighted-courses">
+            <h2 class="main-title">
+                <div id="highlighted-courses-link">
+                % if get_language() == 'ar':
+                        مساقات إدراك المرتقبة
+                % else:
+                        ${_('Current Courses')}
+                % endif
+                    </div>
+            </h2>
+            % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+            <div class="row courses">
+                %for course in courses:
+                    <%include file="course.html" args="course=course" />
+                %endfor
+
+                <div class="col-md-12" style="text-align: center">
+                    <br/>
+                    <br/>
+                    <a id="browse-all-courses" href="${reverse('see_all_courses')}" class="btn">
+                % if get_language() == 'ar':
+                                            تصفح جميع المساقات
+                        <img src="${static.url('images/all_courses_left.png')}" />
+                % else:
+                        ${_('Browse all courses')} <img src="${static.url('images/all_courses_right.png')}" />
+                % endif
+                    </a>
+                </div>
+            </div>
+            % endif
+
         </section>
-      % endif
-
     </section>
-  </section>
+
+        % if get_language() == 'ar':
+
+            <section id="how-it-work">
+                <div class="row">
+                         <h3>
+
+كيف تتعلم مع إدراك
+
+            </h3>
+                    <br clear="both" />
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                          <ol class="carousel-indicators" style="top: 0px">
+                            <li onclick="javascript:$('.carousel').carousel(0)" data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li onclick="javascript:$('.carousel').carousel(1)" data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li onclick="javascript:$('.carousel').carousel(2)" data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <li onclick="javascript:$('.carousel').carousel(3)" data-target="#carousel-example-generic" data-slide-to="3"></li>
+                          </ol>
+
+                          <!-- Wrapper for slides -->
+                          <div class="carousel-inner">
+                            <div class="item active">
+                              <h1>تعلم من الأفضل</h1>
+                                <div class="image">
+                                    <img src="${static.url('images/learn_best.png')}">
+                                </div>
+                                <p>
+                                    إدراك توفر لك حرية الاختيار وفرصة التعلم من أفضل الأساتذة والمختصين في مجموعة واسعة ومتجددة من المجالات لتوسيع آفاقك
+                                </p>
+                            </div>
+                            <div class="item">
+                              <h1>حقق أهدافك</h1>
+                                <div class="image">
+                                    <img src="${static.url('images/acheive.png')}">
+                                </div>
+                                <p>
+                                    مساقات إدراك مصممة لتحتوي تمارين تفاعلية وأنشطة تعلمية لمساعدتك على تقييم تقدمك نحو تحقيق أهدافك التعلمية
+                                </p>
+                            </div>
+                              <div class="item ">
+                              <h1>إنضم إلى صناع المستقبل</h1>
+                                <div class="image">
+                                    <img src="${static.url('images/join_com.png')}">
+                                </div>
+                                <p>
+تهدف ادراك إلى بناء مجتمع تعليمي الكتروني متصل، لذا تتمحور تجربة ادراك التعلمية حول التفاعل والمناقشة مع الأساتذة والطلاب
+                                </p>
+                            </div>
+                              <div class="item ">
+                              <h1>إحصل على شهادة إتمام</h1>
+                                <div class="image">
+                                    <img src="${static.url('images/certificate.png')}">
+                                </div>
+                                <p>
+إدراك تمنحك فرصة الحصول على شهادة إتمام لإثبات قدراتك عند النجاح في المساق لأصحاب العمل الذين ينوون التوظيف
+                                </p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+            </section>
+
+        % else:
+
+            <section id="how-it-work">
+                <div class="row">
+                    <h3>
+
+                        How it works
+
+            </h3>
+                    <br clear="both" />
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                          <ol class="carousel-indicators" style="top: 0px">
+                            <li onclick="javascript:$('.carousel').carousel(0)" data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li onclick="javascript:$('.carousel').carousel(1)" data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li onclick="javascript:$('.carousel').carousel(2)" data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <li onclick="javascript:$('.carousel').carousel(3)" data-target="#carousel-example-generic" data-slide-to="3"></li>
+                          </ol>
+
+                          <!-- Wrapper for slides -->
+                          <div class="carousel-inner">
+                            <div class="item active">
+                              <h1>Learn from the Best</h1>
+                                <div class="image">
+                                    <img src="${static.url('images/learn_best.png')}">
+                                </div>
+                                <p>
+                                    Edraak offers you courses from top professors and industry specialists from various fields spanning the Arts, Humanities, Technology and Sciences to inspire you 
+                                </p>
+                            </div>
+                            <div class="item">
+                              <h1>Achieve Your Goals</h1>
+                                <div class="image">
+                                    <img src="${static.url('images/acheive.png')}">
+                                </div>
+                                <p>
+                                    Edraak courses are designed with interactive exercises and learning activities to help you assess your progress towards achieving your learning goals 
+                                </p>
+                            </div>
+                              <div class="item ">
+                              <h1>Join a Community of Change Makers</h1>
+                                <div class="image">
+                                    <img src="${static.url('images/join_com.png')}">
+                                </div>
+                                <p>
+                                    Edraak aims to connect learners; as such courses are designed to allow you to learn, interact, debate and discuss ideas with your peers
+                                </p>
+                            </div>
+                              <div class="item ">
+                              <h1>Earn a Certificate</h1>
+                                <div class="image">
+                                    <img src="${static.url('images/certificate.png')}">
+                                </div>
+                                <p>
+                                    Edraak awards you a Certificate of Accomplishment to showcase to potential employers, upon passing a course
+                                </p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+            </section>
+
+        % endif
+
+
+        % if get_language() == 'ar':
+        <section id="collaborate-with-edraak">
+            <div class="container">
+                <div class="row">
+                    <h3>تعاون مع إدراك</h3>
+                    <p>
+                        تهدف إدراك إلى إحداث ثورة في نوع، ومستوى، وكم التعليم في العالم العربي. ويمكن لكل من الأساتذة، والخبراء، والمؤسسات التعليمية، والشركات الاستفادة من الثورة التعلمية كالتالي .
+                    </p>
+                    <div class="collab-steps col-md-4">
+                        <h1> الأساتذة والممارسين </h1>
+                        <p>
+                            تتيح إدراك للأكاديميين والممارسين الخبراء فرصة لإلهام الآلاف من المتعلمين العرب المتعطشين للمحتويات الحديثة. ليس ذلك وحسب، بل توفر إدراك أيضاً للمدرسين على المنصة فرصة لإيجاد إرث معرفي دائم في المجتمع الأكاديمي.
+                        </p>
+
+                    </div>
+                    <div class="collab-steps col-md-4">
+                        <h1>المؤسسات التعليمية</h1>
+                        <p>
+                            تتيح "إدراك" للمؤسسات التعليمية فرصة لإكتشاف عالم من التعليم عبر الإنترنت، واكتساب رؤى من أحدث التحليلات التعليمية. كما تعطي "إدراك" المؤسسات فرصة لتسليط الضوء على مواهب أعضاء هيئة التدريس وفرصة لجذب والوصول إلى مجموعات جديدة ومختلفة من المتعلمين.
+                        </p>
+
+                    </div>
+                    <div class="collab-steps col-md-4">
+                        <h1> الشركات</h1>
+                        <p>
+                            تتيح "إدراك" للشركات فرصة لتدريب وتقييم موظفيها الحاليين والمحتملين بطريقة مبتكرة على الإنترنت. يمثل أيضاً إنشاء مساق إلكتروني واسع ومفتوح على "إدراك" فرصة كبيرة للشركات لإيجاد وجذب المواهب من مختلف أنحاء العالم العربي.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="" style="text-align: center; margin-bottom: 20px">
+                <a id="contact-us" href="${reverse('student.views.contact')}#collaborate_form" class="btn">
+                    شاركنا اهتمامك
+                    <img src="${static.url('images/all_courses_left.png')}" />
+                </a>
+           </div>
+        </section>
+        % else:
+        <section id="collaborate-with-edraak">
+            <div class="container">
+                <div class="row">
+                <h3>Get involved</h3>
+                <p>
+                    Edraak aims to revolutionize the quality, nature and scale of education in the Arab World. Professors,
+                    practitioners, educational institutions, and companies can all benefit from embracing the educational
+                    revolution. Read more below to find out how.
+                </p>
+                <div class="collab-steps col-md-4">
+                    <h1>Professors & Practioners</h1>
+                    <p>
+                        Edraak allows professors and practitioners to inspire thousands of Arab learners thirsting
+                        for current and relevant content. Edraak also provides instructors the opportunity to create
+                        a lasting legacy in the academic community, in a region that lacks avenues of recognition for
+                        academic and intellectual contributions.
+                    </p>
+                </div>
+                <div class="collab-steps col-md-4">
+                    <h1>Education Institution</h1>
+                    <p>
+                        Edraak provides educational institutions with an opportunity to explore the realm of online
+                        education, to gain insights from cutting edge educational analytics, to showcase the talents
+                        of faculty and to reach and attract new groups of learners.
+                    </p>
+                </div>
+                <div class="collab-steps col-md-4">
+                    <h1>Companies</h1>
+                    <p>
+                        Edraak allows companies to train and assess their current and prospective employees online.
+                        Creating a MOOC on Edraak is also a great opportunity for companies to locate and attract
+                        talent from across the region.
+                    </p>
+                </div>
+                </div>
+
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div class="" style="text-align: center; margin-bottom: 20px">
+                <a id="contact-us" href="${reverse('student.views.contact')}" class="btn">
+                    Share your Interest
+                    <img src="${static.url('images/all_courses_right.png')}" />
+                </a>
+
+            </div>
+        </section>
+        % endif
+
+
 </section>
 
-<section id="video-modal" class="modal home-page-video-modal video-modal">
-  <div class="inner-wrapper">
-    <%
-      youtube_video_id = homepage_promo_video_youtube_id
-      if self.stanford_theme_enabled():
-        youtube_video_id = "2gmreZObCY4"
-    %>
-    <iframe width="640" height="360" src="//www.youtube.com/embed/${youtube_video_id}?showinfo=0" frameborder="0" allowfullscreen></iframe>
-  </div>
+% if get_language() == 'ar':
+<section id="video-modal" class="modal home-page-video-modal video-modal" style="left: auto!important; right: 50%!important; margin-left: 0!important; margin-right: -331px!important">
+    <div class="inner-wrapper">
+        <%
+            youtube_video_id = homepage_promo_video_youtube_id
+            if self.stanford_theme_enabled():
+                youtube_video_id = "yY2gsC8bL3U"
+        %>
+        <iframe width="640" height="360" src="//www.youtube.com/embed/${youtube_video_id}?showinfo=0" frameborder="0"
+                allowfullscreen></iframe>
+    </div>
 </section>
+% else:
+<section id="video-modal" class="modal home-page-video-modal video-modal" >
+    <div class="inner-wrapper">
+        <%
+            youtube_video_id = homepage_promo_video_youtube_id
+            if self.stanford_theme_enabled():
+                youtube_video_id = "yY2gsC8bL3U"
+        %>
+        <iframe width="640" height="360" src="//www.youtube.com/embed/${youtube_video_id}?showinfo=0" frameborder="0"
+                allowfullscreen></iframe>
+    </div>
+</section>
+% endif
 
 <%block name="js_extra">
-   <script type="text/javascript">
-      $(window).load(function() {
-         if(getParameterByName('next')) {
-              $('#login').trigger("click");
-         }
-      })
-   </script>
+<script type="text/javascript">
+    $(window).load(function () {
+        if (getParameterByName('next')) {
+            $('#login').trigger("click");
+        }
+    })
+</script>
 </%block>
 
 % if show_signup_immediately is not UNDEFINED:
-  ## NOTE: This won't work in production, because anonymous views are cached, so it will
-  ## show either with or without this extra js for 3 minutes at a time.
+## NOTE: This won't work in production, because anonymous views are cached, so it will
+## show either with or without this extra js for 3 minutes at a time.
 <script type="text/javascript">
-  $(window).load(function() {$('#signup_action').trigger("click");});
+    $(window).load(function () {
+        $('#signup_action').trigger("click");
+    });
 </script>
 % endif

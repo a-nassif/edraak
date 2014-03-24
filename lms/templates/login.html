@@ -11,6 +11,92 @@
 <%block name="bodyclass">view-login</%block>
 
 <%block name="js_extra">
+% if get_language() == 'ar':
+  <script type="text/javascript">
+    $(function() {
+
+      // adding js class for styling with accessibility in mind
+      $('body').addClass('js');
+
+      // show forgot password modal UI if URL contains matching DOM ID
+      if ($.deparam.fragment()['forgot-password-modal'] !== undefined) {
+        $('.pwd-reset').click();
+      }
+
+      // new window/tab opening
+      $('a[rel="external"], a[class="new-vp"]')
+      .click( function() {
+        window.open( $(this).attr('href') );
+        return false;
+      });
+
+      // form field label styling on focus
+      $("form :input").focus(function() {
+        $("label[for='" + this.id + "']").parent().addClass("is-focused");
+      }).blur(function() {
+        $("label").parent().removeClass("is-focused");
+      });
+    });
+
+    (function() {
+      toggleSubmitButton(true);
+
+      $('#login-form').on('submit', function() {
+        toggleSubmitButton(false);
+      });
+
+      $('#login-form').on('ajax:error', function() {
+        toggleSubmitButton(true);
+      });
+
+      $('#login-form').on('ajax:success', function(event, json, xhr) {
+        if(json.success) {
+          var u=decodeURI(window.location.search);
+          next=u.split("next=")[1];
+          if (next && !isExternal(next)) {
+            location.href=next;
+          }  else if(json.redirect_url){
+            location.href=json.redirect_url;
+          } else {
+            location.href="${reverse('dashboard')}";
+          }
+        } else if(json.hasOwnProperty('redirect')) {
+          var u=decodeURI(window.location.search);
+          if (!isExternal(json.redirect)) { // a paranoid check.  Our server is the one providing json.redirect
+              location.href=json.redirect+u;
+          } // else we just remain on this page, which is fine since this particular path implies a login failure
+            // that has been generated via packet tampering (json.redirect has been messed with).
+        } else {
+          toggleSubmitButton(true);
+          $('.message.submission-error').addClass('is-shown').focus();
+          $('.message.submission-error .message-copy').html(json.value);
+        }
+      });
+      $("#forgot-password-link").click(function() {
+        $("#forgot-password-modal").show();
+        $("#forgot-password-modal .close-modal").focus();
+      });
+
+    })(this);
+
+    function toggleSubmitButton(enable) {
+      var $submitButton = $('form .form-actions #submit');
+
+      if(enable) {
+        $submitButton.
+          removeClass('is-disabled').
+          removeProp('disabled').
+          html("تسجيل الدخول في حسابي على إدراك + الدخول لمساقاتي");
+      }
+      else {
+        $submitButton.
+          addClass('is-disabled').
+          prop('disabled', true).
+          text("${_(u'Processing your account information…')}");
+      }
+    }
+  </script>
+% else:
   <script type="text/javascript">
     $(function() {
 
@@ -111,19 +197,26 @@
        }
     })(${pipeline_running})
   </script>
+% endif
+
 </%block>
 
 <section class="introduction">
   <header>
-    <h1 class="title">
-      <span class="title-super">${_("Please log in")}</span>
-      <span class="title-sub">${_("to access your account and courses")}</span>
-    </h1>
+    <div class="container">
+        <h1 class="title">
+          <span class="title-super">${_("Please log in")}</span>
+          <span class="title-sub">${_("to access your account and courses")}</span>
+        </h1>
+    </div>
   </header>
 </section>
+<div class="container">
 
-<section class="login container">
-  <section role="main" class="content">
+
+<section class="login">
+    <div class="row">
+  <section role="main" class="col-md-8">
     <form role="form" id="login-form" method="post" data-remote="true" action="/login_ajax" novalidate>
 
       <!-- status messages -->
@@ -166,8 +259,8 @@
 
         <ol class="list-input">
           <li class="field required checkbox" id="field-remember">
-            <input id="remember-yes" type="checkbox" name="remember" value="true" />
-            <label for="remember-yes">${_('Remember me')}</label>
+            <input class="pull-left" id="remember-yes" type="checkbox" name="remember" value="true" />
+            <label class="pull-left" for="remember-yes">${_('Remember me')}</label>
           </li>
         </ol>
       </div>
@@ -205,7 +298,7 @@
 
   </section>
 
-  <aside role="complementary">
+  <aside class="col-md-3" role="complementary">
 
 <%
   # allow for microsite overrides on the registration sidebars, otherwise default to pre-existing ones
@@ -215,5 +308,7 @@
     <%include file="${sidebar_file}" />
 
   </aside>
+        </div>
   </section>
+</div>
 

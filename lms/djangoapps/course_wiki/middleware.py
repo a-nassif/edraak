@@ -1,4 +1,5 @@
 """Middleware for course_wiki"""
+import urllib
 from urlparse import urlparse
 from django.conf import settings
 from django.http import Http404
@@ -25,15 +26,21 @@ class WikiAccessMiddleware(object):
         """
         redirect to course wiki url if the referrer is from a course page
         """
-        course_id = course_id_from_url(request.META.get('HTTP_REFERER'))
+        # course_id = course_id_from_url(request.META.get('HTTP_REFERER'))
+        course_id = course_id_from_url(request.path)
         if course_id:
             # See if we are able to view the course. If we are, redirect to it
+            # try:
+            course = get_course_with_access(request.user, course_id, 'load')
+
+            redirect_url = None
+
             try:
                 _course = get_course_with_access(request.user, 'load', course_id)
                 return redirect("/courses/{course_id}/wiki/{path}".format(course_id=course_id.to_deprecated_string(), path=wiki_path))
             except Http404:
                 # Even though we came from the course, we can't see it. So don't worry about it.
-                pass
+                # pass
 
     def process_view(self, request, view_func, view_args, view_kwargs):  # pylint: disable=W0613
         """
@@ -66,7 +73,7 @@ class WikiAccessMiddleware(object):
                 # clearing the referrer will cause process_response not to redirect
                 # back to a non-existent course
                 request.META['HTTP_REFERER'] = ''
-                return redirect('/wiki/{}'.format(wiki_path))
+                return redirect(u'/wiki/{}'.format(wiki_path))
 
             if not course.allow_public_wiki_access:
                 is_enrolled = CourseEnrollment.is_enrolled(request.user, course.id)
@@ -93,9 +100,12 @@ class WikiAccessMiddleware(object):
         if the referrer comes from a course page
         """
         if response.status_code == 302 and response['Location'].startswith('/wiki/'):
-            wiki_path = urlparse(response['Location']).path.split('/wiki/', 1)[1]
+            wiki_path = urllib.unquote(urlparse(response['Location']).path.split('/wiki/', 1)[1])
 
-            response = self._redirect_from_referrer(request, wiki_path) or response
+            try:
+                response = self._redirect_from_referrer(request, wiki_path.encode('utf-8') or response)
+            except:
+                response = self._redirect_from_referrer(request, wiki_path.decode('utf-8') or response)
 
         # END HACK: _transform_url must be set to a no-op function after it's done its work
         reverse._transform_url = lambda url: url  # pylint: disable=W0212

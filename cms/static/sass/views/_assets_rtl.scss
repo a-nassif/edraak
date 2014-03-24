@@ -1,0 +1,12 @@
+@import "assets";
+
+.view-uploads{
+  .asset-library{
+    .pagination{
+      .current-page{
+        left: auto;
+        right: -5px;
+      }
+    }
+  }
+}

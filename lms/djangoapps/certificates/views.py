@@ -118,3 +118,35 @@ def update_certificate(request):
         cert.save()
         return HttpResponse(json.dumps({'return_code': 0}),
                             mimetype='application/json')
+
+
+@csrf_exempt
+def issue_certificate(request):
+    if request.method == 'POST':
+        user = request.user
+        course_name = request.POST['certificate_course_name']
+        course_org = request.POST['certificate_course_org']
+        course_number = request.POST['certificate_course_number']
+        course_end_date = request.POST['certificate_course_enddate']
+        course_short_desc = request.POST['certificate_course_short_desc']
+
+        #get staff and instructors for course
+        group_name_staff = 'staff_' + course_org + '.' + course_number
+        group_name_instructor = 'instructor_' + course_org + '.' + course_number
+        group_ids = Group.objects.filter(Q(name__icontains=group_name_staff) | Q(name__icontains=group_name_instructor))
+
+        course_staff = []
+        for group_id in group_ids:
+            course_staff += group_id.user_set.all()
+        for user in course_staff:
+            user_profile = UserProfile.objects.get(user=user)
+            if user_profile.allow_certificate:
+                main_instructor = user_profile
+                instructor_name = main_instructor.name
+                break
+            else:
+                instructor_name = ''
+        return render_to_response('certificate.html', {'user': user, 'course_name': course_name,
+                                                       'course_org': course_org, 'course_end_date': course_end_date,
+                                                       'course_desc': course_short_desc, 'instructor': instructor_name})
+    return redirect(reverse('dashboard'))

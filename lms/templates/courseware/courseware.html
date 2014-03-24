@@ -213,6 +213,16 @@ ${fragment.foot_html()}
 
     <section class="course-content" id="course-content">
       ${fragment.body_html()}
+        <style>
+            .CodeMirror-wrap .CodeMirror-scroll, .code-answer,
+            .xmodule_display.xmodule_CapaModule div.problem pre,
+            .xmodule_display.xmodule_CapaModule div.problem code,
+            .xmodule_display.xmodule_HtmlModule pre, .force-ltr {
+                direction: ltr !important;
+                text-align: left !important;
+            }
+
+        </style>
     </section>
   </div>
 </div>

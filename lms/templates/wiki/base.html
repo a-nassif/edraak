@@ -4,8 +4,20 @@
 {% block title %}<title>{% block pagetitle %}{% endblock %} | {% trans "Wiki" %} | {% platform_name %}</title>{% endblock %}
 
 {% block headextra %}
-  {% compressed_css 'course' %}
-  
+
+{% if LANGUAGE_BIDI %}
+    {% compressed_css 'course-rtl' %}
+{% else %}
+    {% compressed_css 'course' %}
+{% endif %}
+
+    <style>
+    header.global {height: auto; padding: 5px 0 10px}
+    *, *:before, *:after {-webkit-box-sizing:inherit!important;-moz-box-sizing:inherit!important;box-sizing:inherit!important}
+    .logo > a > img {height: 30px}
+    header.global .nav-global {margin-top: 5px}
+    </style>
+
   <script type="text/javascript">
     function ajaxError(){}
     

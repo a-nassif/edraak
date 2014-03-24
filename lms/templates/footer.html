@@ -1,92 +1,147 @@
 ## mako
 <%! from django.core.urlresolvers import reverse %>
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _
+from django.utils import translation %>
 <%namespace name='static' file='static_content.html'/>
 <%! from microsite_configuration.templatetags.microsite import platform_name %>
-
 <div class="wrapper wrapper-footer">
+<div class="container">
   <footer>
     <div class="colophon">
       <nav class="nav-colophon">
       <ol>
-          <li class="nav-colophon-01">
+          <li class="nav-colophon-01" style="">
           <a id="about" href="${marketing_link('ABOUT')}">
-              ${_("About")}
+                % if translation.get_language() == 'ar':
+                      عن إدراك
+        % else:
+              ${_("About Edraak")}
+        % endif
           </a>
           </li>
-          <li class="nav-colophon-02">
-          <a id="jobs" href="${marketing_link('JOBS')}">
-              ${_("Jobs")}
-          </a>
+          <li class="nav-colophon-01" style="">
+              <a id="about" href="${reverse('student.views.contact')}">
+                % if translation.get_language() == 'ar':
+                    تواصل مع إدراك
+                % else:
+                      ${_("Contact Edraak")}
+                % endif
+              </a>
           </li>
-          <li class="nav-colophon-03">
-          <a id="press" href="${marketing_link('PRESS')}">
-              ${_("Press")}
-          </a>
+
+          <li class="nav-colophon-01" style="">
+              <a id="about" href="${marketing_link('FAQ')}">
+                % if translation.get_language() == 'ar':
+                    الأسئلة المتكررة
+                % else:
+                      ${_("FAQ")}
+                % endif
+              </a>
           </li>
-          <li class="nav-colophon-04">
-          <a id="faq" href="${marketing_link('FAQ')}">
-              ${_("FAQ")}
-          </a>
-          </li>
-          <li class="nav-colophon-05">
-          <a id="contact" href="${marketing_link('CONTACT')}">
-              ${_("Contact")}
-          </a>
-          </li>
+##          <li class="nav-colophon-04">
+##          <a id="faq" href="${marketing_link('FAQ')}">
+##                % if translation.get_language() == 'ar':
+##                    أسئلة متكرّرة
+##        % else:
+##              ${_("FAQ")}
+##        % endif
+##          </a>
+##          </li>
+##          <li class="nav-colophon-02">
+##          <a id="jobs" href="${marketing_link('JOBS')}">
+##              ${_("Jobs")}
+##          </a>
+##          </li>
+
       </ol>
       </nav>
 
       <div class="colophon-about">
-        <img src="${static.url('images/header-logo.png')}" alt="${_('{platform_name} Logo').format(platform_name=platform_name())}" />
+        % if translation.get_language() == 'ar':
+            <p>ادراك هي مبادرة من مؤسسة الملكة رانيا للتعليم والتنمية</p>
+            <br/>
+            <p>${("&copy; 2014 {platform_name}, بعض الحقوق محفوظة.").format(platform_name=settings.PLATFORM_NAME)}</p>
+            <br/>
+            <nav class="nav-legal">
+                <ul>
+                  <li class="nav-legal-01">
+                       % if translation.get_language() == 'ar':
+                        <a href="${marketing_link('TOS')}">شروط الخدمة</a>
+                      % else:
+                        <a href="${marketing_link('TOS')}">Terms of Service</a>
+                      % endif                  </li>
+                  <li class="nav-legal-02">
+                    <a href="${marketing_link('PRIVACY')}">
+                              سياسة الخصوصية
+                    </a>
+                  </li>
+                </ul>
+            </nav>
+        % else:
+          <p>${_("Edraak is an Initiative of the Queen Rania Foundation for Education and Development")}</p>
+          <br/>
+          <p>${_("&copy; 2014 {platform_name}, some rights reserved.").format(platform_name=settings.PLATFORM_NAME)}</p>
+          <br/>
+          <nav class="nav-legal">
+                <ul>
+                  <li class="nav-legal-01">
+                       % if translation.get_language() == 'ar':
+                        <a href="${marketing_link('TOS')}">شروط الخدمة</a>
+                      % else:
+                        <a href="${marketing_link('TOS')}">Terms of Service</a>
+                      % endif
 
-        <p>${_("{platform_name} is a non-profit created by founding partners {Harvard} and {MIT} whose mission is to bring the best of higher education to students of all ages anywhere in the world, wherever there is Internet access. {platform_name}'s free online MOOCs are interactive and subjects include computer science, public health, and artificial intelligence.").format(platform_name="EdX", Harvard="Harvard", MIT="MIT")}</p>
+                  </li>
+                  <li class="nav-legal-02">
+                    <a href="${marketing_link('PRIVACY')}">
+                        % if translation.get_language() == 'ar':
+                              سياسة الخصوصية
+                % else:
+                        ${_("Privacy Policy")}
+                % endif
+                    </a>
+                  </li>
+                </ul>
+           </nav>
+
+        % endif
       </div>
-    </div>
+
 
     <div class="references">
       <nav class="nav-social">
         <ul>
-          <li class="nav-social-01">
-            <a href="http://www.meetup.com/edX-Global-Community/" rel="external">
-              <img src="${static.url('images/social/ico-social-meetup.png')}" alt="edX on Meetup" />
-            </a>
-          </li>
-          <li class="nav-social-02">
-            <a href="http://www.facebook.com/EdxOnline" rel="external">
-              <img src="${static.url('images/social/ico-social-facebook.png')}" alt="edX on Facebook" />
+          <li class="nav-social-03">
+            <a href="http://youtube.com/user/edraakorg" rel="external">
+                <i class="edraak-icon-small edraak-icon-youtube"></i>
             </a>
           </li>
           <li class="nav-social-03">
-            <a href="https://twitter.com/edXOnline" rel="external">
-              <img src="${static.url('images/social/ico-social-twitter.png')}" alt="edX on Twitter" />
+            <a href="https://linkedin.com/company/edraak" rel="external">
+                <i class="edraak-icon-small edraak-icon-linkedin"></i>
             </a>
           </li>
-          <li class="nav-social-04">
-            <a href="https://plus.google.com/108235383044095082735/posts" rel="external">
-              <img src="${static.url('images/social/ico-social-google.png')}" alt="edX on Google+" />
+          <li class="nav-social-03">
+            <a href="https://plus.google.com/+EdraakOrg" rel="external">
+                <i class="edraak-icon-small edraak-icon-plus"></i>
             </a>
           </li>
-          <li class="nav-social-05">
-            <a href="http://youtube.com/user/edxonline" rel="external">
-              <img src="${static.url('images/social/ico-social-youtube.png')}" alt="edX on YouTube" />
+          <li class="nav-social-03">
+            <a href="https://twitter.com/edraak" rel="external">
+                <i class="edraak-icon-small edraak-icon-twitter"></i>
+            </a>
+          </li>
+          <li class="nav-social-03">
+            <a href="http://www.facebook.com/edraakorg" rel="external">
+                <i class="edraak-icon-small edraak-icon-fb"></i>
             </a>
           </li>
         </ul>
       </nav>
 
-      <p class="copyright">${_("&copy; 2014 {platform_name}, some rights reserved.").format(platform_name=settings.PLATFORM_NAME)}</p>
-
-      <nav class="nav-legal">
-        <ul>
-          <li class="nav-legal-01">
-            <a href="${marketing_link('TOS')}">${_("Terms of Service and Honor Code")}</a>
-          </li>
-          <li class="nav-legal-02">
-            <a href="${marketing_link('PRIVACY')}">${_("Privacy Policy")}</a>
-          </li>
-        </ul>
-      </nav>
+        <p class="powered-by">Powered by OPENedX</p>
     </div>
+
   </footer>
+</div>
 </div>

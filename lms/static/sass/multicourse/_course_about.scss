@@ -1,33 +1,30 @@
 .course-info {
   .container {
-    padding-bottom: 120px;
+//    padding-bottom: 120px;
   }
 
   header.course-profile {
-    background: $course-profile-bg;
-    background-image: $homepage-bg-image;
-    background-size: cover;
-    box-shadow: 0 1px 80px 0 rgba(0,0,0, 0.5);
-    border-bottom: 1px solid $border-color-3;
-    box-shadow: inset 0 1px 5px 0 rgba(0,0,0, 0.1);
-    height: 280px;
-    margin-top: $header_image_margin;
-    padding-top: 150px;
-    overflow: hidden;
+//    background: $course-profile-bg;
+//    background-image: $homepage-bg-image;
+//    background-size: cover;
+//    box-shadow: 0 1px 80px 0 rgba(0,0,0, 0.5);
+    border-bottom: 1px solid #c8c8c8;
+    border-top: 1px solid #c8c8c8;
+//    box-shadow: inset 0 1px 5px 0 rgba(0,0,0, 0.1);
+    height: 340px;
+//    padding-top: 85px;
+    overflow: visible;
     position: relative;
     width: 100%;
+    margin-bottom:25px;
 
     .intro-inner-wrapper {
-      background: $course-header-bg;
-      border: 1px solid $border-color-3;
-      box-shadow: 0 4px 25px 0 rgba(0,0,0, 0.5);
-      @include box-sizing(border-box);
-      @include clearfix;
-      margin: 0 auto;
-      max-width: 1200px;
-      min-width: 760px;
+//      background: $course-header-bg;
+//      border: 1px solid $border-color-3;
+//      box-shadow: 0 4px 25px 0 rgba(0,0,0, 0.5);
       position: relative;
       z-index: 2;
+
 
       > div.table {
         display: table;
@@ -36,15 +33,41 @@
       .intro {
         @include box-sizing(border-box);
         @include clearfix;
-        display: table-cell;
+//        display: table-cell;
         vertical-align: middle;
-        padding: 20px 20px;
+        padding: 20px;
         position: relative;
-        width: flex-grid(8) + flex-gutter();
+        width: flex-grid(7) + flex-gutter();
         z-index: 2;
+        float: left;
+        margin-top: 20px;
+
+          .about-register {
+            border: 1px solid #3a6b6f;
+            color: #000000;
+            font-size: 22px;
+            padding: 30px;
+            float: left;
+
+            &:hover {
+              background-color: #cfe5e3;
+            }
+          }
+
+          .register {
+            border: 1px solid #3a6b6f;
+            color: #000000;
+            font-size: 22px;
+            padding: 30px;
+            float: left;
+
+            &:hover {
+              background-color: #cfe5e3;
+            }
+          }
 
         > hgroup {
-          border-bottom: 1px solid $border-color-2;
+//          border-bottom: 1px solid $border-color-2;
           box-shadow: 0 1px 0 0 rgba(255,255,255, 0.6);
           margin-bottom: 20px;
           padding-bottom: 20px;
@@ -61,9 +84,9 @@
 
             a {
               color: $lighter-base-font-color;
-              font: italic 800 0.6em/1em $sans-serif;
+              font: normal 800 0.6em/1em $droid-sans;
               letter-spacing: 0px;
-              margin-left: 15px;
+//              margin-left: 15px;
               text-shadow: 0 1px rgba(255,255,255, 0.6);
               text-transform: none;
 
@@ -79,7 +102,7 @@
 
             a {
               color: $lighter-base-font-color;
-              font: italic 800 1em/1em $sans-serif;
+              font: italic 800 1em/1em $droid-sans;
               letter-spacing: 0px;
               text-shadow: 0 1px rgba(255,255,255, 0.6);
               text-transform: none;
@@ -103,7 +126,7 @@
             @include box-sizing(border-box);
             border-radius: 3px;
             display: block;
-            font: normal 1.2rem/1.6rem $sans-serif;
+            font: normal 1.2rem/1.6rem $droid-sans;
             letter-spacing: 1px;
             padding: 10px 0px;
             text-transform: uppercase;
@@ -127,7 +150,7 @@
             border-radius: 3px;
             display: block;
             float: left;
-            font: normal 1.2rem/1.6rem $sans-serif;
+            font: normal 1.2rem/1.6rem $droid-sans;
             letter-spacing: 1px;
             padding: 10px 0px;
             text-transform: uppercase;
@@ -169,17 +192,25 @@
       .media {
         background: transparent;
         @include box-sizing(border-box);
-        display: table-cell;
-        padding: 20px;
+//        display: table-cell;
+        float: right;
+        padding: 0 0 0 55px;
         position: relative;
-        width: flex-grid(4);
+        width: flex-grid(5);
         z-index: 2;
+        padding-top: 0;
+        overflow: visible;
+        margin-top: 0;
 
         .hero {
-          border: 1px solid $border-color-3;
-          height: 100%;
-          overflow: hidden;
+          border: 1px solid #bbbbbb;
+          border-top: 0;
+//          height: 100%;
+          overflow: visible;
           position: relative;
+          height: 338px;
+//          top: -25px;
+          border-bottom: 0;
 
           .play-intro {
             @include background-image(linear-gradient(-90deg, rgba(0,0,0, 0.65), rgba(0,0,0, 0.75)));
@@ -191,14 +222,14 @@
             margin-top: -40px;
             margin-left: -40px;
             position: absolute;
-            top: 50%;
+            top: 24%;
             width: 80px;
 
             &::after {
               color: rgba(255,255,255, 0.8);
               content: "\25B6";
               display: block;
-              font: normal 2em/1em $sans-serif;
+              font: normal 2em/1em $droid-sans;
               left: 50%;
               margin-left: -11px;
               margin-top: -16px;
@@ -208,10 +239,19 @@
             }
           }
 
-          img {
-            display: block;
-            width: 100%;
+          .course-image-outer {
+            margin: 0 10px 10px 10px;
+            text-align: center;
+            overflow: hidden;
+            padding-top: 10px;
+
+            .course-image {
+              display: inline;
+              height: 140px;
+            }
           }
+
+
         }
 
         &:hover, &:focus {
@@ -354,7 +394,7 @@
       .prerequisites, .syllabus {
         ul {
           li {
-            font: normal 1em/1.6em $serif;
+            font: normal 1em/1.6em $droid-sans;
           }
           ul {
             margin: 5px 0px 10px;
@@ -383,18 +423,16 @@
   }
 
   .course-sidebar {
-    @include box-sizing(border-box);
-    float: left;
-    width: flex-grid(4);
 
     > section {
-      box-shadow: inset 0 0 3px 0 rgba(0,0,0, 0.15);
-      border: 1px solid $border-color-2;
+//      box-shadow: inset 0 0 3px 0 rgba(0,0,0, 0.15);
+//      border: 1px solid $border-color-2;
 
       &.course-summary {
-        padding: 16px 20px 30px;
-        margin-bottom: 220px;
-        border-top: none;
+        padding: 3px 20px 30px;
+//        margin-bottom: 220px;
+        border-top: 0;
+        padding-right: 0;
       }
 
       &.additional-resources {
@@ -422,7 +460,7 @@
     }
 
     header {
-      margin-bottom: 30px;
+//      margin-bottom: 30px;
       padding-bottom: 16px;
       position: relative;
       text-align: center;
@@ -506,6 +544,7 @@
           opacity: 0.5;
           @include transition(all 0.15s linear 0s);
           width: 44px;
+          cursor: pointer;
 
           &:hover, &:focus {
             opacity: 1.0;
@@ -516,13 +555,13 @@
           }
 
           &:last-child {
-            margin-right: 0px;
+//            margin-right: 0px;
           }
         }
       }
 
       h1 {
-        font: 1em $serif;
+        font: 1em $droid-sans;
         letter-spacing: 0;
         color: #999;
         margin-bottom: 0;
@@ -532,13 +571,16 @@
     .important-dates {
       list-style: none;
       margin: 0px;
-      padding: 0px 10px;
+      padding: 0;
+      font-size: 14px;
+      margin-bottom: 5px;
 
       li {
         @include clearfix;
-        border-bottom: 1px dotted $border-color-2;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
+//        border-bottom: 1px dotted $border-color-2;
+//        margin-bottom: 20px;
+        padding-bottom: 5px;
+        font-size: 16px;
 
         &.prerequisites {
           border: 1px solid $border-color-2;
@@ -560,6 +602,7 @@
           color: $lighter-base-font-color;
           float: left;
           font-family: $sans-serif;
+          font-weight: bold;
         }
 
         .icon {
@@ -597,10 +640,15 @@
         }
 
         span {
-          float: right;
+          float: left;
           font-weight: 700;
+          white-space: nowrap;
         }
       }
     }
   }
+}
+
+.home .university-partners hr:after, .course-info .container nav:after, .course-info section.outside-app nav:after, .course-info .course-sidebar header:after, .mediakit hr:after, .container.about > nav:after, section.about.outside-app > nav:after, .password-reset header hr:after {
+  background-image: none;
 }

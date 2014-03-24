@@ -98,20 +98,13 @@
 
   // layout
   .content-wrapper {
-    background: $account-content-wrapper-bg;
     padding-bottom: 0;
   }
 
   .container, .introduction {
-    @include box-sizing(border-box);
-    @include clearfix;
-    margin: 0 auto;
-    width: 960px;
-    background: $container-bg;
   }
 
   .container {
-    padding: $baseline $baseline ($baseline*2) $baseline;
   }
 
   .introduction {
@@ -126,13 +119,11 @@
         margin-bottom: $baseline;
         padding-bottom: $baseline;
         text-align: left;
+        margin-top: 35px;
       }
 
       // CASE: marketing/imageery-based headings
       .title {
-        position: absolute;
-        top: ($baseline*2.5);
-        left:($baseline*1.5);
 
         .title-super, .title-sub {
           @extend %t-weight1;
@@ -144,14 +135,14 @@
           @include font-size(26);
           @include line-height(18);
           text-transform: uppercase;
-          color: $header-graphic-super-color;
+          color: #ffffff;
         }
 
         .title-sub {
           @include font-size(20);
-          margin-left: ($baseline*2);
-          text-transform: lowercase;
-          color: $header-graphic-sub-color;
+          margin-left: 0;
+          text-transform: none;
+          color: #ffffff;
         }
       }
     }
@@ -197,14 +188,9 @@
   }
 
   .content {
-    margin-right: ($baseline*2);
-    width: 600px;
-    float: left;
   }
 
   aside {
-    width: 280px;
-    float: left;
 
     p, ol, ul {
       font-size: 14px !important;
@@ -538,7 +524,9 @@
     header {
       height: 120px;
       border-bottom: 1px solid $m-gray;
-      background: transparent $login-banner-image 0 0 no-repeat;
+      background: transparent $login-banner-image top right no-repeat;
+      background-position: left;
+      margin-bottom: 25px;
     }
   }
 }
@@ -552,7 +540,9 @@
     header {
       height: 120px;
       border-bottom: 1px solid $m-gray;
-      background: transparent $register-banner-image 0 0 no-repeat;
+      background: transparent $register-banner-image right top no-repeat;
+      background-position: left;
+      margin-bottom: 25px;
     }
   }
 }
@@ -663,4 +653,8 @@
     border-bottom: 3px solid shade($red, 10%);
     background: tint($red,95%);
   }
+}
+
+.container {
+  max-width: 960px;
 }

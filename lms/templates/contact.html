@@ -1,20 +1,34 @@
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language %>
+<%! from django.core.urlresolvers import reverse %>
+<%! from django_countries.countries import COUNTRIES %>
+<%! from django.core.context_processors import csrf %>
 
 <%namespace name='static' file='static_content.html'/>
 
 <%inherit file="main.html" />
 
 <section class="container about">
-  <nav>
-    <a href="/t/about.html">${_("Vision")}</a>
-    <a href="/t/faq.html">${_("Faq")}</a>
-    <a href="/t/press.html">${_("Press")}</a>
-    <a href="/t/contact.html" class="active">${_("Contact")}</a>
-  </nav>
+##  <nav>
+##    <a href="/t/about.html">${_("Vision")}</a>
+##    <a href="/t/faq.html">${_("Faq")}</a>
+##    <a href="/t/press.html">${_("Press")}</a>
+##    <a href="/t/contact.html" class="active">${_("Contact")}</a>
+##  </nav>
+
+##<script type="text/javascript">
+##    $(document).ready(function() {
+##        // Duplicate our reCapcha
+##        $('#myraterecap').html($('#myrecap').clone(true,true));
+##    });
+##
+##     var RecaptchaOptions = {
+##        theme : 'clean'
+##     };
+##</script>
 
   <section class="contact">
     <div class="photo">
-      <img src="${static.url('images/contact-page.jpg')}">
+      <img src="${static.url('images/email_contact.png')}">
     </div>
     <div class="contacts">
       <h2>${_("Class Feedback")}</h2>
@@ -68,3 +82,9 @@
   </section>
 </section>
 
+<style>
+    input[type="submit"]:hover:not(:disabled), input[type="button"]:hover:not(:disabled), button:hover:not(:disabled), .button:hover:not(:disabled) {
+        background-color: #D0D0D0;
+        background-image: none;
+    }
+</style>

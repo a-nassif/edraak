@@ -1,0 +1,54 @@
+@import "course_about";
+
+.course-info {
+  .course-sidebar{
+    > section {
+      &.course-summary {
+        padding: 3px 20px 30px;
+        padding-left: 0;
+      }
+    }
+    .important-dates{
+      li{
+        .icon{
+          float: right;
+          margin: 2px 0 0 10px;
+        }
+        p{
+          float: right;
+        }
+        span{
+          float: right;
+        }
+      }
+    }
+  }
+  header.course-profile {
+    .intro-inner-wrapper {
+      .intro {
+        float: right;
+
+        > hgroup {
+          h1 {
+            text-align: right;
+          }
+
+          a{
+            margin: 0;
+          }
+        }
+
+          .about-register {
+            float: right;
+          }
+
+          .register {
+            float: right;
+          }
+      }
+      .media {
+        padding: 0 55px 0 0;
+      }
+    }
+  }
+}

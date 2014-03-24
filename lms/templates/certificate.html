@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body style="margin: 0; width: 1052px; float: left">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="${static.url('js/html2canvas.js')}"></script>
+<script src="${static.url('js/base64.js')}"></script>
+<script src="${static.url('js/canvas2image.js')}"></script>
+
+
+
+<div id="container" style="background: url('/static/images/certificate_layout.png') no-repeat; height: 744px; width: 1052px; margin: 0; position: relative">
+    <%namespace name='static' file='static_content.html'/>
+    <%static:css group='style-app'/>
+
+    <p class="absolute" style="top: 280px; left: 70px; position: absolute; text-align: center; width: 224px; font-size: 20px">${course_end_date}</p>
+##    <img class="absolute" src="/static/images/${course_org}.png" style="position: absolute; top: 85px; left: 345px">
+    <p class="student-name absolute" style="top: 235px; right: 85px; font-size: 36px; font-weight: bold">${ user.profile.name | h }</p>
+    <p class="course-name absolute" style="top:320px; right: 85px; font-size: 24px; font-weight: bold">${course_name}</p>
+    <p class="course-description absolute" style="top:360px; right: 85px; width: 475px">${course_desc}</p>
+##    <p class="instructor-name absolute" style="top:535px; right: 85px; font-size: 20px">${instructor}</p>
+    % if course_org == 'MITX':
+    <p class="instructor-name absolute" style="top:570px; right: 85px; font-size: 12px; width: 475px">تم طرح هذا المساق من قبل إدراك وتحت إشراف فريق من الأكاديمين الذين اشرفوا على تعليم و إدارة النقاش وتقييم الأجوبة و الإمتحانات، و ذلك بالتعاون مع معهد ماسشوستس للتكنولوجيا</p>
+    % else:
+    <p class="instructor-name absolute" style="top:570px; right: 85px; font-size: 12px; width: 475px">تم طرح هذا المساق من قبل إدراك وتحت إشراف فريق من الأكاديمين الذين اشرفوا على تعليم و إدارة النقاش وتقييم الأجوبة و الإمتحانات،</p>
+    % endif
+
+</div>
+<div id="container2"></div>
+<a id="download" href="#" style="float: left; margin-top: 10px; margin-bottom: 50px">Download</a>
+<a href="javascript:if(window.print)window.print()" style="float: left; margin-top: 10px; margin-bottom: 50px; margin-left: 20px">Print</a>
+
+
+    <style>
+        *{
+            direction: rtl;
+            text-align: right;
+        }
+        .absolute {
+            position: absolute;
+        }
+        canvas {text-align: left; float: left}
+    </style>
+
+<script>
+    $(document).ready(function(){
+        html2canvas($('#container'), {onrendered: function(canvas) {
+            $('#container').remove();
+            $('#container2').html(canvas);
+        },
+        width: 1052,
+        height: 744
+        });
+    });
+    $("#download").click(function(){
+        var Canvas = $('#container2 canvas');
+        Canvas2Image.saveAsPNG(Canvas[0]);
+    })
+</script>
+</body>
+</html>

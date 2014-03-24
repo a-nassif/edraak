@@ -49,6 +49,11 @@ AUDIT_LOG = logging.getLogger("audit")
 SessionStore = import_module(settings.SESSION_ENGINE).SessionStore
 
 
+class BaytPublishedCertificate(models.Model):
+    user_id = models.IntegerField(blank=True, null=True, db_index=True)
+    course_id = models.CharField(blank=True, null=True, db_index=True, max_length=255)
+
+
 class AnonymousUserId(models.Model):
     """
     This table contains user, course_Id and anonymous_user_id

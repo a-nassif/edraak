@@ -60,7 +60,7 @@ def post_init_metrics(sender, **kwargs):
     """
     tags = _database_tags('initialized', sender, kwargs)
 
-    dog_stats_api.increment('edxapp.db.model', tags=tags)
+    # dog_stats_api.increment('edxapp.db.model', tags=tags)
 
 
 @receiver(post_save, dispatch_uid='edxapp.monitoring.post_save_metrics')
@@ -76,7 +76,7 @@ def post_save_metrics(sender, **kwargs):
     action = 'created' if kwargs.pop('created', False) else 'updated'
 
     tags = _database_tags(action, sender, kwargs)
-    dog_stats_api.increment('edxapp.db.model', tags=tags)
+    # dog_stats_api.increment('edxapp.db.model', tags=tags)
 
 @receiver(post_delete, dispatch_uid='edxapp.monitoring.post_delete_metrics')
 def post_delete_metrics(sender, **kwargs):
@@ -90,7 +90,7 @@ def post_delete_metrics(sender, **kwargs):
     """
     tags = _database_tags('deleted', sender, kwargs)
 
-    dog_stats_api.increment('edxapp.db.model', tags=tags)
+    # dog_stats_api.increment('edxapp.db.model', tags=tags)
 
 
 @receiver(m2m_changed, dispatch_uid='edxapp.monitoring.m2m_changed_metrics')

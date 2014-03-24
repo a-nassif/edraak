@@ -2,14 +2,67 @@
 //   overflow-y: scroll;
 // }
 
-@import "_base.scss";
+@import "_base";
 
 html, body {
-  background: $body-bg;
-  font-family: $sans-serif;
+  font-family: 'Droid Arabic Kufi';
   font-size: 1em;
   font-style: normal;
   line-height: 1em;
-  direction: rtl;
+  direction: rtl !important;
   //-webkit-font-smoothing: antialiased;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font: normal 1.2em/1.2em 'Droid Arabic Kufi';
+}
+
+h1 {
+  font: normal 2em/1.4em 'Droid Arabic Kufi';
+}
+
+span {
+  font: normal 1em/1.6em 'Droid Arabic Kufi';
+}
+
+a:link, a:visited {
+  font: normal 1em/1em 'Droid Arabic Kufi';
+}
+
+p {
+  font: normal 1em/1.6em 'Droid Arabic Kufi';
+}
+
+p {
+  a:link, a:visited {
+    font: normal 1em/1em 'Droid Arabic Kufi';
+  }
+}
+
+// added by nartiano
+.pull-left{
+        float: right !important;
+    }
+    .pull-right{
+        float: left !important;
+    }
+
+    #remember-yes{
+        margin-top: 5px;
+        margin-right: 20px;
+        margin-left: 5px;
+    }
+    #how-it-work h3{
+    color: #727272;
+    float: left;
+    font-size: 24px;
+    text-align: center;
+    width: 100%;
+    }
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12{
+        float: right;
+    }
+    .nart-border-left{
+        border-left: 0px solid #646464;
+        border-right: 1px solid #646464;
+    }

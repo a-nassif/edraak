@@ -1,10 +1,11 @@
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language %>
 <%!
   from django.core.urlresolvers import reverse
   from courseware.courses import course_image_url, get_course_about_section
   from django.conf import settings
   from edxmako.shortcuts import marketing_link
-
+  import tinyurl
+  tiny_course_url = tinyurl.create_one("request.environ['HTTP_HOST']}${reverse('about_course', args=[course.id])")
   if settings.FEATURES.get('ENABLE_SHOPPING_CART'):
       cart_link = reverse('shoppingcart.views.show_cart')
   else:
@@ -30,8 +31,13 @@
 
   ## OG (Open Graph) title and description added below to give social media info to display
   ## (https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags)
+  <meta content="${get_course_about_section(course, 'short_description')}" name="description">
+  <meta content="${request.environ['HTTP_HOST']}${course_image_url(course)}" itemprop="image">
   <meta property="og:title" content="${get_course_about_section(course, 'title')}" />
   <meta property="og:description" content="${get_course_about_section(course, 'short_description')}" />
+  <meta property="og:url" content="${request.path}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="${request.environ['HTTP_HOST']}${course_image_url(course)}" />
 </%block>
 
 <%block name="js_extra">
@@ -123,29 +129,26 @@
 
 <section class="course-info">
   <header class="course-profile">
-    <div class="intro-inner-wrapper">
+    <div class="intro-inner-wrapper container">
       <div class="table">
       <section class="intro">
         <hgroup>
           <h1>
             ${course.display_number_with_default | h}: ${get_course_about_section(course, "title")}
             % if not self.theme_enabled():
-              <a href="#">${get_course_about_section(course, "university")}</a>
+              <br/><a href="#">${get_course_about_section(course, "university")}</a>
             % endif
           </h1>
         </hgroup>
 
-        <div class="main-cta">
         %if user.is_authenticated() and registered:
           %if show_courseware_link:
-            <a href="${course_target}">
-          %endif
-
-          <span class="register disabled">${_("You are registered for this course")}</span>
-
-          %if show_courseware_link:
-            <strong>${_("View Courseware")}</strong>
+            <a class="about-register" href="${course_target}">
+                <p>${_("You are registered for this course")}</p>
+                    <strong>${_("View Courseware")}</strong>
             </a>
+          %else:
+            <span class="about-register">${_("You are registered for this course")}</span>
           %endif
 
         %elif in_cart:
@@ -174,55 +177,138 @@
         %else:
           <a href="#" class="register">
             ${_("Register for {course.display_number_with_default}").format(course=course) | h}
+               % if get_language() == 'ar':
+                    <img src="${static.url('images/all_courses_left.png')}" />
+                % else:
+                    <img src="${static.url('images/all_courses_right.png')}" />
+                % endif
           </a>
           <div id="register_error"></div>
         %endif
-        </div>
 
       </section>
       % if get_course_about_section(course, "video"):
-      <a href="#video-modal" class="media" rel="leanModal">
+      <div class="media">
         <div class="hero">
-          <img src="${course_image_url(course)}" alt="" />
-          <div class="play-intro"></div>
+            <a href="#video-modal" class="" rel="leanModal">
+                <div class="course-image-outer">
+                    <img class="course-image" src="${course_image_url(course)}" alt="" />
+                </div>
+                <div class="play-intro"></div>
+            </a>
+
+
+            <section class="course-sidebar">
+                <section class="course-summary">
+                    <ol class="important-dates">
+                  <li><p>${_("Course Number")}:&nbsp;</p><span class="course-number">${course.display_number_with_default | h}</span></li>
+                  % if not course.start_date_is_still_default:
+                  <li><p>${_("Classes Start")}:&nbsp;</p><span class="start-date">${course.start_date_text}</span></li>
+                  % endif
+                    ## We plan to ditch end_date (which is not stored in course metadata),
+                    ## but for backwards compatibility, show about/end_date blob if it exists.
+                    % if get_course_about_section(course, "end_date") or course.end:
+##                    <li>
+##                        <p>${_("Classes End")}: </p><span class="final-date">
+##                        % if get_course_about_section(course, "end_date"):
+##                            ${get_course_about_section(course, "end_date")}
+##                        % else:
+##                            ${course.end_date_text}
+##                        % endif
+##                        </span>
+##                    </li>
+                    % endif
+
+                  % if get_course_about_section(course, "effort"):
+                    <li><p>${_("Estimated Effort")}:&nbsp;</p><span class="start-date">${get_course_about_section(course, "effort")}</span></li>
+                  % endif
+
+                   % if course_length:
+                       % if get_language() == 'ar':
+                      <li><p>طول المساق:&nbsp;</p><span class="course-length">${ course_length } أسابيع</span></li>
+                       % else:
+                       <li><p>Course Length:&nbsp;</p><span class="course-length">${ course_length } Weeks</span></li>
+                       % endif
+                   % endif
+
+                  % if get_course_about_section(course, "prerequisites"):
+                    ##<li class="prerequisites"><p>${_("Prerequisites")}</p><span class="start-date">${get_course_about_section(course, "prerequisites")}</span></li>
+                  % endif
+                </ol>
+                <header>
+                    <div class="social-sharing">
+                        <div class="sharing-message">${_("Share with friends and family!")}</div>
+
+                      % if get_language() == 'ar':
+                            <a class="share">
+                                <img src="${static.url('images/social/twitter-sharing.png')}" alt="Tweet that you've registered for this course" onclick="window.open('http://www.twitter.com/intent/tweet?text= سجّلت ب ${get_course_about_section(course, 'title')}  انت كمان بتقدر تسجّل مجاناً! يلا نتعلم مع بعض ${tiny_course_url} &hashtags=#Edraak', 'sharer', 'toolbar=0,status=0,width=548,height=325');"
+                                       target="_parent" href="javascript: void(0)">
+                            </a>
+                            <a class="share">
+                              <img src="${static.url('images/social/facebook-icon-black.png')}" alt="Post a Facebook message to say you've registered for this course" onclick="window.open('http://www.facebook.com/sharer.php?u=${request.environ['HTTP_HOST']}${request.path}', 'sharer', 'toolbar=0,status=0,width=548,height=325')" target="_parent" href="javascript: void(0)">
+                            </a>
+                            <a href="mailto:someone@example.com?Subject=بدأت رحلتي التعليمية المجانية مع إدراك&body=https://www.edraak.org${reverse('about_course', args=[course.id])}" class="share">
+                                <img src="${static.url('images/social/email-sharing.png')}" alt="Email someone to say you've registered for this course">
+                            </a>
+                        % else:
+                            <a class="share">
+                                <img src="${static.url('images/social/twitter-sharing.png')}" alt="Tweet that you've registered for this course" onclick="window.open('http://www.twitter.com/intent/tweet?text=text=I have registered to ${get_course_about_section(course, 'title')} you can join me for free, let us learn together. ${tiny_course_url} &hashtags=#Edraak', 'sharer', 'toolbar=0,status=0,width=548,height=325');"
+                                       target="_parent" href="javascript: void(0)">
+                            </a>
+                            <a class="share">
+                              <img src="${static.url('images/social/facebook-icon-black.png')}" alt="Post a Facebook message to say you've registered for this course" onclick="window.open('http://www.facebook.com/sharer.php?u=${request.environ['HTTP_HOST']}${request.path}', 'sharer', 'toolbar=0,status=0,width=548,height=325')" target="_parent" href="javascript: void(0)">
+                            </a>
+                            <a href="mailto:someone@example.com?Subject=Join%20me%20at%20Edraak%20and%20learn%20for%20Free%20now!&body=http://www.edraak.org${reverse('about_course', args=[course.id])}" class="share">
+                                <img src="${static.url('images/social/email-sharing.png')}" alt="Email someone to say you've registered for this course">
+                            </a>
+                        % endif
+                    </div>
+                </header>
+                </section>
+            </section>
         </div>
-      </a>
+      </div>
       %else:
       <div class="media">
         <div class="hero">
-          <img src="${course_image_url(course)}" alt="" />
-        </div>
-      </div>
-      % endif
-    </div>
-      </div>
-  </header>
-
-  <section class="container">
-    <section class="details">
-      % if staff_access and studio_url is not None:
-        <div class="wrap-instructor-info studio-view">
-          <a class="instructor-info-action" href="${studio_url}">${_("View About Page in studio")}</a>
-        </div>
-      % endif
-      
-      <nav>
-        <a href="#" class="active">${_("Overview")}</a>
-      ##  <a href="#">${_("FAQ")}</a>
-      ##  <a href="#">${_("Requirements")}</a>
-      ##  <a href="#">${_("Text-book")}</a>
-      ##  <a href="#">${_("Syllabus")}</a>
-      ##  <a href="#">${_("Reviews")}</a>
-      </nav>
-
-      <div class="inner-wrapper">
-        ${get_course_about_section(course, "overview")}
-      </div>
-    </section>
-
-    <section class="course-sidebar">
+          <div class="course-image-outer">
+            <img class="course-image" src="${course_image_url(course)}" alt="" />
+          </div>
+          <section class="course-sidebar">
       <section class="course-summary">
-        <header>
+
+
+        <ol class="important-dates">
+          <li><div class="icon course-number"></div><p>${_("Course Number")}: </p><span class="course-number">${course.display_number_with_default | h}</span></li>
+          % if not course.start_date_is_still_default:
+          <li><div class="icon start"></div><p>${_("Classes Start")}: </p><span class="start-date">${course.start_date_text}</span></li>
+          % endif
+            ## We plan to ditch end_date (which is not stored in course metadata),
+            ## but for backwards compatibility, show about/end_date blob if it exists.
+            % if get_course_about_section(course, "end_date") or course.end:
+            <li>
+                <div class="icon end"></div>
+                <p>${_("Classes End")}: </p><span class="final-date">
+                % if get_course_about_section(course, "end_date"):
+                    ${get_course_about_section(course, "end_date")}
+                % else:
+                    ${course.end_date_text}
+                % endif
+                </span>
+            </li>
+            % endif
+
+          % if get_course_about_section(course, "effort"):
+            <li><div class="icon effort"></div><p>${_("Estimated Effort")}: </p><span class="start-date">${get_course_about_section(course, "effort")}</span></li>
+          % endif
+
+          ##<li><div class="icon length"></div><p>${_('Course Length')}</p><span class="course-length">${_('{number} weeks').format(number=15)}</span></li>
+
+          % if get_course_about_section(course, "prerequisites"):
+            <li class="prerequisites"><div class="icon prereq"></div><p>${_("Prerequisites")}</p><span class="start-date">${get_course_about_section(course, "prerequisites")}</span></li>
+          % endif
+        </ol>
+          <header>
           % if microsite.get_value('course_about_show_social_links', True):
           <div class="social-sharing">
             <div class="sharing-message">${_("Share with friends and family!")}</div>
@@ -243,7 +329,7 @@
 
                 # Translators: This text will be automatically posted to the student's
                 # Twitter account. {url} should appear at the end of the text.
-                tweet_text = _("I just registered for {number} {title} through {account}: {url}").format(
+                tweet_text = _(u"I just registered for {number} {title} through {account}: {url}").format(
                     number=course.number,
                     title=get_course_about_section(course, 'title'),
                     account=microsite.get_value('course_about_twitter_account', settings.PLATFORM_TWITTER_ACCOUNT),
@@ -252,12 +338,13 @@
                         path=reverse('about_course', args=[course.id.to_deprecated_string()])
                     )
                 ).replace(u" ", u"+")
+
                 tweet_action = u"http://twitter.com/intent/tweet?text={tweet_text}".format(tweet_text=tweet_text)
 
                 facebook_link = microsite.get_value('course_about_facebook_link', settings.PLATFORM_FACEBOOK_ACCOUNT)
 
                 email_subject = u"mailto:?subject={subject}&body={body}".format(
-                    subject=_("Take a course with {platform} online").format(platform=platform_name),
+                    subject=_(u"Take a course with {platform} online").format(platform=platform_name),
                     body=_("I just registered for {number} {title} through {platform} {url}").format(
                         number=course.number,
                         title=get_course_about_section(course, 'title'),
@@ -269,50 +356,34 @@
                     )
                 ).replace(u" ", u"%20")
               %>
-              <a href="${tweet_action}" class="share">
-                <img src="${static.url('images/social/twitter-sharing.png')}" alt="Tweet that you've registered for this course">
-              </a>
-              <a href="${facebook_link}" class="share">
-                <img src="${static.url('images/social/facebook-sharing.png')}" alt="Post a Facebook message to say you've registered for this course">
-              </a>
-              <a href="${email_subject}" class="share">
+              % if get_language() == 'ar':
+              <a class="share">
+                <img src="${static.url('images/social/twitter-sharing.png')}" alt="Tweet that you've registered for this course" onclick="window.open('http://www.twitter.com/intent/tweet?text=سجّلت ب ${get_course_about_section(course, 'title')} انت كمان بتقدر تسجّل مجاناً! يلا نتعلم مع بعض.&hashtags=#Edraak', 'sharer', 'toolbar=0,status=0,width=548,height=325');"
+                               target="_parent" href="javascript: void(0)">
+            </a>
+          <a class="share">
+              <img src="${static.url('images/social/facebook-sharing.png')}" alt="Post a Facebook message to say you've registered for this course" onclick="window.open('http://www.facebook.com/sharer.php?u=${request.path}')" target="_parent" href="javascript: void(0)">
+                <!--<img src="${static.url('images/social/facebook-sharing.png')}" alt="Post a Facebook message to say you've registered for this course" onclick="window.open('http://www.facebook.com/sharer.php?s=100&p[title]=Edrakk&p[summary]=Finally I can learn from the best experts via through Internet.&p[url]=www.edraak.org&p[images][0]=path of the image of the post', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)">-->
+            </a>
+
+              % else:
+              <a class="share">
+                <img src="${static.url('images/social/twitter-sharing.png')}" alt="Tweet that you've registered for this course" onclick="window.open('http://www.twitter.com/intent/tweet?text=I have subscribed to ${get_course_about_section(course, 'title')}. You can join me now for Free! Let us learn together.&hashtags=#Edraak', 'sharer', 'toolbar=0,status=0,width=548,height=325');"
+                               target="_parent" href="javascript: void(0)">
+            </a>
+          <a class="share">
+              <img src="${static.url('images/social/facebook-sharing.png')}" alt="Post a Facebook message to say you've registered for this course" onclick="window.open('http://www.facebook.com/sharer.php?u=${request.path}')" target="_parent" href="javascript: void(0)">
+                 <!--<img src="${static.url('images/social/facebook-sharing.png')}" alt="Post a Facebook message to say you've registered for this course" onclick="window.open('http://www.facebook.com/sharer.php?s=100&p[title]=Edrakk&p[summary]=&p[url]=www.edraak.org &p[images][0]=path of the image of the post', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)">-->
+            </a>
+
+              % endif
+                        <a href="${email_subject}" class="share">
                 <img src="${static.url('images/social/email-sharing.png')}" alt="Email someone to say you've registered for this course">
               </a>
             % endif
           </div>
           % endif
         </header>
-
-        <ol class="important-dates">
-          <li><div class="icon course-number"></div><p>${_("Course Number")}</p><span class="course-number">${course.display_number_with_default | h}</span></li>
-          % if not course.start_date_is_still_default:
-          <li><div class="icon start"></div><p>${_("Classes Start")}</p><span class="start-date">${course.start_date_text}</span></li>
-          % endif
-            ## We plan to ditch end_date (which is not stored in course metadata),
-            ## but for backwards compatibility, show about/end_date blob if it exists.
-            % if get_course_about_section(course, "end_date") or course.end:
-            <li>
-                <div class="icon end"></div>
-                <p>${_("Classes End")}</p><span class="final-date">
-                % if get_course_about_section(course, "end_date"):
-                    ${get_course_about_section(course, "end_date")}
-                % else:
-                    ${course.end_date_text}
-                % endif
-                </span>
-            </li>
-            % endif
-
-          % if get_course_about_section(course, "effort"):
-            <li><div class="icon effort"></div><p>${_("Estimated Effort")}</p><span class="start-date">${get_course_about_section(course, "effort")}</span></li>
-          % endif
-
-          ##<li><div class="icon length"></div><p>${_('Course Length')}</p><span class="course-length">${_('{number} weeks').format(number=15)}</span></li>
-
-          % if get_course_about_section(course, "prerequisites"):
-            <li class="prerequisites"><div class="icon prereq"></div><p>${_("Prerequisites")}</p><span class="start-date">${get_course_about_section(course, "prerequisites")}</span></li>
-          % endif
-        </ol>
       </section>
 
 
@@ -328,10 +399,42 @@
           <h2 class="opencourseware">MITOpenCourseware</h2>
              ${get_course_about_section(course, "ocw_links")}
         </section>
-      </section>
+
       %endif
     </section>
 
+        </div>
+      </div>
+      % endif
+    </div>
+      </div>
+  </header>
+
+  <section class="container">
+    <div class="row">
+    <section class="details col-md-8">
+      % if staff_access and studio_url is not None:
+        <div class="wrap-instructor-info studio-view">
+          <a class="instructor-info-action" href="${studio_url}">${_("View About Page in studio")}</a>
+        </div>
+      % endif
+
+      ##<nav>
+      ##  <a href="#" class="active">${_("Overview")}</a>
+      ##  <a href="#">${_("FAQ")}</a>
+      ##  <a href="#">${_("Requirements")}</a>
+      ##  <a href="#">${_("Text-book")}</a>
+      ##  <a href="#">${_("Syllabus")}</a>
+      ##  <a href="#">${_("Reviews")}</a>
+      ##</nav>
+
+      <div class="inner-wrapper">
+        ${get_course_about_section(course, "overview")}
+      </div>
+    </section>
+
+
+</div>
   </section>
 </section>
 
