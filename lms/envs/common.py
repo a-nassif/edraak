@@ -81,7 +81,7 @@ FEATURES = {
     # for consistency in user-experience, keep the value of the following 3 settings
     # in sync with the corresponding ones in cms/envs/common.py
     'ENABLE_DISCUSSION_SERVICE': True,
-    'ENABLE_TEXTBOOK': True,
+    'ENABLE_TEXTBOOK': False,
     'ENABLE_STUDENT_NOTES': True,  # enables the student notes API and UI.
 
     # discussion home panel, which includes a subscription on/off setting for discussion digest emails.
@@ -217,7 +217,7 @@ FEATURES = {
 
     # Give course staff unrestricted access to grade downloads (if set to False,
     # only edX superusers can perform the downloads)
-    'ALLOW_COURSE_STAFF_GRADE_DOWNLOADS': False,
+    'ALLOW_COURSE_STAFF_GRADE_DOWNLOADS': True,
 
     'ENABLED_PAYMENT_REPORTS': ["refund_report", "itemized_purchase_report", "university_revenue_share", "certificate_status"],
 
@@ -380,7 +380,7 @@ COURSE_TITLE = "Circuits and Electronics"
 
 ENABLE_MULTICOURSE = False  # set to False to disable multicourse display (see lib.util.views.edXhome)
 
-WIKI_ENABLED = False
+WIKI_ENABLED = True
 
 ###
 
@@ -536,7 +536,8 @@ DEFAULT_FROM_EMAIL = 'registration@example.com'
 DEFAULT_FEEDBACK_EMAIL = 'feedback@example.com'
 SERVER_EMAIL = 'devops@example.com'
 TECH_SUPPORT_EMAIL = 'technical@example.com'
-CONTACT_EMAIL = 'info@example.com'
+CONTACT_EMAIL = 'info@edraak.org'
+COLLABORATE_EMAIL = 'collaborate@edraak.org'
 BUGS_EMAIL = 'bugs@example.com'
 UNIVERSITY_EMAIL = 'university@example.com'
 PRESS_EMAIL = 'press@example.com'
@@ -561,6 +562,7 @@ LANGUAGE_CODE = 'en'  # http://www.i18nguy.com/unicode/language-identifiers.html
 
 # Sourced from http://www.localeplanet.com/icu/ and wikipedia
 LANGUAGES = (
+    ('en-us', u'English'),
     ('en', u'English'),
     ('eo', u'Dummy Language (Esperanto)'),  # Dummy languaged used for testing
     ('fake2', u'Fake translations'),        # Another dummy language for testing (not pushed to prod)
@@ -792,6 +794,8 @@ MIDDLEWARE_CLASSES = (
 
     # Detects user-requested locale from 'accept-language' header in http request
     'django.middleware.locale.LocaleMiddleware',
+    'student.middleware.ForceLangMiddleware',
+    'student.middleware.SessionBasedLocaleMiddleware',
 
     'django.middleware.transaction.TransactionMiddleware',
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -886,7 +890,9 @@ PIPELINE_CSS = {
             'css/vendor/ova/flagging-annotator.css',
             'css/vendor/ova/diacritic-annotator.css',
             'css/vendor/ova/ova.css',
-            'js/vendor/ova/catch/css/main.css'
+            'js/vendor/ova/catch/css/main.css',
+            'css/bootstrap.min.css',
+            'css/bootstrap-theme.min.css',
         ],
         'output_filename': 'css/lms-style-vendor.css',
     },
@@ -926,7 +932,7 @@ PIPELINE_CSS = {
         'source_filenames': [
             'sass/application-extend1-rtl.css',
         ],
-        'output_filename': 'css/lms-style-app-extend1.css',
+        'output_filename': 'css/lms-style-app-extend1-rtl.css',
     },
     'style-app-extend2': {
         'source_filenames': [
@@ -985,6 +991,7 @@ PIPELINE_JS = {
             'js/query-params.js',
             'js/src/utility.js',
             'js/src/accessibility_tools.js',
+            'js/bootstrap.min.js'
         ],
         'output_filename': 'js/lms-application.js',
 
@@ -1298,8 +1305,8 @@ EDXMKTG_COOKIE_NAME = 'edxloggedin'
 MKTG_URLS = {}
 MKTG_URL_LINK_MAP = {
     'ABOUT': 'about_edx',
-    'CONTACT': 'contact',
-    'FAQ': 'help_edx',
+    # 'CONTACT': 'contact',
+    'FAQ': 'faq_edx',
     'COURSES': 'courses',
     'ROOT': 'root',
     'TOS': 'tos',
@@ -1345,11 +1352,11 @@ REGISTRATION_EXTRA_FIELDS = {
     'level_of_education': 'optional',
     'gender': 'optional',
     'year_of_birth': 'optional',
-    'mailing_address': 'optional',
+    'mailing_address': 'hidden',
     'goals': 'optional',
     'honor_code': 'required',
     'city': 'hidden',
-    'country': 'hidden',
+    'country': 'optional',
 }
 
 ########################## CERTIFICATE NAME ########################
@@ -1635,10 +1642,14 @@ if FEATURES['ENABLE_LANGUAGE_CHANGE']:
     )
     USE_I18N = True
     TIME_ZONE = 'Asia/Amman'
-    LANGUAGE_CODE = 'en-us'
+    LANGUAGE_CODE = 'ar'
 
     ugettext = lambda s: s
     LANGUAGES = (
         ('ar', ugettext('Arabic')),
         ('en', ugettext('English')),
     )
+
+##### BAYT INTEGRATION  #####
+
+BAYT_SECRET_KEY = ''

@@ -15,9 +15,11 @@ $fg-min-width: 810px;
 // ====================
 
 // FONTS
-$sans-serif: 'Open Sans', $verdana, sans-serif;
+$sans-serif: 'Droid Arabic Kufi', $verdana, sans-serif;
+$droid-sans: 'Droid Arabic Kufi', 'sans-serif';
+$din-normal: 'din-normal';
 $monospace: Monaco, 'Bitstream Vera Sans Mono', 'Lucida Console', monospace;
-$body-font-family: $sans-serif;
+$body-font-family: $droid-sans;
 $serif: $georgia;
 
 // ====================
@@ -154,8 +156,8 @@ $m-blue-l4: tint($m-blue,90%);
 $m-blue-l5: tint($m-blue,95%);
 $m-blue-d1: #1790C7;
 $m-blue-d2: #1580B0;
-$m-blue-d3: #126F9A;
-$m-blue-d4: #0A4A67;
+$m-blue-d3: $light-blue;
+$m-blue-d4: $light-blue;
 $m-blue-t0: rgba($m-blue,0.125);
 $m-blue-t1: rgba($m-blue,0.25);
 $m-blue-t2: rgba($m-blue,0.50);
@@ -213,7 +215,7 @@ $header-image: linear-gradient(-90deg, rgba(255,255,255, 1), rgba(230,230,230, 0
 $header-bg: $white;
 $courseware-header-image: linear-gradient(top, #fff, #eee);
 $courseware-header-bg: transparent;
-$footer-bg: $white;
+$footer-bg: rgb(0,166,170);
 $courseware-footer-border: none;
 $courseware-footer-shadow: none;
 $courseware-footer-margin: 0px;
@@ -356,7 +358,7 @@ $sidebar-chapter-bg: #eee;
 $sidebar-active-image: linear-gradient(top, #e6e6e6, #d6d6d6);
 
 // TOP HEADER IMAGE MARGIN
-$header_image_margin: -69px;
+$header_image_margin: -15px;
 
 //FOOTER MARGIN
 $footer_margin: ($baseline/4) 0 ($baseline*1.5) 0;
@@ -371,12 +373,13 @@ $homepage__header--background: lighten($blue, 15%);
 // ====================
 
 // IMAGES: backgrounds
-$homepage-bg-image: none;
+$homepage-bg-image:  url(../images/edraak_header_bg_ar.png);
+$homepage-bg-image_ar:  url(../images/edraak_header_bg_ar.png);
 
 $login-banner-image: url(../images/bg-banner-account.png);
 $register-banner-image: url(../images/bg-banner-account.png);
 
-$video-thumb-url: '../images/courses/video-thumb.jpg';
+$video-thumb-url: '../images/courses/video-thumb2.png';
 
 // ====================
 

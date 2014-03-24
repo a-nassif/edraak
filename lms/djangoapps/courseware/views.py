@@ -84,10 +84,10 @@ def courses(request):
     """
     Render "find courses" page.  The course selection work is done in courseware.courses.
     """
-    courses = get_courses(request.user, request.META.get('HTTP_HOST'))
+    courses = get_courses(request.user, request.META.get('HTTP_HOST'))[:9]
     courses = sort_by_announcement(courses)
 
-    return render_to_response("courseware/courses.html", {'courses': courses})
+    return render_to_response("courseware/courses.html", {'courses': courses, 'homepage_promo_video_youtube_id': 'yY2gsC8bL3U'})
 
 
 def render_accordion(request, course, chapter, section, field_data_cache):
@@ -646,6 +646,11 @@ def course_about(request, course_id):
     # see if we have already filled up all allowed enrollments
     is_course_full = CourseEnrollment.is_course_full(course)
 
+    if not course.start_date_is_still_default and course.end is not None:
+        course_length = (course.end - course.start).days / 7
+    else:
+        course_length = None
+
     return render_to_response('courseware/course_about.html', {
         'course': course,
         'staff_access': staff_access,
@@ -656,7 +661,8 @@ def course_about(request, course_id):
         'in_cart': in_cart,
         'reg_then_add_to_cart_link': reg_then_add_to_cart_link,
         'show_courseware_link': show_courseware_link,
-        'is_course_full': is_course_full
+        'is_course_full': is_course_full,
+        'course_length': course_length
     })
 
 

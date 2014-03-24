@@ -30,13 +30,7 @@ codekit-config.json
 :2e#
 
 ### Internationalization artifacts
-*.mo
-*.po
 *.prob
-!django.po
-!django.mo
-!djangojs.po
-!djangojs.mo
 conf/locale/en/LC_MESSAGES/*.po
 conf/locale/en/LC_MESSAGES/*.mo
 conf/locale/fake*/LC_MESSAGES/*.po
@@ -67,13 +61,16 @@ bin/
 
 ### Static assets pipeline artifacts
 *.scssc
-lms/static/css/
 lms/static/sass/*.css
 lms/static/sass/*.css.map
 lms/static/sass/application.scss
+lms/static/sass/application-rtl.scss
 lms/static/sass/application-extend1.scss
+lms/static/sass/application-extend1-rtl.scss
 lms/static/sass/application-extend2.scss
+lms/static/sass/application-extend2-rtl.scss
 lms/static/sass/course.scss
+lms/static/sass/course-rtl.scss
 cms/static/css/
 cms/static/sass/*.css
 cms/static/sass/*.css.map

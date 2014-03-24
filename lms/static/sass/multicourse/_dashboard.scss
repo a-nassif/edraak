@@ -42,7 +42,7 @@
 
       h1.user-name {
         color: $base-font-color;
-        font: 700 1.2em/1.2em $sans-serif;
+        font: 700 1.2em/1.2em $droid-sans;
         margin: 0px;
         overflow: hidden;
         padding: 15px 10px 17px;
@@ -474,7 +474,7 @@
           border-radius: 3px;
           display: block;
           float: left;
-          font: normal 15px/1.6rem $sans-serif;
+          font: normal 15px/1.6rem $droid-sans;
           letter-spacing: 0;
           padding: 6px 32px 7px;
           text-align: center;
@@ -482,7 +482,7 @@
 
           &.archived {
             @include button(simple, $button-archive-color);
-            font: normal 15px/1.6rem $sans-serif;
+            font: normal 15px/1.6rem $droid-sans;
             padding: 6px 32px 7px;
 
             &:hover, &:focus {
@@ -782,7 +782,7 @@
             @include box-sizing(border-box);
             border-radius: 3px;
             float: left;
-            font: normal 0.8rem/1.2rem $sans-serif;
+            font: normal 0.8rem/1.2rem $droid-sans;
             letter-spacing: 1px;
             padding: 6px 12px;
             text-align: center;
@@ -803,7 +803,7 @@
 
           .cta {
             float: left;
-            font: normal 0.8rem/1.2rem $sans-serif;
+            font: normal 0.8rem/1.2rem $droid-sans;
             letter-spacing: 1px;
             padding: 6px 12px;
             text-align: center;

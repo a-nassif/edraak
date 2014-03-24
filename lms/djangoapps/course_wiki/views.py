@@ -43,7 +43,7 @@ def course_wiki_redirect(request, course_id):  # pylint: disable=W0613
     if not course_slug:
         log.exception("This course is improperly configured. The slug cannot be empty.")
         valid_slug = False
-    if re.match(r'^[-\w\.]+$', course_slug) is None:
+    if re.match(r'[\w\-~:]', course_slug, re.UNICODE) is None:
         log.exception("This course is improperly configured. The slug can only contain letters, numbers, periods or hyphens.")
         valid_slug = False
 

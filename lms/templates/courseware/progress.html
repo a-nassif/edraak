@@ -51,7 +51,7 @@ from django.conf import settings
       % endif
 
       <header>
-        <h1>${_("Course Progress for Student '{username}' ({email})").format(username=student.username, email=student.email)}</h1>
+        <h1>${_("Course Progress for Student '{username}', {email}").format(username=student.username, email=student.email)}</h1>
       </header>
 
       %if settings.FEATURES.get("SHOW_PROGRESS_SUCCESS_BUTTON"):

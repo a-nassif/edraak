@@ -203,11 +203,11 @@ def import_from_xml(
                         # for old-style xblock where this was actually linked to kvs
                         module.static_asset_path = module.data_dir
                         module.save()
-                        log.debug('course static_asset_path={path}'.format(
+                        log.debug(u'course static_asset_path={path}'.format(
                             path=module.static_asset_path
                         ))
 
-                    log.debug('course data_dir={0}'.format(module.data_dir))
+                    log.debug(u'course data_dir={0}'.format(module.data_dir))
 
                     course = import_module(
                         module, store,
@@ -263,8 +263,8 @@ def import_from_xml(
 
             elif verbose and not do_import_static:
                 log.debug(
-                    "Skipping import of static content, "
-                    "since do_import_static={0}".format(do_import_static)
+                    u"Skipping import of static content, "
+                    u"since do_import_static={0}".format(do_import_static)
                 )
 
             # no matter what do_import_static is, import "static_import" directory
@@ -292,7 +292,7 @@ def import_from_xml(
                     continue
 
                 if verbose:
-                    log.debug('importing module location {loc}'.format(
+                    log.debug(u'importing module location {loc}'.format(
                         loc=module.location
                     ))
 

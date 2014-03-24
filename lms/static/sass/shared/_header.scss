@@ -1,24 +1,11 @@
 header.global {
-  border-bottom: 1px solid $m-gray;
-  box-shadow: 0 1px 5px 0 rgba(0,0,0, 0.1);
   background: $header-bg;
-  height: 76px;
   position: relative;
-  width: 100%;
   z-index: 10;
-
-  nav {
-    @include clearfix;
-    height: 40px;
-    margin: 0 auto;
-    padding: 18px 10px 0px;
-    max-width: grid-width(12);
-    min-width: 760px;
-  }
 
   h1.logo {
     float: left;
-    margin: -2px 39px 0px 0px;
+    margin: 15px 0;
     position: relative;
 
     a {
@@ -28,7 +15,8 @@ header.global {
 
   ol {
     &.left {
-      float: left;
+      float: right;
+      margin-top: 37px;
     }
 
     &.guest {
@@ -46,7 +34,7 @@ header.global {
       }
 
       a {
-        letter-spacing: 1px;
+        letter-spacing: 0px;
         vertical-align: middle;
       }
     }
@@ -106,7 +94,8 @@ header.global {
 
     &.user {
       float: right;
-      margin-top: 4px;
+      margin-top: 31px;
+      padding-left: 5px;
 
       > li.primary {
         display: block;
@@ -171,7 +160,7 @@ header.global {
         display: none;
         padding: 5px 10px;
         position: absolute;
-        right: 0px;
+        left: -155px;
         top: 34px;
         width: 170px;
         z-index: 3;
@@ -232,29 +221,37 @@ header.global {
         }
       }
     }
+
+
   }
 
   .nav-global {
-    margin-top: ($baseline/2);
+    margin-top: 0;
     list-style: none;
+    margin-bottom: 0;
+    padding: 0;
 
     li {
       display: inline-block;
-      margin: 0 $baseline+1 0 0;
-      font-size: em(14);
-      font-weight: 600;
+      margin: 0;
+      font-size: 14px;
       text-transform: uppercase;
       letter-spacing: 0 !important;
+      padding-right: 5px;
+      border-right: 1px solid #646464;
+
 
       &:last-child {
         margin-right: 0;
+        border-right: 0;
       }
 
       a {
         display:block;
         padding: ($baseline/4);
         color: $lighter-base-font-color;
-        font-weight: 600;
+        font-size: 15px;
+        padding-top: 0;
 
         &:hover, &:focus, &:active {
           text-decoration: none;
@@ -270,10 +267,28 @@ header.global {
         }
       }
     }
-
-    // logged in
+    .nav-global-04 {
+        border-right: 0;
+      }
     &.authenticated {
+      float: right;
+      list-style-type: none;
 
+      .nav-global-01 {
+//        border: 0;
+      }
+
+    }
+    .btn-login-menu{
+      padding: 12px 10px;
+      border: 0px solid #6d6e71;
+      color: #ffffff;
+      background-color: #018C8F;
+      border-radius: 3px;
+      padding-top: 6px;
+    }
+    .btn-login-menu:hover {
+      color: #cfe5e3;
     }
   }
 
@@ -301,7 +316,6 @@ header.global {
 .view-register, .view-login {
 
   header.global nav {
-    width: 960px;
   }
 }
 
@@ -312,7 +326,11 @@ header.global {
 .view-register .nav-global-04 {
 
   a {
-    text-decoration: none;
-    color: $link-color !important;
   }
+}
+
+.language-select {
+  float: right;
+  margin-top: 33px;
+  padding-left: 10px;
 }

@@ -2,25 +2,46 @@
 //   overflow-y: scroll;
 // }
 
+@font-face {
+  font-family: 'Droid Arabic Kufi';
+  src: url('/static/fonts/DinTextArabic-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Droid Arabic Kufi';
+  src: url('/static/fonts/DINNextLTArabic-Light.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 html, body {
-  background: $body-bg;
-  font-family: $sans-serif;
+  background: white;
+//  font-family: $droid-sans;
+  font-family: 'Droid Arabic Kufi', 'sans-serif';
   font-size: 1em;
   font-style: normal;
   line-height: 1em;
+  direction: ltr !important;
   //-webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 960px!important;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: $base-font-color;
-  font: normal 1.2em/1.2em $serif;
+  font: normal 1.2em/1.2em $droid-sans;
   margin: 0px;
 }
 
 h1 {
   color: $base-font-color;
-  font: normal 2em/1.4em $sans-serif;
-  letter-spacing: 1px;
+  font: normal 2em/1.4em $droid-sans;
+  letter-spacing: 0px;
   margin-bottom: 30px;
   text-align: center;
   //text-transform: uppercase;
@@ -28,8 +49,8 @@ h1 {
 
 h2 {
   color: $lighter-base-font-color;
-  font: normal 1.2em/1.2em $serif;
-  letter-spacing: 1px;
+  font: normal 1.2em/1.2em $droid-sans;
+  letter-spacing: 0px;
   margin-bottom: 15px;
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
@@ -41,12 +62,12 @@ p + h2, ul + h2, ol + h2 {
 
 p {
   color: $base-font-color;
-  font: normal 1em/1.6em $serif;
+  font: normal 1em/1.6em $droid-sans;
   margin: 0px;
 }
 
 span {
-  font: normal 1em/1.6em $sans-serif;
+  font: normal 1em/1.6em $droid-sans;
   color: $base-font-color;
 }
 
@@ -62,25 +83,25 @@ p + p, ul + p, ol + p {
 p {
   a:link, a:visited {
     color: $link-color;
-    font: normal 1em/1em $serif;
+    font: normal 1em/1em $droid-sans;
     text-decoration: none;
     @include transition(all 0.1s linear 0s);
 
     &:hover, &:focus {
       color: $link-color;
-      text-decoration: underline;
+      text-decoration: none;
     }
   }
 }
 
 a:link, a:visited {
   color: $link-color;
-  font: normal 1em/1em $sans-serif;
+  font: normal 1em/1em $droid-sans;
   text-decoration: none;
   @include transition(all 0.1s linear 0s);
 
   &:hover, &:focus {
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   &:disabled, &.is-disabled, &.disabled {
@@ -99,19 +120,12 @@ a:focus {
 }
 
 .content-wrapper {
-  width: flex-grid(12);
   margin: 0 auto;
   background: $content-wrapper-bg;
-  padding-bottom: ($baseline*2);
+  padding-bottom: ($baseline/2);
 }
 
 .container {
-  @include clearfix;
-  margin: 0 auto 0;
-  padding: 0px 30px;
-  max-width: grid-width(12);
-  min-width: 760px;
-  width: flex-grid(12);
 }
 
 span.edx {
@@ -122,13 +136,10 @@ span.edx {
 .static-container {
   @include clearfix;
   margin: 0 auto 0;
-  max-width: 1200px;
   padding: 60px 0px 120px;
-  width: flex-grid(12);
 
   .inner-wrapper {
     margin: 0 auto 0;
-    width: flex-grid(10);
   }
 
   ol, ul {
@@ -136,7 +147,7 @@ span.edx {
 
     li {
       color: $base-font-color;
-      font: normal 1em/1.4em $serif;
+      font: normal 1em/1.4em $droid-sans;
       margin: 0px;
     }
   }
@@ -195,8 +206,6 @@ mark {
 
   .inner-wrapper {
     margin: auto;
-    max-width: 1180px;
-    min-width: 760px;
   }
 
   p {
@@ -207,8 +216,6 @@ mark {
 
 .ie-banner {
   display: none;
-  max-width: 1140px;
-  min-width: 720px;
   margin: auto;
   border-radius: 0 0 3px 3px;
   background: #f4f4e0;
@@ -324,3 +331,92 @@ mark {
     height: auto;
   }
 }
+
+// added by nartiano
+    #remember-yes{
+        margin-top: 5px;
+    }
+    #how-it-work h3{
+    color: #727272;
+    float: left;
+    font-size: 24px;
+    text-align: center;
+    width: 100%;
+    }
+    .nart-partners a div{
+      height: 97px;
+      float: left;
+    }
+    .nart-mit{
+      min-width: 160px;
+      background: url(../images/partners_logo.png) 0px 0px no-repeat;
+    }
+    .nart-mit:hover{
+      background: url(../images/partners_logo.png) 0px -97px no-repeat;
+    }
+    .nart-harvard{
+      min-width: 200px;
+      background: url(../images/partners_logo.png) -200px 0px no-repeat;
+    }
+    .nart-harvard:hover{
+      background: url(../images/partners_logo.png) -200px -97px no-repeat;
+    }
+    .nart-aub{
+      min-width: 120px;
+      background: url(../images/partners_logo.png) -430px 0px no-repeat;
+    }
+    .nart-aub:hover{
+      background: url(../images/partners_logo.png) -430px -97px no-repeat;
+    }
+    .nart-edx{
+      min-width: 160px;
+      background: url(../images/partners_logo.png) -570px 0px no-repeat;
+    }
+    .nart-edx:hover{
+      background: url(../images/partners_logo.png) -570px -97px no-repeat;
+    }
+    .nart-bayt{
+      min-width: 200px;
+      background: url(../images/partners_logo.png) -750px 0px no-repeat;
+    }
+    .nart-bayt:hover{
+      background: url(../images/partners_logo.png) -750px -97px no-repeat;
+    }
+    .nart-qrta{
+      min-width: 120px;
+      background: url(../images/partners_qrta.png) 10px 0px no-repeat;
+    }
+    .nart-qrta:hover{
+      background: url(../images/partners_qrta.png) 10px -96px no-repeat;
+    }
+
+
+
+    .nart-border-left{
+        border-left: 1px solid #646464;
+    }
+    .nart-nav{
+        margin-top: 0px;
+    }
+    .nart-nav li{
+        float: none;
+    }
+    .nart-nav > li.active > a:hover{
+        background-color: #ffffff !important;
+        color: #1D9DD9;
+     }
+    .nart-nav > li.active > a{
+        background-color: #ffffff !important;
+        color: #1D9DD9;
+     }
+    .nart-nav > li > a:hover{
+        background-color: #ffffff !important;
+        color: #1D9DD9;
+     }
+    .nart-nav > li.active > a:focus{
+        background-color: #ffffff;
+        color: #1D9DD9;
+    }
+    .nart-nav > li > a{
+        color: #646464;
+    }

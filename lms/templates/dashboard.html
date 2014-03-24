@@ -1,4 +1,4 @@
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language %>
 <%! from django.template import RequestContext %>
 <%! from third_party_auth import pipeline %>
 
@@ -21,7 +21,7 @@
 <%block name="nav_skip">#my-courses</%block>
 
 <%block name="js_extra">
-  <script type="text/javascript">
+<script type="text/javascript" xmlns="http://www.w3.org/1999/html">
   (function() {
 
     $('.message.is-expandable .wrapper-tip').bind('click', toggleExpandMessage);
@@ -131,6 +131,36 @@
                  location.reload();
                } else {
                  $("#change_name_error").html(data.error).stop().css("display", "block");
+               }
+             });
+       return false;
+    });
+
+    $("#bayt_form").submit(function(){
+      var bayt_email = $('#bayt_email').val();
+      var course_name = $('#course_name').val();
+      var course_id = $('#course_id').val();
+      var user_id = $('#user_id').val();
+
+      $.post('${reverse('get_student_email_for_bayt')}',
+             {"bayt_email":bayt_email, "course_name":course_name, "user_id":user_id, "course_id":course_id},
+             function(data) {
+               if(data.success) {
+                   if(data.redirect_to){
+                       window.location.replace("http://www.bayt.com/en/register-j/");
+                   }
+                   else {
+                     $(".close-modal").click();
+                       location.href = "${reverse('dashboard')}";
+                   }
+               } else {
+                   if (data.error == 'Invalid Email')
+                           % if get_language() == 'ar':
+                                $("#bayt_error").html('البريد الإلكتروني غير صحيح').stop().css("display", "block");
+                           % else:
+                                $("#bayt_error").html(data.error).stop().css("display", "block");
+                           % endif
+
                }
              });
        return false;
@@ -310,7 +340,7 @@
       <section class="empty-dashboard-message">
         % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
           <p>${_("Looks like you haven't registered for any courses yet.")}</p>
-          <a href="${marketing_link('COURSES')}">
+          <a href="${reverse('see_all_courses')}">
             ${_("Find courses now!")}
           </a>
         % else:
@@ -513,6 +543,61 @@
       <input name="enrollment_action" type="hidden" value="unenroll" />
       <div class="submit">
         <input name="submit" type="submit" value="${_('Unregister')}" />
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
+<section id="bayt-modal" class="modal bayt-modal" aria-hidden="true">
+  <div class="inner-wrapper" role="alertdialog" aria-labelledy="bayt-modal-title">
+    <button class="close-modal">
+      <i class="icon-remove"></i>
+      <span class="sr">
+        ## Translators: this is a control to allow users to exit out of this modal interface (a menu or piece of UI that takes the full focus of the screen)
+        ${_('Close')}
+      </span>
+    </button>
+
+    <header>
+      <h2 id="bayt-modal-title">
+          % if get_language() == 'ar':
+              هل تريد نشر شهادتك على موقع Bayt ?
+          % else:
+              Do you want to post your certificate on Bayt?
+          % endif
+      </h2>
+      <hr/>
+    </header>
+
+    <form id="bayt_form">
+        <div id="bayt_error" class="modal-form-error"></div>
+        <div>
+            <label style="margin-bottom: 20px;">
+                % if get_language() == 'ar':
+                    ادخل / اكد على البريد الاكتروني الخاص ب Bayt
+                % else:
+                    enter/Confirm your Bayt email
+                % endif
+            </label><br>
+            <label>
+                % if get_language() == 'ar':
+                  البريد الإلكتروني الخاص ب Bayt.com:
+                % else:
+                  Bayt Email:
+                % endif
+            </label>
+            <input type="text" id="bayt_email" name="bayt_email" value="${user.email}">
+            <input type="hidden" id="user_id" name="user_id" value="${user.id}">
+            <input type="hidden" id="course_name" name="course_name" value="">
+            <input type="hidden" id="course_id" name="course_id" value="${course.id}"></div>
+        <div class="submit">
+        % if get_language() == 'ar':
+            <input name="submit" type="submit" value="نشر" />
+        % else:
+            <input name="submit" type="submit" value="Post" />
+        % endif
       </div>
     </form>
   </div>

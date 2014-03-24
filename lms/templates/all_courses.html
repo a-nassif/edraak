@@ -1,0 +1,45 @@
+<%! from django.utils.translation import ugettext as _
+from django.utils import translation %>
+
+<%! from django.core.urlresolvers import reverse %>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+
+<%! from microsite_configuration import microsite %>
+
+<%
+homepage_overlay_html = microsite.get_value('homepage_overlay_html')
+
+show_homepage_promo_video = microsite.get_value('show_homepage_promo_video', True)
+homepage_promo_video_youtube_id = microsite.get_value('homepage_promo_video_youtube_id', "Ivrs_Dd2dtI")
+
+show_partners = microsite.get_value('show_partners', True)
+
+%>
+
+<section class="container">
+    <br/>
+    <br/>
+    <br/>
+        <section class="highlighted-courses" id="highlighted-courses">
+            <h2 class="main-title">
+                <div id="highlighted-courses-link" style="text-align: center">
+                % if translation.get_language() == 'ar':
+                        مساقات إدراك
+                % else:
+                        ${_('Courses starting soon')}
+                % endif
+                    </div>
+            </h2>
+            % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+            <div class="row courses">
+                %for course in courses:
+                    <%include file="course.html" args="course=course" />
+                %endfor
+
+
+            </div>
+            % endif
+
+        </section>
+    </section>

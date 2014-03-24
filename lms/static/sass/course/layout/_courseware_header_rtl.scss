@@ -26,6 +26,31 @@ nav.course-material {
       float: right;
       margin-left: 6px;
       margin-right: 0;
+
+      a{font-family: 'Droid Arabic Kufi'}
     }
+  }
+}
+.course-wrapper{
+   form.choicegroup label, .xmodule_display.xmodule_CapaModule div.problem form.choicetextgroup label, .xmodule_display.xmodule_ConditionalModule div.problem form.choicetextgroup label{
+     float:right;
+   }
+  .xmodule_display.xmodule_CapaModule div.problem .choicegroup input[type="radio"], .xmodule_display.xmodule_CapaModule div.problem .choicetextgroup input[type="radio"], .xmodule_display.xmodule_CapaModule div.problem .choicegroup input[type="checkbox"], .xmodule_display.xmodule_CapaModule div.problem .choicetextgroup input[type="checkbox"]{
+    float:right;
+    margin:4px 0 0 8px;
+  }
+  .xmodule_display.xmodule_CapaModule div.problem .choicegroup .indicator_container, .xmodule_display.xmodule_CapaModule div.problem .choicetextgroup .indicator_container{
+        margin-left: 15px;
+    float: right;
+  }
+  .xmodule_display.xmodule_CapaModule div.problem .choicegroup fieldset, .xmodule_display.xmodule_CapaModule div.problem .choicetextgroup fieldset{
+        border-right: 1px solid #DDDDDD;
+        border-left:none;
+        padding-left: 0px;
+        padding-right: 20px;
+  }
+  .xmodule_display.xmodule_CapaModule div.problem .choicegroup label.choicegroup_correct:after, .xmodule_display.xmodule_CapaModule div.problem .choicetextgroup label.choicegroup_correct:after, .xmodule_display.xmodule_CapaModule div.problem .choicetextgroup label.choicetextgroup_correct:after, .xmodule_display.xmodule_CapaModule div.problem .choicetextgroup section.choicetextgroup_correct:after{
+    margin-left:0px;
+    margin-right:15px;
   }
 }

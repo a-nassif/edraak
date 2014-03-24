@@ -64,15 +64,17 @@ if Backbone?
               gettext("The thread you selected has been deleted. Please select another thread.")
             )
           else if firstLoad
-            DiscussionUtil.discussionAlert(
-              gettext("Sorry"),
-              gettext("We had some trouble loading responses. Please reload the page.")
-            )
+            console.log('We had some trouble loading responses. Please reload the page.')
+#            DiscussionUtil.discussionAlert(
+#              gettext("Sorry"),
+#              gettext("We had some trouble loading responses. Please reload the page.")
+#            )
           else
-            DiscussionUtil.discussionAlert(
-              gettext("Sorry"),
-              gettext("We had some trouble loading more responses. Please try again.")
-            )
+            console.log('We had some trouble loading more responses. Please try again.')
+#            DiscussionUtil.discussionAlert(
+#              gettext("Sorry"),
+#              gettext("We had some trouble loading more responses. Please try again.")
+#            )
 
     loadInitialResponses: () ->
       @loadResponses(INITIAL_RESPONSE_PAGE_SIZE, @$el.find(".responses"), true)

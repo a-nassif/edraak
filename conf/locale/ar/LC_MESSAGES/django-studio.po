@@ -1,0 +1,254 @@
+# edX translation file.
+# Copyright (C) 2014 EdX
+# This file is distributed under the GNU AFFERO GENERAL PUBLIC LICENSE.
+# 
+# Translators:
+# Abdallah Nassif <abdoosh00@gmail.com>, 2013
+# abdallah.nassif <abdallah_n@hotmail.com>, 2013
+# a.nassif <a.nassif@sit-mena.com>, 2013
+# Mahmoud Elkhateeb <eng.elkhteeb@gmail.com>, 2013
+# may <may@qordoba.com>, 2013
+# may <may@qordoba.com>, 2014
+# Najwan Al Rousan <najwanrousan@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: edx-platform\n"
+"Report-Msgid-Bugs-To: openedx-translation@googlegroups.com\n"
+"POT-Creation-Date: 2014-06-09 14:22-0400\n"
+"PO-Revision-Date: 2014-06-09 18:41+0000\n"
+"Last-Translator: Nabeel El-Dughailib <nabeel@qordoba.com>\n"
+"Language-Team: Arabic (http://www.transifex.com/projects/p/edx-platform/language/ar/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: cms/djangoapps/contentstore/course_info_model.py:69
+#: cms/djangoapps/contentstore/course_info_model.py:156
+msgid "Invalid course update id."
+msgstr "رقم التعريف الخاص بتحديث المساق غير صحيح."
+
+#: cms/djangoapps/contentstore/course_info_model.py:121
+msgid "Course update not found."
+msgstr "تحديث المساق غير موجود."
+
+#: cms/djangoapps/contentstore/git_export_utils.py:33
+#, python-brace-format
+msgid ""
+"GIT_REPO_EXPORT_DIR not set or path {0} doesn't exist, please create it, or "
+"configure a different path with GIT_REPO_EXPORT_DIR"
+msgstr "دليل GIT_REPO_EXPORT_DIR غير محدّد أو أن المسار {0} غير موجود، الرجاء إنشاؤه، أو تجهيز مسار آخر بدليل GIT_REPO_EXPORT_DIR "
+
+#: cms/djangoapps/contentstore/git_export_utils.py:36
+msgid ""
+"Non writable git url provided. Expecting something like: "
+"git@github.com:mitocw/edx4edx_lite.git"
+msgstr "لا يمكن الكتابة على git الذي يدلّ عليه الرابط الإلكتروني، بل يجب أن يكون على شاكلة: git@github.com:mitocw/edx4edx_lite.git"
+
+#: cms/djangoapps/contentstore/git_export_utils.py:38
+msgid ""
+"If using http urls, you must provide the username and password in the url. "
+"Similar to https://user:pass@github.com/user/course."
+msgstr "في حال استخدام روابط الكترونية وفق بروتوكول http، يجب تقديم اسم المستخدم وكلمة المرور ضمن الرابط، على نحوٍ يشبه  https://user:pass@github.com/user/course."
+
+#: cms/djangoapps/contentstore/git_export_utils.py:41
+msgid "Unable to determine branch, repo in detached HEAD mode"
+msgstr "لا يمكن تحديد الفرع، المستودع في وضعية الرأس غير المتّصل."
+
+#: cms/djangoapps/contentstore/git_export_utils.py:42
+msgid "Unable to update or clone git repository."
+msgstr "لا يمكن تحديث أو استنساخ مستودع git."
+
+#: cms/djangoapps/contentstore/git_export_utils.py:43
+msgid "Unable to export course to xml."
+msgstr "لا يمكن تصدير المساق إلى ملف بصيغة xml."
+
+#: cms/djangoapps/contentstore/git_export_utils.py:44
+msgid "Unable to configure git username and password"
+msgstr "لا يمكن تهيئة اسم المستخدم وكلمة المرور لـ git"
+
+#: cms/djangoapps/contentstore/git_export_utils.py:45
+msgid ""
+"Unable to commit changes. This is usually because there are no changes to be"
+" committed"
+msgstr "لا يمكن إلزام التغييرات. ويحدث ذلك عادةً بسبب عدم وجود تغييرات يجب إلزامها"
+
+#: cms/djangoapps/contentstore/git_export_utils.py:47
+msgid ""
+"Unable to push changes.  This is usually because the remote repository "
+"cannot be contacted"
+msgstr "لا يمكن دفع التغييرات إلى المستودع. يحدث ذلك عادةً بسبب عدم القدرة على الاتصال بالمستودع البعيد"
+
+#: cms/djangoapps/contentstore/git_export_utils.py:49
+msgid "Bad course location provided"
+msgstr "موقع المساق الذي تم تقديمه غير صحيح"
+
+#: cms/djangoapps/contentstore/git_export_utils.py:50
+msgid "Missing branch on fresh clone"
+msgstr "يوجد فرع ناقص على النسخة الجديدة"
+
+#: cms/djangoapps/contentstore/git_export_utils.py:60
+msgid "Command was: {0!r}. Working directory was: {1!r}"
+msgstr "كان الأمر المستخدم: {0!r}. ومجلّد الملفات المستخدم: {1!r}"
+
+#: cms/djangoapps/contentstore/git_export_utils.py:62
+msgid "Command output was: {0!r}"
+msgstr "كانت مخرجات الأمر: {0!r}"
+
+#: cms/djangoapps/contentstore/git_export_utils.py:98
+msgid ""
+"Directory already exists, doing a git reset and pull instead of git clone."
+msgstr "المجلد موجود بالفعل، سيتم القيام بعملية إعادة ضبط أو سحب للـ git بدلاً من استنساخ git."
+
+#: cms/djangoapps/contentstore/utils.py:24
+msgid "My Notes"
+msgstr "ملاحظاتي"
+
+#: cms/djangoapps/contentstore/management/commands/git_export.py:44
+msgid ""
+"Take the specified course and attempt to export it to a git repository\n"
+". Course directory must already be a git repository. Usage:  git_export <course_loc> <git_url>"
+msgstr "قم بأخذ المساق المحدّد وحاول تصديره إلى مستودع git\n. يجب أن يكون المجلّد الخاص بالمساق هو أصلاً مستودع git. الاستخدام: git_export <course_loc> <git_url>"
+
+#: cms/djangoapps/contentstore/views/assets.py:215
+msgid "Upload completed"
+msgstr "تم الانتهاء من عملية التحميل "
+
+#: cms/djangoapps/contentstore/views/component.py:296
+msgid "HTML"
+msgstr "HTML "
+
+#: cms/djangoapps/contentstore/views/component.py:298
+msgid "Video"
+msgstr "مقطع فيديو"
+
+#: cms/djangoapps/contentstore/views/component.py:312
+#: cms/djangoapps/contentstore/views/component.py:314
+msgid "Blank"
+msgstr "صفحة فارغة"
+
+#: cms/djangoapps/contentstore/views/course.py:289
+msgid ""
+"Special characters not allowed in organization, course number, and course "
+"run."
+msgstr "لا يسمح باستخدام الحروف الخاصة ضمن اسم المؤسسة، ورقم المساق، ورقم تشغيله."
+
+#: cms/djangoapps/contentstore/views/course.py:347
+msgid ""
+"There is already a course defined with the same organization, course number,"
+" and course run. Please change either organization or course number to be "
+"unique."
+msgstr "يوجد بالفعل مساق معرّف مسبقاً بنفس اسم المؤسسة ورقم المساق وتشغيله. الرجاء تغيير إما اسم المؤسسة أو رقم المساق ليكون متميزاً."
+
+#: cms/djangoapps/contentstore/views/course.py:352
+#: cms/djangoapps/contentstore/views/course.py:355
+msgid ""
+"Please change either the organization or course number so that it is unique."
+msgstr "الرجاء تغيير إما اسم المؤسسة أو رقم المساق ليكون متميزاً."
+
+#: cms/djangoapps/contentstore/views/course.py:360
+#, python-brace-format
+msgid ""
+"Unable to create course '{name}'.\n"
+"\n"
+"{err}"
+msgstr "غير قادر على إنشاء المساق '{name}'.\n\n{err}"
+
+#: cms/djangoapps/contentstore/views/export_git.py:46
+msgid "Course successfully exported to git repository"
+msgstr "تم بنجاح تصدير المساق إلى مستودع git"
+
+#: cms/djangoapps/contentstore/views/import_export.py:82
+msgid "We only support uploading a .tar.gz file."
+msgstr "ندعم فقط تحميل ملفات بصيغة  .tar.gz"
+
+#: cms/djangoapps/contentstore/views/import_export.py:119
+msgid "File upload corrupted. Please try again"
+msgstr "حدث خطأ في تحميل الملف. الرجاء إعادة المحاولة "
+
+#: cms/djangoapps/contentstore/views/import_export.py:207
+msgid "Could not find the course.xml file in the package."
+msgstr "لم نتمكن من إيجاد الملف course.xml في الحزمة."
+
+#: cms/djangoapps/contentstore/views/item.py:444
+#, python-brace-format
+msgid "Duplicate of {0}"
+msgstr "نسخة مطابقة عن {0}"
+
+#: cms/djangoapps/contentstore/views/item.py:446
+#, python-brace-format
+msgid "Duplicate of '{0}'"
+msgstr "نسخة مطابقة لـ '{0}'"
+
+#: cms/djangoapps/contentstore/views/transcripts_ajax.py:430
+msgid "Incoming video data is empty."
+msgstr "بيانات لمقطع الفيديو الوارد فارغة."
+
+#: cms/djangoapps/contentstore/views/transcripts_ajax.py:435
+msgid "Can't find item by locator."
+msgstr "لا يمكن إيجاد العنصر باستخدام مُحدّد الموقع."
+
+#: cms/djangoapps/contentstore/views/transcripts_ajax.py:438
+msgid "Transcripts are supported only for \"video\" modules."
+msgstr "يتوفّر الدّعم للنصوص فقط في حالة الوحدات الدراسية التي تتألف من \"مقاطع فيديو\"."
+
+#: cms/djangoapps/contentstore/views/user.py:99
+msgid "Insufficient permissions"
+msgstr "صلاحيات غير كافية"
+
+#: cms/djangoapps/contentstore/views/user.py:108
+#, python-brace-format
+msgid "Could not find user by email address '{email}'."
+msgstr "لا يوجد مستخدم بالبريد الإلكتروني '{email}'."
+
+#: cms/djangoapps/contentstore/views/user.py:130
+#, python-brace-format
+msgid "User {email} has registered but has not yet activated his/her account."
+msgstr "المستخدم {email} قام بالتسجيل ولكن لم يقم بعد بتفعيل حسابه."
+
+#: cms/djangoapps/contentstore/views/user.py:146
+msgid "`role` is required"
+msgstr "\"الدور\" مطلوب "
+
+#: cms/djangoapps/contentstore/views/user.py:151
+msgid "Only instructors may create other instructors"
+msgstr "الموجّهون فقط هم من بإمكانهم إنشاء موجهين آخرين"
+
+#: cms/djangoapps/contentstore/views/user.py:188
+msgid "You may not remove the last instructor from a course"
+msgstr "لا يمكنك حذف آخر موجّه من مساق"
+
+#: cms/djangoapps/course_creators/models.py:33
+msgid "unrequested"
+msgstr "لم يُطلب"
+
+#: cms/djangoapps/course_creators/models.py:34
+msgid "pending"
+msgstr "معلّق"
+
+#: cms/djangoapps/course_creators/models.py:35
+msgid "granted"
+msgstr "ممنوح"
+
+#: cms/djangoapps/course_creators/models.py:36
+msgid "denied"
+msgstr "مرفوض"
+
+#: cms/djangoapps/course_creators/models.py:39
+msgid "Studio user"
+msgstr "مستخدم نظام استوديو Studio"
+
+#: cms/djangoapps/course_creators/models.py:41
+msgid "The date when state was last updated"
+msgstr "تاريخ آخر تحديث للحالة"
+
+#: cms/djangoapps/course_creators/models.py:43
+msgid "Current course creator state"
+msgstr "الحالة الحالية لصاحب المساق "
+
+#: cms/djangoapps/course_creators/models.py:44
+msgid ""
+"Optional notes about this user (for example, why course creation access was "
+"denied)"
+msgstr "ملاحظات اختيارية عن هذا المستخدم (مثلاً، لماذا تم رفض طلب الدخول لإنشاء مساق)"

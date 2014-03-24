@@ -51,7 +51,7 @@ FEATURES = {
     'AUTH_USE_CERTIFICATES': False,
 
     # email address for studio staff (eg to request course creation)
-    'STUDIO_REQUEST_EMAIL': '',
+    'STUDIO_REQUEST_EMAIL': 'm.zuby@sit-mena.com',
 
     # Segment.io - must explicitly turn it on for production
     'SEGMENT_IO': False,
@@ -64,7 +64,7 @@ FEATURES = {
 
     # If set to True, new Studio users won't be able to author courses unless
     # edX has explicitly added them to the course creator group.
-    'ENABLE_CREATOR_GROUP': False,
+    'ENABLE_CREATOR_GROUP': True,
 
     # whether to use password policy enforcement or not
     'ENFORCE_PASSWORD_POLICY': False,
@@ -92,7 +92,7 @@ FEATURES = {
     'USE_MICROSITES': False,
 
     # Allow creating courses with non-ascii characters in the course id
-    'ALLOW_UNICODE_COURSE_ID': False,
+    'ALLOW_UNICODE_COURSE_ID': True,
 
     # Prevent concurrent logins per user
     'PREVENT_CONCURRENT_LOGINS': False,

@@ -1,4 +1,4 @@
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language %>
 <%! from microsite_configuration import microsite %>
 
 <%inherit file="main.html" />
@@ -20,6 +20,74 @@
 <%block name="bodyclass">view-register</%block>
 
 <%block name="js_extra">
+% if get_language() == 'ar':
+  <script type="text/javascript">
+    $(function() {
+
+      // adding js class for styling with accessibility in mind
+      $('body').addClass('js');
+
+      // new window/tab opening
+      $('a[rel="external"], a[class="new-vp"]')
+      .click( function() {
+      window.open( $(this).attr('href') );
+      return false;
+      });
+
+      // form field label styling on focus
+      $("form :input").focus(function() {
+        $("label[for='" + this.id + "']").parent().addClass("is-focused");
+      }).blur(function() {
+        $("label").parent().removeClass("is-focused");
+      });
+
+    });
+
+    (function() {
+      toggleSubmitButton(true);
+
+      $('#register-form').on('submit', function() {
+        toggleSubmitButton(false);
+      });
+
+      $('#register-form').on('ajax:error', function() {
+        toggleSubmitButton(true);
+      });
+
+      $('#register-form').on('ajax:success', function(event, json, xhr) {
+        var url = json.redirect_url || "${reverse('dashboard')}";
+        location.href = url;
+      });
+
+      $('#register-form').on('ajax:error', function(event, jqXHR, textStatus) {
+        toggleSubmitButton(true);
+        json = $.parseJSON(jqXHR.responseText);
+        $('.status.message.submission-error').addClass('is-shown').focus();
+        $('.status.message.submission-error .message-copy').html(json.value).stop().css("display", "block");
+        $(".field-error").removeClass('field-error');
+        $("[data-field='"+json.field+"']").addClass('field-error')
+      });
+    })(this);
+
+    function toggleSubmitButton(enable) {
+      var $submitButton = $('form .form-actions #submit');
+
+      if(enable) {
+        $submitButton.
+          removeClass('is-disabled').
+          removeProp('disabled').
+          html("إنشئ حسابي على إدراك");
+      }
+      else {
+        $submitButton.
+          addClass('is-disabled').
+          prop('disabled', true).
+          text("${_(u'Processing your account information…')}");
+      }
+    }
+    $('#gender > option:last-child').remove();
+  </script>
+% else:
   <script type="text/javascript">
     $(function() {
 
@@ -89,20 +157,35 @@
           text("${_(u'Processing your account information…')}");
       }
     }
+    $('#gender > option:last-child').remove();
   </script>
+% endif
+
 </%block>
 
 <section class="introduction">
   <header>
-    <h1 class="title">
+    <div class="container">
+        <div class="row">
+    <h1 class="title col-md-12">
       <span class="title-super">${_("Welcome!")}</span>
-      <span class="title-sub">${_("Register below to create your {platform_name} account").format(platform_name=platform_name)}</span>
+        % if get_language() == 'ar':
+        <span class="title-sub">قم بالتسجيل لإنشاء حسابك على منصة إدراك</span>
+        % else:
+        <span class="title-sub">${_("Register below to create your {platform_name} account").format(platform_name=platform_name)}</span>
+        % endif
+
     </h1>
+    </div>
+    </div>
   </header>
 </section>
 
-<section class="register container">
-  <section role="main" class="content">
+<div class="container">
+
+
+<section class="register row">
+  <section role="main" class="col-md-8">
     <form role="form" id="register-form" method="post" data-remote="true" action="/create_account" novalidate>
       <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }">
 
@@ -248,7 +331,7 @@
           <li class="field-group">
           <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['country']} select" id="field-country">
               <label for="country">${_("Country")}</label>
-              <select id="country" name="country" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['country'] == 'required' else ''}>
+              <select id="country" class="form-control" name="country" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['country'] == 'required' else ''}>
                 <option value="">--</option>
                 %for code, country_name in COUNTRIES:
                 <option value="${code}">${ unicode(country_name) }</option>
@@ -261,7 +344,7 @@
           <li class="field-group">
           <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['level_of_education']} select" id="field-education-level">
               <label for="education-level">${_("Highest Level of Education Completed")}</label>
-              <select id="education-level" name="level_of_education" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['level_of_education'] == 'required' else ''}>
+              <select class="form-control" id="education-level" name="level_of_education" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['level_of_education'] == 'required' else ''}>
                 <option value="">--</option>
                 %for code, ed_level in UserProfile.LEVEL_OF_EDUCATION_CHOICES:
                 <option value="${code}">${_(ed_level)}</option>
@@ -274,7 +357,7 @@
           <li class="field-group">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['gender']} select" id="field-gender">
               <label for="gender">${_("Gender")}</label>
-              <select id="gender" name="gender" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['gender'] == 'required' else ''}>
+              <select class="form-control" id="gender" name="gender" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['gender'] == 'required' else ''}>
                 <option value="">--</option>
                 %for code, gender in UserProfile.GENDER_CHOICES:
                 <option value="${code}">${_(gender)}</option>
@@ -287,7 +370,7 @@
           <li class="field-group">
             <div class="field ${settings.REGISTRATION_EXTRA_FIELDS['year_of_birth']} select" id="field-yob">
               <label for="yob">${_("Year of Birth")}</label>
-              <select id="yob" name="year_of_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] == 'required' else ''}>
+              <select class="form-control" id="yob" name="year_of_birth" ${'required aria-required="true"' if settings.REGISTRATION_EXTRA_FIELDS['year_of_birth'] == 'required' else ''}>
                 <option value="">--</option>
                 %for year in UserProfile.VALID_YEARS:
                 <option value="${year}">${year}</option>
@@ -362,9 +445,18 @@
         <button name="submit" type="submit" id="submit" class="action action-primary action-update">${_('Register')} <span class="orn-plus">+</span> ${_('Create My Account')}</button>
       </div>
     </form>
+    </br>
+% if get_language() == 'ar':
+    <a onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.edraak.org/', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)"><img src="/static/images/social/share_facebook.png" height="17px" /></a>
+  <a onclick="window.open('http://www.twitter.com/intent/tweet?text=!بدأت رحلتي التعليمية المجانية مع إدراك! إنضموا إلي وسجلوا مجاناً الآن&hashtags=#Edraak', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)"><img src="/static/images/social/twitter_share.jpeg" /></a>
+% else:
+    <a onclick="window.open('http://www.facebook.com/sharer.php?u=https://www.edraak.org/', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)"><img src="/static/images/social/share_facebook.png" height="17px" /></a>
+  <a onclick="window.open('http://www.twitter.com/intent/tweet?text=I have started my educational journey with Edraak, register and join me now to learn for free.&hashtags=#Edraak', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)"><img src="/static/images/social/twitter_share.jpeg" /></a>
+% endif
+
   </section>
 
-  <aside role="complementary">
+  <aside role="complementary" class="col-md-3">
 
 <%
   # allow for microsite overrides on the registration sidebars, otherwise default to pre-existing ones
@@ -375,3 +467,4 @@
 
   </aside>
 </section>
+</div>

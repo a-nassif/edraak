@@ -26,6 +26,7 @@ from xmodule.modulestore.exceptions import ItemNotFoundError
 from opaque_keys.edx.keys import UsageKey
 from xmodule.exceptions import UndefinedContext
 from dogapi import dog_stats_api
+from django.utils.translation import get_language
 
 
 log = logging.getLogger(__name__)
@@ -629,7 +630,12 @@ class ResourceTemplates(object):
         """
         templates = []
         dirname = cls.get_template_dir()
+        language_in_use = get_language()
         if dirname is not None:
+            # Check language in use to load correct yaml files. English is a special case since its default
+            language_in_use = get_language()
+            if language_in_use != 'en' and os.path.isdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), dirname, str(language_in_use))):
+                dirname = os.path.join(dirname, str(language_in_use))
             for pkg in cls.template_packages:
                 if not resource_isdir(pkg, dirname):
                     continue

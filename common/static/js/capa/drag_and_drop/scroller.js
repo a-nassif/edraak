@@ -1,4 +1,4 @@
-(function (requirejs, require, define) {
+(function (requirejs, require, define, jquery) {
 define([], function () {
     return Scroller;
 
@@ -96,11 +96,13 @@ define([], function () {
         // so that any SANE number of draggables will fit in a single row. It
         // will be contained in a parent element whose 'overflow' CSS value
         // will be hidden, preventing the long row from fully being visible.
+
         state.sliderEl = $(
             '<div ' +
                 'style=" ' +
                     'width: 20000px; ' +
                     'height: 100px; ' +
+                    'float: left; ' +
                     'border-top: 1px solid #CCC; ' +
                     'border-bottom: 1px solid #CCC; ' +
                 '" ' +

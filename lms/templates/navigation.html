@@ -38,9 +38,16 @@ site_status_msg = get_site_status_msg(course_id)
 </%block>
 
   <header class="global ${"slim" if course else ""}" aria-label="${_('Global Navigation')}">
-    <nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
     <h1 class="logo">
-      <a href="${marketing_link('ROOT')}">
+        % if user.is_authenticated():
+            <a href="/courses">
+        % else:
+            <a href="${marketing_link('ROOT')}">
+        % endif
+
         <%block name="navigation_logo">
             <img src="${static.url(branding.get_logo_url())}" alt="${platform_name()}"/>
         </%block>
@@ -52,15 +59,20 @@ site_status_msg = get_site_status_msg(course_id)
     % endif
 
     % if user.is_authenticated():
-    <ol class="left nav-global authenticated">
-      <%block name="navigation_global_links_authenticated">
-        % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
-          <li class="nav-global-01">
-            <a href="${marketing_link('COURSES')}">${_('Find Courses')}</a>
-          </li>
+
+
+    <ol class="language-select">
+        % if settings.FEATURES['ENABLE_LANGUAGE_CHANGE']:
+            % if translation.get_language() == 'ar':
+                <a class="change_to_ar" href="/getlang/?language=ar" style="display: none">عربي</a>
+                <a class="change_to_en" href="/getlang/?language=en" style="float: left; color: #646464; cursor: pointer">En</a>
+            % else:
+                <a class="change_to_ar" href="/getlang/?language=ar" style="float: right; color: #646464; cursor: pointer">عربي</a>
+                <a class="change_to_en" href="/getlang/?language=en" style="display: none">En</a>
+            % endif
         % endif
-      </%block>
     </ol>
+
     <ol class="user">
       <li class="primary">
         <a href="${reverse('dashboard')}" class="user-link">
@@ -77,9 +89,69 @@ site_status_msg = get_site_status_msg(course_id)
             % endif
           </%block>
           <li><a href="${reverse('logout')}" role="menuitem">${_("Log Out")}</a></li>
+
         </ul>
       </li>
     </ol>
+
+    <ol class="left nav-global authenticated">
+
+      <%block name="navigation_global_links_authenticated">
+        % if settings.FEATURES.get('COURSES_ARE_BROWSABLE'):
+
+          <li class="nav-global-01">
+            <a href="${reverse('see_all_courses')}">${_('Find Courses')}</a>
+          </li>
+                    <li class="nav-global-01">
+            <a href="${marketing_link('ABOUT')}">
+                % if translation.get_language() == 'ar':
+عن إدراك
+            % else:
+                About Edraak
+            % endif
+            </a>
+          </li>
+          <li class="nav-global-01">
+              % if user.is_authenticated():
+                <a href="/courses/#how-it-work">
+              % else:
+                  <a href="/#how-it-work">
+              % endif
+
+                % if translation.get_language() == 'ar':
+                كيف تتعلم مع إدراك
+            % else:
+                ${_('How It Works')}
+            % endif
+            </a>
+          </li>
+##          <li class="nav-global-01">
+##              % if translation.get_language() == 'ar':
+##                <a href="/#highlighted-courses-link">المقررات</a>
+##              % else:
+##              <a href="/#highlighted-courses-link">${_('Courses')}</a>
+##              % endif
+##          </li>
+          <li class="nav-global-01">
+              % if user.is_authenticated():
+              <a href="/courses/#collaborate-with-edraak">
+              % else:
+              <a href="/#collaborate-with-edraak">
+              % endif
+
+
+                % if translation.get_language() == 'ar':
+               فرص التعاون
+        % else:
+                ${_('Get Involved')}
+        % endif
+                </a>
+          </li>
+        % endif
+
+      </%block>
+    </ol>
+
       % if display_shopping_cart: # see shoppingcart.context_processor.user_has_cart_context_processor
         <ol class="user">
           <li class="primary">
@@ -91,10 +163,14 @@ site_status_msg = get_site_status_msg(course_id)
       % endif
     % else:
     <ol class="left nav-global">
+
       <%block name="navigation_global_links">
         % if microsite.get_value('ENABLE_MKTG_SITE', settings.FEATURES.get('ENABLE_MKTG_SITE', False)):
           <li class="nav-global-01">
-            <a href="${marketing_link('HOW_IT_WORKS')}">${_("How it Works")}</a>
+            <a href="/#how-it-work-link">${_("About Edraak")}</a>
+          </li>
+          <li class="nav-global-01">
+            <a href="/#how-it-work-link">${_("How it Works")}</a>
           </li>
           <li class="nav-global-02">
             <a href="${marketing_link('COURSES')}">${_("Courses")}</a>
@@ -110,59 +186,85 @@ site_status_msg = get_site_status_msg(course_id)
             <a class="cta cta-register" href="${reverse('course-specific-register', args=[course.id.to_deprecated_string()])}">${_("Register Now")}</a>
           </li>
           % else:
-          <li class="nav-global-04">
-            <a class="cta cta-register" href="/register">${_("Register Now")}</a>
+          <li class="nav-global-01">
+            <a href="${marketing_link('ABOUT')}">
+                % if translation.get_language() == 'ar':
+عن إدراك
+            % else:
+                About Edraak
+            % endif
+            </a>
           </li>
-          % endif
-      % endif
-    </ol>
+          <li class="nav-global-01">
+            <a href="/#how-it-work">
+                % if translation.get_language() == 'ar':
+                كيف تتعلم مع إدراك
+            % else:
+                ${_('How It Works')}
+            % endif
+            </a>
+          </li>
+          <li class="nav-global-01">
+##              % if translation.get_language() == 'ar':
+##                <a href="/#highlighted-courses-link">المقررات</a>
+##              % else:
+              <a href="/#highlighted-courses-link">${_('Courses')}</a>
+##              % endif
+          </li>
+          <li class="nav-global-01">
+            <a href="/#collaborate-with-edraak">
 
-    <ol class="right nav-courseware">
-    <li class="nav-courseware-01">
-      % if not settings.FEATURES['DISABLE_LOGIN_BUTTON']:
+                % if translation.get_language() == 'ar':
+               فرص التعاون
+        % else:
+                ${_('Get Involved')}
+        % endif
+                </a>
+          </li>
+          <li class="nav-global-04">
+              % if translation.get_language() == 'ar':
+            <a class="cta cta-register" href="/register">سجل الآن</a>
+              % else:
+              <a class="cta cta-register" href="/register">${_("Register Now")}</a>
+              % endif
+          </li>
+          <li class="nav-global-04">
           % if course and settings.FEATURES.get('RESTRICT_ENROLL_BY_REG_METHOD') and course.enrollment_domain:
           <a class="cta cta-login" href="${reverse('course-specific-login', args=[course.id.to_deprecated_string()])}${login_query()}">${_("Log in")}</a>
           % else:
-          <a class="cta cta-login" href="/login${login_query()}">${_("Log in")}</a>
+          <a class="btn-login-menu" href="/login${login_query()}">
+
+                % if translation.get_language() == 'ar':
+               دخول
+        % else:
+                ${_("Sign in")}
+        % endif
+              </a>
           % endif
+          </li>
+          % endif
+          <li>
+            % if settings.FEATURES['ENABLE_LANGUAGE_CHANGE']:
+                % if translation.get_language() == 'ar':
+                    <a class="" href="/getlang/?language=ar" style="display: none">عربي</a>
+                    <a class="" href="/getlang/?language=en" style="cursor: pointer">En</a>
+                % else:
+                    <a class="" href="/getlang/?language=ar" style="cursor: pointer">عربي</a>
+                    <a class="" href="/getlang/?language=en" style="display: none">En</a>
+                % endif
+            % endif
+          </li>
       % endif
-    </li>
     </ol>
     % endif
 
-    % if settings.FEATURES['ENABLE_LANGUAGE_CHANGE']:
-        % if translation.get_language() == 'ar':
-            <a class="change_to_ar" style="display: none">عربي</a>
-            <a class="change_to_en" style="float: left; color: #646464; margin-top: 10px; margin-left: 20px; cursor: pointer">English</a>
-        % else:
-            <a class="change_to_ar" style="float: right; color: #646464; margin-top: 8px; margin-right: 20px; cursor: pointer">عربي</a>
-            <a class="change_to_en" style="display: none">English</a>
-        % endif
-        <form action="/i18n/setlang/" method="POST" style="display: none" id="language_form">
-            <input type="hidden" name="csrfmiddlewaretoken" value="${ csrf_token }"/>
-            <!--<input name="next" type="hidden" value="/next/page/" />-->
-            <select name="language" id="language_code">
-                % for lang in settings.LANGUAGES:
-                <option value="${ lang[0] }">${ lang[1] }</option>
-                % endfor
-            </select>
-            <input type="submit" value="Go" />
-        </form>
-        <script>
-        $(document).ready(function(){
-            $('.change_to_ar').click(function(){
-                $('#language_code').val('ar');
-                $('#language_form').submit();
-            });
-            $('.change_to_en').click(function(){
-                $('#language_code').val('en');
-                $('#language_form').submit();
-            });
-        });
-        </script>
-    % endif
-  </nav>
+
+  </div>
+
+            </div>
+        </div>
 </header>
+
 % if course:
 <!--[if lte IE 8]>
 <div class="ie-banner" aria-hidden="true">${_('<strong>Warning:</strong> Your browser is not fully supported. We strongly recommend using {chrome_link_start}Chrome{chrome_link_end} or {ff_link_start}Firefox{ff_link_end}.').format(chrome_link_start='<a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">', chrome_link_end='</a>', ff_link_start='<a href="http://www.mozilla.org/en-US/firefox/new/" target="_blank">', ff_link_end='</a>')}</div>

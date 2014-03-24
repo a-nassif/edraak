@@ -1,0 +1,62 @@
+@import "home";
+
+.home {
+  header {
+  background-image: url("../images/edraak_header_bg.png");
+    background-position: left;
+    .title {
+      text-align: right;
+      float: right;
+      hgroup {
+        padding-right: 0;
+        padding-left: 20px;
+        h1 {
+          text-align: right;
+          font-size: 45px;
+          line-height: 70px;
+        }
+        h2 {
+          font-size: 22px;
+          text-align: right;
+        }
+        p {
+          text-align: right;
+          font-size: 17px;
+        }
+      }
+    }
+    #learn-more {
+      float: right;
+    }
+    .slider-video-container {
+//      float: left;
+//      margin-left: 75px;
+    }
+    .outer-wrapper {
+      #learn-more {
+        float: right;
+      }
+    }
+  }
+  #collaborate-with-edraak {
+    p {
+      font-size: 19px;
+      line-height: 30px;
+    }
+    .collab-steps {
+      float: right;
+
+      h1 {
+        text-align: right;
+
+      }
+      &:last-child {
+          margin-right: 0;
+          margin-left: 0;
+        }
+    }
+  }
+  h2.main-title {
+    text-align: center;
+  }
+}

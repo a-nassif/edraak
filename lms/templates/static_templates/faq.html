@@ -1,9 +1,529 @@
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language %>
+<%! from django.core.urlresolvers import reverse %>
+<%! from django_countries.countries import COUNTRIES %>
+<%! from django.core.context_processors import csrf %>
+
+<%namespace name='static' file='../static_content.html'/>
 <%inherit file="../main.html" />
 
 <%block name="pagetitle">${_("FAQ")}</%block>
-
-<section class="container about">
 <h1>${_("FAQ")}</h1>
-<p>${_("This page left intentionally blank. It is not used by edx.org but is left here for possible use by installations of Open edX.")}</p>
-</section>
+
+    <div class="container"style="text-align: right !important;">
+##        <img src="${static.url('images/FAQ_Logo.png')}" style="float: left; width: 250px; margin-top: 25px">
+        <div class="accordion question" id="accordion2">
+            <h3 style="font-weight: bolder;text-align: right">أسئلة متعلقة بمنصة إدراك</h3>
+        </div>
+        <hr/>
+
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle question" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                        فكرة منصة إدراك غير واضحة بالنسبة إلي، الرجاء التوضيح؟
+                    </a>
+                </div>
+                <div id="collapseOne" class="accordion-body collapse">
+                    <br>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                        نوفر في إدراك مساقات تعليمية مجانية تقدم عبر الإنترنت عبر خبراء عالميين. كما نوفر أيضاً مساقات مترجمة مبنية على مساقات تقدم في جامعة هارفرد الأمريكية ومعهد ماستشوستس للتكنولوجيا. كل ما تحتاجه هو جهاز كمبيوتر و انترنت للبدء بالتعلم مجاناً عن بعد. الرجاء مشاهدة هذا الفيديو للمزيد من التفاصيل: <a href="http://bit.ly/1jCUJJ3">http://bit.ly/1jCUJJ3</a> كما ويمكنك التسجيل مجاناً عبر اختيار المساق الذي يناسبك عبر موقعنا الإلكتروني:  <a href="http://www.edraak.org/all_courses">www.edraak.org/all_courses</a></p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
+من يمكنه التسجيل في مساقات إدراك؟                    </a>
+                </div>
+                <div id="collapse2" class="accordion-body collapse">
+                    <br/>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                        مساقات إدراك متاحة للجميع. فأي شخص لديه الرغبة بالتعلّم مرحّب به</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3">
+كيف يمكنني التسجيل؟</a>
+                </div>
+                <div id="collapse3" class="accordion-body collapse">
+                    <br/>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                            <ol>
+                                <li> قم بإنشاء حساب خاص بك على الموقع</li>
+                                <li> فعّل حسابك عبر تفقد البريد الإلكتروني الذي تم تزويده في صفحة التسجيل ومن ثم الضغط على رابط التفعيل.</li>
+                                <li> سجّل بأي من مساقات إدراك</li>
+                            </ol>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse4">
+                        هناك خطأ في التسجيل، أرجو المساعدة؟</a>
+                </div>
+                <div id="collapse4" class="accordion-body collapse">
+                    <br/>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+يرجى التأكد من تعبئة جميع الخانات في صفحة التسجيل والتأكد من صحتها وبالأخص الإيميل. بعدها ستصلك رسالة تفعيل على الإيميل الذي تم تزويده في صفحة التسجيل. احرص على تفقد صندوق البريد غير المرغوب فيه (Junk/Spam Folder) ممكن أن تكون وصلت رسالة التفعيل إليه</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse5">
+ما هي رسوم الإشتراك؟</a>
+                </div>
+                <div id="collapse5" class="accordion-body collapse">
+                    <br/>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+ليست هناك أي رسوم للإشتراك فجميع مساقات إدراك متاحة بشكل مجاني لكل من أراد المعرفة</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse6">
+ما هي اللغة التي ستقدم بها المساقات ؟</a>
+                </div>
+                <div id="collapse6" class="accordion-body collapse">
+                    <br/>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+سيتم تقديم معظم المساقات باللغة العربية. هناك القليل من المساقات التي ستقدم بلغة أخرى ولكن ستكون مترجمة إلى اللغة العربية</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse7">
+كيف يمكنني الإطلاع على المادة الخاصة بالمساق؟</a>
+                </div>
+                <div id="collapse7" class="accordion-body collapse">
+                    <br/>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                        مساقات إدراك متاحة للجميع. فأي شخص لديه الرغبة بالتعلّم مرحّب به. هناك نبذة عن المساق على موقعنا: <a href="http://www.edraak.org">www.edraak.org</a> عند بدء المساق  ستظهر أيقونة (استعراض المساق) للمسجلين في المساق.  قم بالضغط عليها للتوجه إلى لوحة المعلومات التي  تضمن محتويات المساق، منهاج المساق، حلقات المناقشة والمزيد.                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="accordion-group">.
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse8">
+هل هناك امتحانات عند نهاية محاضرات المساق ؟</a>
+                </div>
+                <div id="collapse8" class="accordion-body collapse">
+                    <br/>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+سيكون هناك امتحانات لبعض المساقات ولكنها اختيارية لمن يرغب بالحصول على شهادة اتمام المساق. إن وجدت سيعلن عنها في الصفحة الخاصة بالمساق.</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse9">
+ما هو المقصود بكلمة مساق ؟</a>
+                </div>
+                <div id="collapse9" class="accordion-body collapse">
+                    <br/>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+نعني بمساق برنامج تعليمي تفاعلي مفتوح المصادر يقدم عبر الإنترنت</p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                    <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse10">
+ما هو المقصود بميثاق الشرف؟</a>
+                </div>
+                <div id="collapse10" class="accordion-body collapse">
+                    <br/>
+                    <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+هوتعهّد يقدمه المنتسب بالإلتزام بالقوانين والأخلاقيات التي تحددها إدراك لضمان عملية تعليمية سلسة وذات مستوى عالٍ. للمزيد من التفاصيل يرجى زيارة الرلبط التالي: <a href="http://www.edraak.org/honor">www.edraak.org/honor</a></p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="accordion question" id="accordion3">
+                <h3 style="font-weight: bolder;text-align: right">أسئلة متعلقة بالمساقات</h3>
+            </div>
+            <hr/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse11">
+                    متى يبدأ المساق/ما هي فترة المساق؟
+                </a>
+            </div>
+            <div id="collapse11" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    يمكنك معرفة مدة وتاريخ بدء المساق عبرالصفحة الخاصة بالمساق. إذا كنت من المسجلين في المساق سيظهر تاريخ بدء المساق ومدته على لوحة المعلومات الخاصة بالمسجّل. كما سيتم إرسال بريد إلكتروني لتذكير المسجلين قبل بدء المساق ببضعة أيام.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse12">
+                    في أي ساعة ستظهر مادة المساق؟
+                </a>
+            </div>
+            <div id="collapse12" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    هناك مواعيد محددة لبدء كل محاضرة. لكن في حال عدم توفر مادة المساق في الوقت المعلن عنه. يرجى التحقق مرة أخرى في وقت لاحق خلال اليوم.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse13">
+                    كيف يمكنني تسجيل الدخول للحساب الذي أنشأته على موقع إدراك؟
+                </a>
+            </div>
+            <div id="collapse13" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    انقر على كبسة الدخول على الصفحة الرئيسية لموقع edraak.org  ثم قم بكتابة البريد الإلكتروني الخاص بك وكلمة المرور لتتمكن من الدخول إلى لوحة المعلومات الخاصة بك.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse14">
+                    هل يمكن أن أسجل في أكثر من مساق واحد؟
+                </a>
+            </div>
+            <div id="collapse14" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    نعم بالتأكيد يمكنك ذلك، ننصحك بالقيام بذلك لتوسيع آفاقك التعليمية. احرص على التحقق من متطلبات كل مساق للموازنة بين الجهد المطلوب والساعات المتاحة لديك.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse15">
+                    كم ساعة دراسية يتطلب كل مساق؟
+                </a>
+            </div>
+            <div id="collapse15" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    تتوفر عدد الساعات المتوقعة للدراسة  لكل مساق في الصفحة الخاصة به. إن لم تجدها مسردة يرجى مراجعة جدول المساق لاحقاً  أو عند بدء المساق.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse16">
+                    ما هي المتطلبات التي يجب القيام بها قبل بدء المساق؟
+                </a>
+            </div>
+            <div id="collapse16" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    معظم المساقات لا تتطلب تحضيرات قبل بدئها. إذا كان هناك متطلبات خاصة لأي مساق فستكون هذه المعلومات متوفرة في الصفحة الخاصة بالمساق.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse17">
+                    ما هي المادة التي ينبغي علي قرائتها؟
+                </a>
+            </div>
+            <div id="collapse17" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    تتوفر هذه المعلومات على الصفحة الخاصة بالمساق. للمواد القراءة التكميلية، يمكنك طرح هذا السؤال على حلقات المناقشة لتحصل على اقتراحات من زملائك أو المشرفين على المساق.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse18">
+                    ماذا يحصل إن فوّت أسبوع من المساق؟ هل يمكن أن يؤثر على تحصيلي الدراسي؟
+                </a>
+            </div>
+            <div id="collapse18" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    إذا فاتك أي من محاضرات المساق فلا يزال بإمكانك مشاهدتها والحصول على مادة المحاضرة عبر صفحة مستجدات المساق. لكن يجب الإلتزام بمواعيد تسليم الواجبات والأنشطة،  لذا احرص على تفقد خطة المساق ومواعيد استحقاق  الأنشطة والواجبات.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse19">
+                    هل يمكن أن أحصل على تمديد إن منعتني ظروفي من تسليم الواجبات في وقتها المحدد؟
+                </a>
+            </div>
+            <div id="collapse19" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    مواعيد التسليم ثابتة ومحددة، لن نتمكن من إعطاء تمديدات لأي من المتعلمين.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse20">
+                    كيف يمكنني مناقشة المحاضرات والتفاعل مع زملائي؟
+                </a>
+            </div>
+            <div id="collapse20" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    هناك قسم خاص للمناقشة في كل مساق يتم عن طريقه التفاعل بين جميع المتعلمين. حيث يمكنك من خلاله تبادل وجهات النظر مع المنتسبين حول القضايا المتعلقة بمحتوى المساق.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse21">
+                    كيف يمكنني التواصل مع مشرفي المساق؟
+                </a>
+            </div>
+            <div id="collapse21" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    يمكنك التواصل مع مشرفي المساق عبر حلقات النقاش للمساق. حيث سيتمكن مشرفي المساق من طرح مواضيع للنقاش والإجابة على استفساراتك.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse22">
+                    هل سيتم توفير المساقات مرة أخرى في المستقبل؟
+                </a>
+            </div>
+            <div id="collapse22" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    نعم سيتم طرح معظم المساقات مرة أخرى في المستقبل. إذا كنت مسجل على موقع إدراك سيتم إرسال بريد إلكتروني لك بالمساقات الجديدة والمساقات التي سيتم إعادة تقديمها.
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse23">
+                    هل مازال بإمكاني التسجيل في المساق إذا بدأ؟
+                </a>
+            </div>
+            <div id="collapse23" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    نعم، لكن لن يكون بإمكانك تسليم الواجبات أو تقديم الإختبارات المستحقة. إن لم يفوتك الكثير فسيكون بإمكانك إكمال ما يكفي من الواجبات والإمتحانات لكسب شهادة الإتمام. أرجو مراجعة صفحة المساق لمعرفة المزيد
+                </div>
+            </div>
+        </div>
+        <br>
+        <br/>
+        <div class="accordion question" id="accordion4">
+            <h3 style="font-weight: bolder;text-align: right">أسئلة متعلقة بالشهادة</h3>
+        </div>
+        <hr/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse24">
+                هل يوجد شهادة للمساق؟
+                </a>
+            </div>
+            <div id="collapse24" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    نعم نقدم شهادة اتمام للراغبين في الحصول عليها عند اكمال المساق والنجاح بالإختبارات والواجبات.
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse25">
+                    هل الشهادة معتمدة؟
+                </a>
+            </div>
+            <div id="collapse25" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    الشهادة مقدمة من قبل مؤسسة الملكة رانيا للتعليم والتنمية.
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse26">
+                    كيف سيتم الحصول على شهادة الإتمام؟
+                </a>
+            </div>
+            <div id="collapse26" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    سيتم ارسال شهادة الإتمام إلكترونياً لكل من يكمل متطلبات المساق بنجاح
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse27">
+                    هل يمكن أن أحصل على نسخة مطبوعة لشهادتي؟
+                </a>
+            </div>
+            <div id="collapse27" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    سنقوم بتزويد كل من يكمل متطلبات المساق بشهادة ترسل إلكترونياً. في حال الرغبة في الحصول على نسخة مطبوعة فإمكانك طباعتها بنفسك.
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="accordion question" id="accordion5">
+            <h3 style="font-weight: bolder;text-align: right">أسئلة أخرى</h3>
+        </div>
+        <hr/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse28">
+                    ماذا أفعل إذا كان الإسم العلني الذي أدخلته غير متوفر؟ أو تم استخدامه من قبل مسجّل آخر؟
+                </a>
+            </div>
+            <div id="collapse28" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    لكل مستخدم اسم علني خاص به، قم بإضافة رقم معين مثلاً إلى أخر إسمك العلني إن لم يكن الإسم الذي أدخلته متاح.
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse29">
+                    ماذا أفعل إذا نسيت كلمة المرورالتي استخدمتها لإنشاء حسابي على إدراك؟
+                </a>
+            </div>
+            <div id="collapse29" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    انقر على "نسيت كلمة السر" الموجود أسفل حقل كلمة المرور ومن ثم أدخل البريد الإلكتروني الخاص بك والذي تم استخدامه عند التسجيل لتلقي  رسالة تسمح لك بإعادة تعيين كلمة المرور الخاصة بك.
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse30">
+                    أين أجد رسالة التفعيل؟
+                </a>
+            </div>
+            <div id="collapse30" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    يرجى التأكد من تعبئة جميع الخانات في صفحة التسجيل والتأكد من صحتها وبالأخص الإيميل. بعدها ستصلك رسالة تفعيل على البريد الإلكتروني الذي تم تزويده في صفحة التسجيل. احرص على تفقد صندوق البريد الغير مرغوب به (الـ Junk/Spam Folder) ممكن أن تكون وصلت رسالة التفعيل إليه.
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse31">
+                    كيف تتم عملية تفعيل الحساب؟
+                </a>
+            </div>
+            <div id="collapse31" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    عند قيامك بالتسجيل ستصلك رسالة على البريد الإلكتروني الذي تم تزويده في صفحة التسجيل تحتوي على رابط لتفعيل الحساب. قم بالضغط على الرابط للتفعيل
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse32">
+                    أين المكان الذي سيعقد فيه المساق؟
+                </a>
+            </div>
+            <div id="collapse32" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    جميع مساقات إدراك تقدم مجاناً عبر الإنترنت على موقع إدراك <a href="http://www.edraak.org">www.edraak.org</a> لأي شخص في العالم
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <span class="ui-icon ui-icon-triangle-1-e"></span>
+                <a style="color: #555555;text-decoration: none;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse33">
+                    إذا اشتركت بأحد المساقات ولم أستطع اكماله أو لم أتابعه بشكل جيد هل هناك عقوبات أو ما شابه؟
+                </a>
+            </div>
+            <div id="collapse33" class="accordion-body collapse">
+                <br/>
+                <div class="accordion-inner"><p style="margin-left: 40px;font-size: 14px; margin-top: -10px;">
+                    كلا، ليس هناك أي عقوبات على المسجلين الذين لم تمكنهم ظروفهم من إكمال أو متابعة المساق. لكن لن يحصل المسجلين على شهادة اتمام إن لم يكملوا متطلبات المساق.
+                </div>
+            </div>
+        </div>
+        <br/>
+
+</div>
+
+        <style>
+            .question {font-size: 22px}
+        </style>

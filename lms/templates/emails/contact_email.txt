@@ -1,0 +1,19 @@
+<%namespace file="../main.html" import="stanford_theme_enabled" />
+<%! from django.utils.translation import ugettext as _ %>
+
+You have been contacted from the contact us page on edraak.org. Please find details below.
+
+First Name: ${ firstname }
+Last Name: ${ lastname }
+E-mail: ${ email }
+Profession: ${ profession }
+Interested in: ${ interest }
+Institution / Organization: ${ instorg }
+Instituation Website: ${ institution }
+Discipline: ${ discipline }
+Course title: ${ course_title }
+Country: ${ country }
+Message: ${ message }
+
+
+

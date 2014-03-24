@@ -1,5 +1,5 @@
 <nav class="pagination pagination-full bottom">
-<ol>
+<ol style="direction: ltr">
     <li class="nav-item previous"><a class="nav-link previous-page-link" href="#"><i class="icon-angle-left"></i> <span class="nav-label"><%= gettext("Previous") %></span></a></li>
     <li class="nav-item page">
         <div class="pagination-form">

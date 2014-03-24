@@ -1,8 +1,10 @@
 <%namespace name='static' file='static_content.html'/>
 <%!
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, get_language
 from django.core.urlresolvers import reverse
 from courseware.courses import course_image_url, get_course_about_section
+import tinyurl
+tiny_course_url = tinyurl.create_one("request.environ['HTTP_HOST']}${reverse('about_course', args=[course.id])")
 %>
 <%page args="course" />
 <article id="${course.id.to_deprecated_string()}" class="course">
@@ -11,29 +13,68 @@ from courseware.courses import course_image_url, get_course_about_section
   %endif
   <a href="${reverse('about_course', args=[course.id.to_deprecated_string()])}">
   <div class="inner-wrapper">
+      <section class="info">
+          <a href="${reverse('about_course', args=[course.id])}">
+            <div class="cover-image" style="background-image: url('${course_image_url(course)}')">
+                <div>
+
+                </div>
+            </div>
+          </a>
       <header class="course-preview">
         <hgroup>
-          <h2><span class="course-number">${course.display_number_with_default | h}</span> ${get_course_about_section(course, 'title')}</h2>
+          <h2>
+              <a href="${reverse('about_course', args=[course.id])}">
+                  <p class="course-number-hidden">
+    ##                  <p class="course-number">${course.display_number_with_default | h}</p>
+                      ${get_course_about_section(course, 'title')}
+                  </p>
+                  <p class="name-org">${get_course_about_section(course, 'university')}</p>
+              </a>
+              <div class="show-course-details">
+                  <a href="${reverse('about_course', args=[course.id])}">
+                      % if get_language() == 'ar':
+                      <div>إنضم مجاناً ></div>
+                      % else:
+                      <div>Join Now ></div>
+                  % endif
+                  </a>
+
+                  <ul>
+                  % if get_language() == 'ar':
+                      <li style="cursor: pointer"><img alt="Post a Facebook message to say you've registered for this course" src="${static.url('images/social/facebook-icon-black.png')}" onclick="window.open('http://www.facebook.com/sharer.php?u=${request.environ['HTTP_HOST']}${reverse('about_course', args=[course.id])}', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)"></li>
+                      <li style="cursor: pointer"><img alt="Tweet that you've registered for this course" src="${static.url('images/social/twitter-sharing.png')}"onclick="window.open('http://www.twitter.com/intent/tweet?text= سجّلت ب ${get_course_about_section(course, 'title')}  انت كمان بتقدر تسجّل مجاناً! يلا نتعلم مع بعض ${tiny_course_url} &hashtags=#Edraak', 'sharer', 'toolbar=0,status=0,width=548,height=325');"target="_parent" href="javascript: void(0)"></li>
+                      <li style="cursor: pointer"><a href="mailto:someone@example.com?Subject=!بدأت رحلتي التعليمية المجانية مع إدراك&body=http://www.edraak.org${reverse('about_course', args=[course.id])}" target="_top"><img alt="Email someone to say you've registered for this course" src="${static.url('images/social/email-sharing.png')}"></a></li>
+                  % else:
+                      <li style="cursor: pointer"><img alt="Post a Facebook message to say you've registered for this course" src="${static.url('images/social/facebook-icon-black.png')}" onclick="window.open('http://www.facebook.com/sharer.php?u=${request.environ['HTTP_HOST']}${reverse('about_course', args=[course.id])}', 'sharer', 'toolbar=0,status=0,width=548,height=325');" target="_parent" href="javascript: void(0)"></li>
+                      <li style="cursor: pointer"><img alt="Tweet that you've registered for this course" src="${static.url('images/social/twitter-sharing.png')}"onclick="window.open('http://www.twitter.com/intent/tweet?text=I have registered to ${get_course_about_section(course, 'title')} you can join me for free, let us learn together. ${tiny_course_url} &hashtags=#Edraak', 'sharer', 'toolbar=0,status=0,width=548,height=325');"target="_parent" href="javascript: void(0)"></li>
+                      <li style="cursor: pointer"><a href="mailto:someone@example.com?Subject=Join%20me%20at%20Edraak%20and%20learn%20for%20Free%20now!&body=https://www.edraak.org${reverse('about_course', args=[course.id])}" target="_top"><img alt="Email someone to say you've registered for this course" src="${static.url('images/social/email-sharing.png')}"></a></li>
+                  % endif
+                  </ul>
+              </div>
+          </h2>
         </hgroup>
-        <div class="info-link">&#x2794;</div>
       </header>
-      <section class="info">
-        <div class="cover-image">
-          <img src="${course_image_url(course)}" alt="${course.display_number_with_default | h} ${get_course_about_section(course, 'title')} Cover Image" />
-        </div>
+
+      </section>
+      <a class="start-end" href="${reverse('about_course', args=[course.id])}">
         <div class="desc">
-          <p>${get_course_about_section(course, 'short_description')}</p>
+##          <p>${get_course_about_section(course, 'short_description')}</p>
+##            <p class="course-number">${course.display_number_with_default | h}</p>
+            % if get_language() == 'ar':
+            <p class="course-number">إنضم مجاناً</p>
+            % else:
+            <p class="course-number">Join Now</p>
+            % endif
+
         </div>
         <div class="bottom">
-          <span class="university">${get_course_about_section(course, 'university')}</span>
-          % if not course.start_date_is_still_default:
-          <span class="start-date">${course.start_date_text}</span>
-          % endif
+              % if not course.start_date_is_still_default:
+              <div class="start-date" style="color: #ca0017">${course.start_date_text}</div>
+##              <div   class="start-date" style="color: #276f6e">${course.end_date_text}</div>
+              % endif
         </div>
-      </section>
+      </a>
     </div>
-    <div class="meta-info">
-      <p class="university">${get_course_about_section(course, 'university')}</p>
-    </div>
-  </a>
+
 </article>

@@ -4,15 +4,23 @@
 <head>
   <meta charset="UTF-8">
   {% block title %}<title>{% platform_name %}</title>{% endblock %}
+{#    <link rel="stylesheet" media="screen" href="https://openfontlibrary.org/face/droid-arabic-kufi" rel="stylesheet" type="text/css"/>#}
+    <link rel="icon" type="image/x-icon" href="{% static "images/favicon.ico" %}" />
+    {% compressed_css 'style-vendor' %}
+    {% compressed_css 'style-course-vendor' %}
+    {%  if LANGUAGE_BIDI %}
 
-  <link rel="icon" type="image/x-icon" href="{% static "images/favicon.ico" %}" />
+      {% compressed_css 'style-app-rtl' %}
+      {% compressed_css 'style-app-extend1-rtl' %}
+      {% compressed_css 'style-app-extend2-rtl' %}
+      {% compressed_css 'style-course-rtl' %}
+    {% else %}
+      {% compressed_css 'style-app' %}
+      {% compressed_css 'style-app-extend1' %}
+      {% compressed_css 'style-app-extend2' %}
+      {% compressed_css 'style-course' %}
+    {% endif %}
 
-  {% compressed_css 'style-vendor' %}
-  {% compressed_css 'style-app' %}
-  {% compressed_css 'style-app-extend1' %}
-  {% compressed_css 'style-app-extend2' %}
-  {% compressed_css 'style-course-vendor' %}
-  {% compressed_css 'style-course' %}
 
   {% block main_vendor_js %}
   {% compressed_js 'main_vendor' %}
@@ -24,7 +32,7 @@
   <!--[if lt IE 9]>
   <script src="{% static 'js/html5shiv.js' %}"></script>
   <![endif]-->
-
+{#  <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>#}
   <meta name="path_prefix" content="{{EDX_ROOT_URL}}">
 </head>
 
@@ -42,6 +50,16 @@
   {% compressed_js 'module-js' %}
 
   {% render_block "js" %}
+
+    {# <!-- Google Tag Manager -->#}
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5PKGK2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5PKGK2');</script>
+    {#<!— End Google Tag Manager -->#}
 </body>
 </html>
 

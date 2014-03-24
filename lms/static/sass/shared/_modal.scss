@@ -22,18 +22,22 @@
   position: absolute;
   width: grid-width(5);
   z-index: 12;
+  bottom: auto;
+  outline: 0 none;
+  overflow: auto;
+
 
   &.video-modal {
     left: 50%;
     padding: 10px;
-    width: 582px;
+    width: 600px;
 
     .inner-wrapper {
       background: #000;
       box-shadow: none;
-      height: 315px;
+      height: 330px;
       padding: 10px;
-      width: 560px;
+      width: 580px;
     }
   }
 
@@ -46,7 +50,7 @@
       background: #000;
       box-shadow: none;
       height: 360px;
-      padding: 10px;
+      padding: 0 10px;
       width: 640px;
     }
   }
@@ -204,7 +208,7 @@
         }
 
         a {
-          font-family: $serif;
+          font-family: 'Droid Sans', 'sans-serif';
           font-style: italic;
         }
       }
@@ -253,13 +257,13 @@
 
         span {
           color: $lighter-base-font-color;
-          font-family: $serif;
+          font-family: 'Droid Sans', 'sans-serif';
           font-style: italic;
         }
 
         a {
           color: $lighter-base-font-color;
-          font-family: $serif;
+          font-family: 'Droid Sans', 'sans-serif';
           font-style: italic;
           text-decoration: underline;
 
@@ -284,7 +288,7 @@
       top: 0px;
       z-index: 3;
       color: $lighter-base-font-color;
-      font: normal 1.2rem/1.2rem $sans-serif;
+      font: normal 1.2rem/1.2rem "din-normal";
       text-align: center;
       text-shadow: 0 1px rgba(255,255,255, 0.8);
       @include transition(all 0.15s ease-out 0s);

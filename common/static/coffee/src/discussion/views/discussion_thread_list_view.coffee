@@ -194,7 +194,8 @@ if Backbone?
 
       error = =>
         @renderThreads()
-        DiscussionUtil.discussionAlert(gettext("Sorry"), gettext("We had some trouble loading more threads. Please try again."))
+        console.log('We had some trouble loading more threads. Please try again.')
+#        DiscussionUtil.discussionAlert(gettext("Sorry"), gettext("We had some trouble loading more threads. Please try again."))
 
       @collection.retrieveAnotherPage(@mode, options, {sort_key: @sortBy}, error)
 

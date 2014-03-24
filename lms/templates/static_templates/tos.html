@@ -1,9 +1,260 @@
-<%! from django.utils.translation import ugettext as _ %>
+<%! from django.utils.translation import ugettext as _, get_language %>
 <%inherit file="../main.html" />
 
 <%block name="pagetitle">${_("Terms of Service")}</%block>
-
+<style>
+    .tos-bullets{
+        line-height: 25px;
+        margin-right: 50px;
+        list-style-type: circle;
+    }
+</style>
 <section class="container about">
 <h1>${_("Terms of Service")}</h1>
-<p>${_("This page left intentionally blank. It is not used by edx.org but is left here for possible use by installations of Open edX.")}</p>
+    % if get_language() == 'ar':
+    <p>مرحباً بكم في إدراك.</p>
+
+    <p>
+يرجى قراءة شروط الخدمة هذه ("شروط الخدمة ") وسياسة الخصوصية وميثاق الشرف الخاص بإدراك قبل التسجيل لدى الموقع الإلكتروني Edraak.org أو استخدام أي جزء من محتويات الموقع (ونعني بكلمة "الموقع"، جميع المحتويات والصفحات التي تقع ضمن نطاق موقع إدراك الإلكتروني عبر الإنترنت)، بما في ذلك الوصول إلى أي من المواد الخاصة بالمساقات، وغرف الدردشة، أو الخدمات الإلكترونية الأخرى. تعتبر كل من هذه الشروط وسياسة الخصوصية وميثاق الشرف بمثابة اتفاقيات (قد يتم الإشارة إليها فيما بعد، مجتمعةً، باسم "اتفاقيات") بينك وبين إدراك. كما أنك تقبل وتوافق من خلال استخدامك للموقع الإلكتروني على الالتزام قانوناً بالاتفاقيات، سواء كنت مستخدماً مسجلاً على الموقع أم لا.    </p>
+
+    <p>
+تحتفظ إدراك بحق تعديل هذه الشروط في أي وقت دون إشعارك مسبقاً. تعتبر التغييرات التي تتم على هذه الشروط نافذةً فور نشرها على هذه الصفحة أو ضمن أي قسم آخر من الموقع. يُعد دخولك إلى الموقع بعد إجراء أية تغييرات موافقة منك على الشروط المعدّلة وكافة التغييرات الواردة فيه.    </p>
+
+    <p>
+تأكّد من أن تتطلع على هذه الصفحة بشكل دوري لتبقى مطلعاً على الإصدار الأحدث لهذه الشروط.    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">لمحة عن إدراك</p>
+
+    <p>
+تُقدّم إدراك مساقات تعليمية متاحة عبر الإنترنت، من تأليف كليات وجامعات وغيرها من المؤسسات (والتي يُشار إليها مجتمعةً بكلمة "المؤسسات"، وبشكل مستقل بكلمة "مؤسسة")، والتي تشمل الفرص المتاحة للتفاعل بين المدرب والطالب، والطالب مع زملائه الطلاب، والتقييم الفردي لعمل الطالب وشهادة إنجاز ("المساقات") للطلاب الذين يثبتون إتقانهم لموضوعات الدراسة.    </p>
+    <p style="text-decoration: underline">
+قواعد السلوك عبر الإنترنت    </p>
+
+    <p>
+أنت توافق على أنك مسؤول بالكامل عن استخدامك للموقع والمواد التي يتم نشرها من خلال اسم المستخدم الخاص بك، والتي يجب أن تشمل كامل المحتوى الذي يتم تقديمه ونشره أو توزيعه على الموقع من قبلك أو من قبل مستخدمين آخرين للموقع، بما في ذلك وعلى سبيل المثال لا الحصر، جميع المشاركات ضمن المنتدى والتعديلات على الويكي والملاحظات والأسئلة والتعليقات ومقاطع الفيديو وتحميلات الملفات ("مشاركات المستخدم"). كما أنك توافق على استخدامك للموقع ملتزماً بالاتفاقيات وجميع القوانين المحلية والإقليمية والدولية والقواعد والأنظمة المعمول بها، بما في ذلك قوانين حقوق التأليف والنشر، وأية قوانين تتعلّق بنقل البيانات الفنية المصدّرة من بلد إقامتك.    </p>
+
+<p>
+    أنت تتعهّد من خلال هذه الوثيقة، وكشرط لاستخدامك للخدمات التي تقدمها إدراك عبر موقعها الإلكتروني، أنك لن تستخدم الموقع بأي طريقة تهدف إلى الإساءة أو تعطيل أو إعاقة أو إرهاق خادم إدراك أو شبكة (شبكات) إدراك المتصلة بأي خادم من خوادمها أو التدخّل بأي طرف ثالث والتمتّع بالموقع. كما لا يجوز لك محاولة الوصول غير المصرّح به إلى الموقع،وحسابات أخرى أو أنظمة كمبيوتر أو شبكات متصلة بأي خادم لإدراك من خلال القرصنة واستخراج كلمة المرور أو أي وسيلة أخرى. لا يجوز لك الحصول أو محاولة الحصول على أي مواد أو المعلومات المخزنة على الموقع، أو أي من خوادمه أو أجهزة الحاسوب المرتبطة به من خلال أي وسيلة لم يتم إتاحتها عن قصد من خلال الموقع.
+</p>
+    <p style="text-decoration: underline">
+توضّح القائمة التالية المواد التي يُمنَع منعاً باتاً تداولها على الموقع الالكتروني :    </p>
+
+    <ul>
+        <li class="tos-bullets">المحتوى الذي يشهّر أو يضايق أو يهدّد الآخرين</li>
+        <li class="tos-bullets">المحتوى الذي يناقش أنشطة غير مشروعة</li>
+        <li class="tos-bullets">المحتوى الذي ينتهك الملكية الفكرية لطرف ثالث، بما في ذلك وعلى سبيل المثال لا الحصر، حقوق التأليف والنشر أو العلامات التجارية</li>
+        <li class="tos-bullets">المحتوى الدنس أو الإباحي أو المخلّ بالآداب أو غير اللائق أو غير المصرح به</li>
+        <li class="tos-bullets">الإعلان أو أي شكل من أشكال الدعاية التجارية</li>
+        <li class="tos-bullets">المحتويات التي لها علاقة بالأنشطة السياسية الحزبية</li>
+        <li class="tos-bullets">الفيروسات، وأحصنة طروادة، والديدان، والقنابل الموقوتة أو ملفات تالفة، والبرمجيات الخبيثة وبرامج التجسس أو أي برامج أخرى مماثلة قد تلحق الضرر بعمل حاسوب أو ممتلكات أخرى</li>
+        <li class="tos-bullets">المحتوى الذي يتضمن معلومات غير دقيقة عن قصد أو التي يتم نشرها بقصد تضليل الآخرين.</li>
+    </ul>
+    <p>
+علاوة على ذلك، أنت توافق على عدم محاولة جمع معلومات أو تنزيل أي محتوى من محتويات الموقع بكميات كبيرة، بما يشمل ولا يقتصر على قائمة أو دليل مستخدمي النظام، والكتب الدراسية المتاحة عبر الإنترنت، أو منشورات المستخدمين أو معلوماتهم الشخصية. كما أنك توافق على عدم تحريف أو محاولة تحريف هويتك أثناء استخدام الموقع.    </p>
+
+    <p>
+إنّ أي انتهاك لبنود قائمة المحظورات المذكورة أعلاه تخوّل إدراك إنهاء استخدامك ووصولك و/أو مشاركتك في الموقع دون إشعار مسبق.    </p>
+
+    <p style="text-decoration: underline">حسابات المستخدمين والصلاحيات</p>
+
+
+    <p>
+للاستفادة من المشاركة الكاملة في الأنشطة والخدمات التي تقدّمها إدراك على موقعها الإلكتروني، يجب عليك تزويدنا باسمك وعنوان البريد الإلكتروني وكلمة المرور الخاصة بالمستخدم وذلك لإنشاء حساب مستخدم جديد (والذي يُشار إليه بـ "حساب المستخدم"). إنك توافق على أنك لن تقوم أبداً بإفشاء أو مشاركة دخولك للموقع أو مشاركة معلومات حساب المستخدم الخاص بك مع أي طرف ثالث لأي سبب من الأسباب. أثناء إنشاء حساب المستخدم الخاص بك، قد تتم مطالبتك بإدخال معلومات إضافية اختيارية (على سبيل المثال، عنوانك). أنت تصرّح أنّ جميع المعلومات التي قدمتها هي معلومات دقيقة وحديثة. كما أنك توافق على صيانة وتحديث المعلومات الخاصة بك لابقائها دقيقة وحديثة.     </p>
+
+<p>نحن نهتم بسرية وأمن المعلومات الشخصية الخاصة بك. يرجى الاطلاع على<a href="${marketing_link('PRIVACY')}">  سياسة الخصوصية </a>الخاصة بنا للمزيد من المعلومات حول ماهية المعلومات التي قد تجمعها إدراك عنك وكيف تستخدم إدراك تلك المعلومات. يُعد دخولك إلى الموقع دلالة على أنك توافق على جمع واستخدام المعلومات الخاصة بك عن قبل إدراك. </p>
+    <p style="text-decoration: underline">حقك في استخدام المحتوى الموجود على الموقع</p>
+
+    <p>
+تمّت حماية محتويات الموقع كافة من خلال القانون الأردني لحماية حقوق التأليف والنشر رقم 22 لعام 1992، ما لم يرد بأنه ملكية عامة.     </p>
+
+    <p>
+إنّ جميع النصوص والامتحانات ومقاطع الفيديو والصور وغيرها من المواد التعليمية المتوفرة مع المساقات المقدّمة في هذا الموقع، هي للاستخدام الشخصي الخاص بك والمتعلّق بتلك المساقات فقط، ما لم يرد خلاف ذلك صراحةً ضمن الموقع.    </p>
+<p>يخضع استخدام بعض الوثائق المرجعية والكتب الدراسية الرقمية والمقالات وغيرها من المعلومات على الموقع لإذن من قبل أطراف ثالثة، إذ يخضع استخدام هذه المعلومات لقواعد وشروط معينة سيتم نشرها جنباً إلى جنب مع هذه المعلومات. إنك تتعهّد بموجب هذه الوثيقة، وباستخدامك لهذا الموقع، على الالتزام بجميع هذه القواعد والشروط.</p>
+<p>كما أنك توافق على الحفاظ على جميع حقوق التأليف والنشر والإشعارات الأخرى التي تخص أي محتوى تحصل عليه من خلال الموقع. جميع حقوق هذا الموقع ومحتواه محفوظة من قِبل مؤسسة الملكة رانيا للتعليم والتنمية أو تحت ترخيص ممنوح لمؤسسة جلالة الملكة رانيا للتعليم والتنمية، ما لم يتم التصريح عن منحها للمؤسسة.</p>
+    <p style="text-decoration: underline">منشورات المستخدم</p>
+<p><b>تعهدات وضمانات منشورات المستخدم: </b>على الرغم من قائمة المواد التي يُمنع منعاً باتاً تداولها على الموقع كما هو مبين أعلاه، والتي تتعلّق بتقديم أو توزيع منشورات المستخدم الخاصة بك، إلا أنك تؤكد، وتمثّل وتضمن (1) أن يكون لديك الحقوق اللازمة والتراخيص والموافقات و/أو الأذونات لإعادة نشر منشورات المستخدم على الموقع والسماح لإدراك ومستخدميها بإعادة إنتاج وتعديل ونشر وما إلى ذلك من استخدام وتوزيع منشورات المستخدم الخاصة بك بطريقة تتفق مع التراخيص التي تُمنح لك في ظل هذه الشروط، و(ب) أنك لن تعمد إلى خرق أو انتهاك حقوق أي طرف ثالث من خلال تقديمك لمنشورات المستخدم الخاصة بك أو استخدامك للتراخيص الممنوحة أدناه. تتحمّل أنت وحدك، وليس إدراك، المسؤولية عن منشورات المستخدم الخاصة بك وعواقب مشاركتها مع الآخرين أو نشرها على الموقع.</p>
+<p><b>منح ترخيص لإدراك: </b> إنك بموجب ما تقدّمه أو توزعه من منشورات المستخدم الخاصة بك تمنح إدراك في جميع أنحاء العالم حقاً غير حصري، وقابل للنقل، والتعيين، والترخيص الفرعي، ومدفوع بالكامل، ودون أي مقابل، ودائم وغير مسترد رخصةً لاستضافة ونقل وعرض وأداء وإعادة إنتاج وتعديل وتوزيع وإعادة توزيع وإعادة ترخيص وخلاف ذلك الاستخدام، وتوفير واستغلال منشورات المستخدم الخاصة بك، كلياً أو جزئياً، في أي شكل وبأي صيعة إعلامية، ومن خلال أي قنوات إعلامية ( المعروفة الآن أو التي سيتم تأسيسها فيما بعد).</p>
+<p><b>منح الترخيص إلى المستخدمين: </b> أنت تمنح بموجب ما تقوم بتقديمه أو ما توزّعه من منشورات المستخدم الخاصة بك، جميعَ مستخدمي الموقع ("المستخدم (ين)") رخصة غير حصرية للوصول إلى واستخدام منشورات المستخدم الخاصة بك فيما يتعلق باستخدامهم للموقع ولأغراض شخصية خاصة بهم.</p>
+    <p style="text-decoration: underline">الشهادات وما إلى ذلك</p>
+<p>قد تقدّم المؤسسات التي توفّر المساقات على الموقع شهادة إتمام للمساق أو إقرار آخر (والذي يُشار إليه باسم "شهادة") للطلاب الذين، وحسب تقديرهم، قد أبدو تمكناً من مواد المساقات ذات الصلة. سيتم إصدار الشهادات من قبل إدراك تحت اسم المؤسسة ذات الصلة تبعاً لمنشأ المساق. سيكون اتخاذ قرار بخصوص ما إذا كان سيتم منح شهادة للطالب الذي أكمل المساق، عائداً فقط إلى تقدير المؤسسة المانحة. قد تختار إدراك و/أو أي من المؤسسات التي تقدّم مساقات على الموقع، وتبعاً لتقديرها فقط، عدم تقديم شهادة فيما يتعلق ببعض المساقات.</p>
+<p><b>لا تسجيل آخر: </b>لن تتمكن أثناء إتمامك لمساق عبر موقع إدراك، من تقديم طلب قبول أو التسجيل بأي برنامج لنيل درجة علمية في أي من المؤسسات التي تؤلّف المساقات وذلك نتيجة لتسجيل أو استكمال مساق تقدّمه هذه المؤسسات من خلال إدراك على موقعها. لا يحق لك استخدام أي من موارد المؤسسة خارج نطاق المساقات المقدّمة على الموقع، ولن تكون مؤهلاً للحصول على امتيازات أو المزايا المقدّمة للطلاب المسجلين في برامج لنيل درجة لدى المؤسسات.</p>
+    <p style="text-decoration: underline">العلامات التجارية</p>
+<p><b>استخدام إدراك، وغيرها من أسماء المؤسسات المشاركة والعلامات التجارية:</b> إنّ اسم وشعار "إدراك" هما علامتان تجاريتان تابعتان لمؤسسة الملكة رانيا للتنمية والتعليم. وبالمثل، فإنّ الأسماء والشعارات، والأختام الخاصة بالمؤسسات المشاركة الأخرى هي علامات تجارية مملوكة من قبل المؤسسة المعنية. لا يجوز لك استخدام أي من علامات إدراك التجارية أو أي من العلامات التجارية الخاصة بالمؤسسات، أو ما يشبه أياً من المذكور، دون موافقة خطية مسبقة من صاحب العلامة التجارية ذات الصلة. لا يجوز لك استخدام أي من العلامات التجارية الخاصة بالمؤسسات، أو ما يشبه أياً من المذكور، لأغراض ترويجية، أو بأي شكل قد يدّعي أو يوحي، عمداً أو سهواً، أو يظهر أو يعطي انطباعاً بوجود علاقة أو تأييد من قبل هذه المؤسسات وذلك تبعاً لتقدير المؤسسة المعنية وحدها.</p>
+<p>لا تعود ملكية أي من العلامات التجارية إلى إدراك أو غيرها من المؤسسات المشاركة التي تظهر على الموقع أو في أو من خلال الخدمات المتاحة على الموقع أو من خلاله، فهي إن وجدت، ملكية حصرية لأصحابها.</p>
+<p>لا ينبغي أن يُفسّر أي محتوى من المحتويات الواردة ضمن هذا الموقع على أنه يمنح، ضمناً أو قانوناً أو خلاف ذلك، أي ترخيص أو حق لاستخدام أي علامة تجارية معروضة على الموقع دون الحصول على إذن خطي من صاحب العلامة التجارية ذات الصلة.</p>
+    <p style="text-decoration: underline">التنازل عن الضمان / حدود المسؤوليات</p>
+<p style="font-weight: bold">إنّ الموقع وأيّة معلومات أو محتويات أو خدمات متوفرة على أو من خلال الموقع مقدمة "كما هي" و "كما هي متوفرة" دون ضمان من أي نوع (صريح أو ضمني أو غير ذلك)، بما في ذلك، وعلى سبيل المثال لا الحصر، أي ضمانات ضمنية للرواج والملاءمة لغرض معين وعدم مخالفتها، فيما عدا الضمانات الشبيهة لهذه والتي قد لا يجوز التنازل عنها بموجب القوانين المعمول بها.</p>
+<p style="font-weight: bold">لا تضمن إدراك والمشاركون بها (كما هم معرّفون أدناه) عمل الموقع دون انقطاع أو بشكل خال من الأخطاء، وأنّ الموقع خال من الفيروسات أو المكونات الضارة الأخرى، أو أنّ المساقات أو المحتوى المقدّم من شأنه تلبية احتياجاتك أو توقعاتك. كما لا تضمن إدراك أو أي من المشاركين فيها دقة أو كمال ودوام أو جودة الموقع أو المساقات الدراسية أو المحتوى أو استمرارية إتاحة أي من المساقات التعليمية أو أي محتوى معين. ويُقصد بـ "مشاركي إدراك" مؤسسة إي دي إكس (EDX)، ومعهد ماساتشوستس للتكنولوجيا وهارفارد ومؤسسات مشاركة أخرى والكيانات التي تعمل على تقديم المعلومات والمحتوى أو الخدمات للموقع والمدرّبين وجميع العاملين والموظفين والمدرسين المساعدين.</p>
+<p style="font-weight: bold">يقع استخدام هذا الموقع، والمحتوى والخدمات التي يتم الحصول عليها من أو عبر الموقع على مسؤوليتك الخاصة. كما أنّ دخولك إلى أو تنزيلك لأي من المعلومات أو المواد أو البيانات المتاحة من خلال الموقع أو أي من المواقع المرجعية يقع تحت ضمانك ومجازفتك وستكون وحدك مسؤولاً عن أي ضرر يلحق بالممتلكات الخاصة بك (بما في ذلك نظام الحاسوب الخاص بك) أو أي فقدان للبيانات ينتج عن تنزيل أو استخدام هذه المواد أو البيانات، ما لم يتم التصريح عن خلاف ذلك ضمن سياسة الخصوصية الخاصة بإدراك .</p>
+<p><b>التنازل المتعلّق بمنشورات المستخدم:</b> عليك أن تدرك أنك ستتعرض أثناء استخدامك للموقع لمنشورات مستخدمين متنوعة المصادر والتي لا تعتبر إدراك أو أي من مشاركيها مسؤولة عن دقة وفائدة وموثوقية أو حقوق الملكية الفكرية أو مرتبطة بمنشورات المستخدمين هذه. كما أنه يجب عليك أن تفهم وتقرّ بأنك قد تتعرض لمنشورات مستخدمين غير دقيقة وهجومية وتشهيرية أو غير لائقة أو غير مرغوب فيها وأنك توافق على التنازل، وأنك تتنازل بموجب هذه الوثيقة عن أية حقوق قانونية أو منصفة أو تعويضات لك أو قد تكون ضد إدراك أو أي من مشاركي إدراك فيما يتعلق بذلك. لا تصادق إدراك ولا أي من مشاركي إدراك على أي من منشورات المستخدمين أو أي رأي أو توصية أو مشورة يتم الإعراب عنها ضمن الموقع. لا تلتزم إدراك ولا أي من مشاركي إدراك بمراقبة أي من منشورات المستخدمين أو أي تواصل يتم مع أعضاء آخرين ضمن الموقع.</p>
+<p>ومع ذلك، تحتفظ إدراك بحق مراجعة منشورات المستخدمين والتصرّف وفقاً لتقديرها المطلق لتعديل أو إزالة، كلياً أو جزئياً، أي من مشاركات المستخدمين في أي وقت ولأي سبب من الأسباب، أو السماح لمشاركي إدراك بالقيام بذلك في أي وقت ولأي سبب من الأسباب. ولا يقتصر الأمر على ذلك، فقد تقوم إدراك بالتحقيق في مزاعم وجود منشور لمستخدم لا يتوافق مع شروط إدراك لتقديم الخدمة وذلك عند استلام إشعار من مستخدم أو مالك المحتوى وتحدّد، وفقاً لتقديرها المطلق، سواء ستقوم بتعديل أو إزالة، كلياً أو جزئياً، منشورات المستخدم غير المطابقة لشروطها في أي وقت تختاره ودون سابق إنذار.</p>
+<p><b>روابط لمواقع أخرى:</b> قد يتضمن الموقع وصلات إلى مواقع أخرى يتم صيانتها وإدارتها من قبل أشخاص آخرين. ليست إدراك أو أي من مشاركي إدراك مسؤولة عن مسح أو الموافقة على أو المراجعة أو المصادقة على المحتويات أو استخدام أي من المنتجات أو الخدمات التي يمكن أن تقدمها هذه المواقع الأخرى. إذا قررت الوصول إلى مواقع مرتبطة بأطراف ثالثة فإنك تقوم بذلك على مسؤوليتك الخاصة.</p>
+<p style="font-weight: bold">أنت توافق ولأقصى حد تسمح به القوانين المعمول بها على عدم مسؤولية إدراك أو أي من مشاركي إدراك عن أية خسارة أو ضرر، سواء كان حقيقياً أو مرتبطاً منطقياً أو ناشئاً عن أو متعلقاً بشروط تقديم الخدمة هذه، أو استخدامك (أو استخدام أي طرف ثالث) أو عدم القدرة على استخدام الموقع، أو مواضع المحتوى على الموقع، أو اعتمادك الخاص بك على المعلومات التي يتم الحصول عليها من أو عبر الموقع، سواء اعتمدت مطالبتك على العقد أو الضرر أو القانون أو غير ذلك.</p>
+<p style="font-weight: bold">على وجه الخصوص، وإلى أقصى حد يسمح به القانون المعمول به، لن تتحمّل إدراك أو أي من مشاركيها مسؤولية أية ضرر سواء مباشر أو غير مباشر أو عقابي أو أضرار خاصة أو تحذيرية أو عرضية، سواء كانت منظورة أو غير متوقعة. وسواء كانت إدراك أو أي من مشاركيها قد تهاونت أو أخطأت (بما في ذلك، وعلى سبيل المثال لا الحصر، المطالبات بتهمة التشهير والأخطاء وخسارة الأرباح أو فقدان البيانات أو انقطاع في توافر البيانات).</p>
+<p style="text-decoration: underline">التعويض</p>
+<p>أنت توافق على الدفاع وعدم الإضرار بإدراك أو بمشاركي إدراك والشركات التابعة لكل منها وفروعها وموظفيها وأعضاء هيئة التدريس والطلاب والزملاء، وأعضاء مجلس الإدارة المسؤولين والوكلاء والموظفين من وضد أي مطالبات من طرف ثالث أو إجراءات أو مطالب ناشئة من أو ناتجة عن أو بأي شكل من الأشكال ذات الصلة باستخدامك للموقع، بما في ذلك أية مسؤولية أو مصاريف تنشأ من أي وجميع المطالبات والخسائر والأضرار والدعاوى والأحكام وتكاليف التقاضي (الفعلية والتابعة) وأتعاب المحاماة، من كل نوع وطبيعة. توفر لك إدراك أو أي من مشاركي إدراك، في مثل هذه الحالة وحسب تقديرها المطلق، إشعاراً خطياً أو شفوياً لمطالبة أو دعوى أو إجراء مماثل.</p>
+<p style="text-decoration: underline">متفرقات</p>
+<p><b>حقوق الإنهاء؛ أو انقطاع المساقات والمحتوى: </b> يجب أن توافق على السماح لإدراك بإنهاء استخدامك للموقع أو مشاركتك فيه وفقا لتقديرها المطلق ولأي سبب من الأسباب أو دون سبب بناءً على إخطارك بشكل مسبق. يُعد فصل مستخدمي الموقع الذين ينتهكون حقوق النشر بشكل متكرر سياسة لإدراك، وذلك تبعاً للظروف التي تراها مناسبة. تحتفظ إدراك ومشاركو إدراك بحق إلغاء أو تأخير أو إعادة جدولة تغير هيكلية أي مساق مقدّم من خلال إدراك أو التوقف عن تقديم أي جزء أو كامل محتويات الموقع أو الخدمات ذات الصلة في أي وقت وذلك تبعاً لتقديرها الخاص، وأنت توافق على عدم مسؤولية إدراك أو أي من مشاركي إدراك تجاهك عن مثل هذا العمل. يمكنك إنهاء اشتراكك في الموقع في أي وقت إذا لم تعد راغباً في ذلك. ستنتهي الحقوق الممنوحة لك بموجب هذه الاتفاقية تبعاً لإنهاء حقك في استخدام الموقع، ولكن سيستمر العمل بالأحكام الأخرى لشروط الخدمة هذه.</p>
+<p><b>كامل الاتفاقية:</b> تشكّل جميع هذه الشروط، وميثاق الشرف، و<a href="${marketing_link('PRIVACY')}"> سياسة الخصوصية </a> مُجمل الاتفاق بينك وبين إدراك فيما يتعلق باستخدامك للموقع، وتحل محل أية اتفاقيات سابقة بينك وبين إدراك بخصوص استخدامك للموقع.</p>
+<p><b>التنازل وقابلية فصل شروط الخدمة: </b> لا يشكّل فشل إدراك في ممارسة أو تنفيذ أي حق أو شرط من شروط الخدمة تنازلاً عن هذا الحق أو الحكم. إذا وجدت محكمة قضائية مختصة بطلان شرط من شروط الخدمة هذه ورغم اتفاق أطراف شروط الخدمة على وجوب سعي المحكمة لتفعيل دور نوايا الأطراف كما هو مبين في الحكم؛ تظل الأحكام الأخرى لهذه الشروط قائمة وسارية بشكل كامل. </p>
+<p><b>اختيار خيار القانون/المحكمة:</b>يجب أن توافق على أنّ هذه الشروط وأي مطالبة أو نزاع ينشأ عنها أو يتعلق بها أو أي محتوى أو خدمة يمكن الحصول عليها من أو من خلال الموقع سيخضع للقوانين المعمول بها في المملكة الأردنية الهاشمية. يجب أن توافق على سماع وحلّ جميع هذه المطالبات والمنازعات في محاكم وسط عمان (قصر العدل). كما يجب أن تُقرّ بصلاحيات محاكم الأحوال الشخصية المذكورة المطبّقة عليك لهذا الغرض، وأن تتنازل وتوافق على عدم الإدعاء أي الاعتراض على هذه الإجراءات المتّبعة في المحاكم المذكورة (بما في ذلك أي دفاع أو اعتراض على الافتقار للصلاحيات المناسبة أو المكان أو الإزعاج في المحكمة) .</p>
+<p style="font-weight: bold">يُعتبر هذا الميثاق ساري المفعول بدءاً من تاريخ: 15 حزيران 2014</p>
+    % else:
+
+    <p>Your personal information’s confidentiality and security is of significant importance to Edraak.
+        Any information about yourself that you may provide to us when using the Site, such as when you
+        sign up for a user account or enter into a transaction through the Site, which may include (but
+        is not limited to) your name, contact information, gender, date of birth, occupation, shall collectively
+        be referred to as “Personal Information”. In addition, any reference to “we”, “us” and “our”
+        shall be deemed as reference to Edraak.</p>
+
+    <p>We will use commercially reasonable efforts to keep your Personal Information secure in compliance with this
+        Privacy Policy.</p>
+
+    <p>This Privacy Policy only applies to information that we collect through the Edraak Website
+        (the "Site," which consists of all content and pages located within the edraak.org web domain)
+        and does not apply to information that we may collect from you in other ways.</p>
+
+    <br/>
+
+    <p style="text-decoration: underline">
+        CONSENT TO TRANSFER OF PERSONAL INFORMATION
+    </p>
+
+    <p>
+        You hereby consent to the collection, use, disclosure and retention by Edraak of your Personal
+        Information as described under this Privacy Policy, including, but not limited to, the transfer
+        of your personal data between Edraak and the third parties, affiliates and subsidiaries described
+        in this Privacy Policy.
+    </p>
+
+    <p>
+        Any consent relating to a right to transfer information referred to in this paragraph shall
+        be deemed to include your consent to the transfer of the applicable Personal Information to a
+        different jurisdiction, which may provide a different level of privacy protection than that
+        available in your own country.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">INFORMATION WE COLLECT AND HOW WE USE IT</p>
+
+    <p>
+        We collect information, including Personal Information, when you sign up for a user account, participate in
+        online courses, send us email messages and/or participate in our public forums. We also collect certain usage
+        information about student performance and patterns of learning. In addition, we track information that display
+        records such as which pages of our Site were visited, when they were visited, the order in which they were
+        visited and which hyperlinks and other user interface controls were used.
+    </p>
+
+    <p>
+        We may log the IP address, operating system and browser software used by each user, and we may be able to
+        determine, from the IP address, a user's Internet Service Provider and the geographic location of his or her
+        point of connectivity.
+    </p>
+
+    <p>Various web analytics tools are used to collect this information; however, some of the information is collected
+        through cookies. You should be able to control how and whether cookies will be accepted by your web browser.
+        Most browsers offer instructions on how to reset the browser to reject cookies in the "Help" section of the
+        toolbar. If you reject our cookies, many functions and conveniences of this Site may not work properly.</p>
+
+    <br/>
+
+    <p style="text-decoration: underline">USE AND DISCLOSURE TO THIRD PARTIES</p>
+
+    <p>
+        Among other things, we and the educational partners, that provide courses through Edraak, may use your
+        information that will be collected via the Site (including your Personal Information). In the event that we
+        share or disclose your Personal Information to third parties, the third party recipients are required to handle
+        the Personal Information in a confidential manner and to maintain adequate security to protect the information
+        from loss, misuse, unauthorized access or disclosure, alteration, and destruction.
+    </p>
+
+    <p>
+        We will disclose and share the Personal Information that is required by the third party to fulfill the purpose
+        stated at the time of collection, such as:
+    </p>
+
+    <ul style="list-style-type: circle; line-height: 25px">
+        <li class="tos-bullets">To enable the partner educational institutions to provide, administer and improve the courses.</li>
+        <li class="tos-bullets">To help us and the educational institutions improve Edraak’s offerings, both individually (e.g., by course
+            staff when working with a student) and in aggregate, and to evaluate the access and use of the Site and the
+            impact of Edraak on the worldwide educational community.
+        </li>
+        <li class="tos-bullets">To track both individual and aggregate attendance, progress and completion of an online course, and to
+            analyze statistics on student performance and the manner used by students to learn.
+        </li>
+        <li class="tos-bullets">To publish information, but not Personal Information, gathered about Edraak’s access, use, impact and
+            student performance.
+        </li>
+        <li class="tos-bullets">To send you updates about online courses offered by Edraak or other events, to send you notifications about
+            products or services of Edraak, Edraak affiliates, or selected business partners that may be of interest to
+            you, or to send you email messages about any Site maintenance or updates.
+        </li>
+        <li class="tos-bullets">For purposes of scientific research, particularly, for example, in the areas of cognitive science and
+            education.
+        </li>
+        <li class="tos-bullets">To archive this information and/or use it for future communications with you.</li>
+        <li class="tos-bullets">To maintain and improve the functioning and security of the Site and our software, systems and network.</li>
+    </ul>
+
+    <p>
+        Information we collect may also be shared with the educational institutions; such information (including
+        Personal Information) may then be shared with third parties as follows:
+    </p>
+
+    <ul style="list-style-type: circle; line-height: 25px">
+        <li class="tos-bullets">Service providers or contractors that perform certain functions on our or the educational institutions'
+            behalf, including processing information that you provide to us on the Site, operating the Site or portions
+            of it, providing or administering courses, or in connection with other aspects of Edraak’s or partner
+            institutions’ services.
+        </li>
+        <li class="tos-bullets">For purposes of scientific research (as above), however, we will only share Personal Information about you
+            to the extent required to fulfill the purposes stated at the time of collection.
+        </li>
+        <li class="tos-bullets">To provide opportunities for you to communicate with other users who may have similar interests or
+            educational goals. In example, we may recommend specific study partners or link potential student mentees
+            and mentors. In such cases, we may use information collected about you to determine who might be interested
+            in communicating with you, but we will only provide other users your username, and not disclose your real
+            name or e-mail address to your contact.
+        </li>
+        <li class="tos-bullets">For integration with third party services, certain content may be hosted on websites not controlled by
+            Edraak, for example, hosting videos on YouTube.
+        </li>
+    </ul>
+
+    <p>
+        In addition, we may share aggregated information that does not personally identify you with the public and with
+        third parties, including but not limited to researchers and business partners.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">LINKS TO OTHER WEBSITES</p>
+
+    <p>
+        The Site may contain links to third-party websites, including other content providers as well as certain service
+        providers. These other websites are not under our control, and you acknowledge and agree that we are not
+        responsible for the collection and use of your information by such websites, unless we have otherwise indicated
+        in this Privacy Policy. We encourage you to be aware when you are redirected to a third party website and to
+        review the privacy policies of each website you visit and use.
+    </p>
+
+    <br/>
+
+    <p style="text-decoration: underline">CHANGINGES TO THE PRIVACY POLICY</p>
+
+    <p>
+        Please note that we periodically review and may make changes to this Privacy Policy. When changes are made, the
+        Privacy Policy link will include a notation "Recently Revised (date)" where you should review the new terms,
+        which will be effective immediately upon posting on this page, with an updated effective date. The notation will
+        be included in the Privacy Policy link for at least ten (10) days after the update has been made. You signify
+        your agreement on a prospective basis to the modified Privacy Policy, and any changes contained therein, by
+        accessing the Site after any changes have been made. In case you miss the notification referenced above, be sure
+        to return to this page periodically to ensure familiarity with the most current version of this Privacy Policy.
+    </p>
+
+    % endif
 </section>

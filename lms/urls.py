@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 from ratelimitbackend import admin
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 
 import django.contrib.auth.views
 
@@ -17,6 +18,9 @@ urlpatterns = ('',  # nopep8
     url(r'^dashboard$', 'student.views.dashboard', name="dashboard"),
     url(r'^login$', 'student.views.signin_user', name="signin_user"),
     url(r'^register$', 'student.views.register_user', name="register_user"),
+    url(r'^all_courses$', 'student.views.see_all_courses', name="see_all_courses"),
+    url(r'^contact$', 'student.views.contact', name="contact"),
+    url(r'^faq$', 'student.views.faq', name="faq"),
 
     url(r'^admin_dashboard$', 'dashboard.views.dashboard'),
 
@@ -218,6 +222,8 @@ if settings.COURSEWARE_ENABLED:
         url(r'^change_enrollment$',
             'student.views.change_enrollment', name="change_enrollment"),
         url(r'^change_email_settings$', 'student.views.change_email_settings', name="change_email_settings"),
+        url(r'^get_student_email_for_bayt$', 'student.views.get_student_email_for_bayt', name="get_student_email_for_bayt"),
+        url(r'^bayt-activation$', 'student.views.bayt_activation', name="bayt_activation"),
 
         #About the course
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/about$',
@@ -503,4 +509,5 @@ urlpatterns += (
 if settings.FEATURES.get("ENABLE_LANGUAGE_CHANGE"):
     urlpatterns += (
         url(r'^i18n/', include('django.conf.urls.i18n')),
+        url(r'^getlang/', 'branding.views.change_lang',name='get_new_lang'),
     )

@@ -89,7 +89,7 @@ def import_handler(request, course_key_string):
             if not course_dir.isdir():
                 os.mkdir(course_dir)
 
-            logging.debug('importing course to {0}'.format(temp_filepath))
+            logging.debug(u'importing course to {0}'.format(temp_filepath))
 
             # Get upload chunks byte ranges
             try:
@@ -210,7 +210,7 @@ def import_handler(request, course_key_string):
                             status=415
                         )
 
-                    logging.debug('found course.xml at {0}'.format(dirpath))
+                    logging.debug(u'found course.xml at {0}'.format(dirpath))
 
                     if dirpath != course_dir:
                         for fname in os.listdir(dirpath):
@@ -227,7 +227,7 @@ def import_handler(request, course_key_string):
                     )
 
                     new_location = course_items[0].location
-                    logging.debug('new course at {0}'.format(new_location))
+                    logging.debug(u'new course at {0}'.format(new_location))
 
                     session_status[key] = 3
                     request.session.modified = True
@@ -324,8 +324,8 @@ def export_handler(request, course_key_string):
         try:
             export_to_xml(modulestore('direct'), contentstore(), course_module.id, root_dir, name, modulestore())
 
-            logging.debug('tar file being generated at {0}'.format(export_file.name))
-            with tarfile.open(name=export_file.name, mode='w:gz') as tar_file:
+            logging.debug(u'tar file being generated at {0}'.format(export_file.name))
+            with tarfile.open(name=export_file.name.encode('utf-8'), mode='w:gz') as tar_file:
                 tar_file.add(root_dir / name, arcname=name)
         except SerializationError as exc:
             log.exception('There was an error exporting course %s', course_module.id)
@@ -369,7 +369,7 @@ def export_handler(request, course_key_string):
 
         wrapper = FileWrapper(export_file)
         response = HttpResponse(wrapper, content_type='application/x-tgz')
-        response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(export_file.name)
+        response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(unicode(export_file.name).encode('utf-8'))
         response['Content-Length'] = os.path.getsize(export_file.name)
         return response
 

@@ -2,8 +2,9 @@
 
 @import 'base/reset';
 @import 'base/font_face';
-@import 'base/mixins';
 @import 'base/variables';
+@import 'base/mixins';
+
 
 ## THEMING
 ## -------
@@ -13,7 +14,7 @@
 ## called themes/<theme-name>/, with its base Sass file in
 ## themes/<theme-name>/static/sass/_<theme-name>.scss. That one entry
 ## point can be used to @import in as many other things as needed.
-% if env.get('THEME_NAME') is not None:
+% if env["FEATURES"].get("USE_CUSTOM_THEME", False):
   // import theme's Sass overrides
   @import '${env.get('THEME_NAME')}';
 % endif
@@ -22,6 +23,10 @@
 @import 'base/extends';
 @import 'base/animations';
 @import 'shared/tooltips';
+
+// base - elements
+@import 'elements/typography';
+@import 'elements/controls';
 
 // Course base / layout styles
 @import 'course/layout/courseware_header_rtl';
@@ -32,7 +37,7 @@
 @import 'xmodule/modules/css/module-styles.scss';
 
 // courseware
-@import 'course/courseware/courseware';
+@import 'course/courseware/courseware_rtl';
 @import 'course/courseware/sidebar';
 @import 'course/courseware/amplifier';
 @import 'course/layout/calculator';
@@ -55,7 +60,7 @@
 @import "course/info";
 @import "course/syllabus"; // TODO arjun replace w/ custom tabs, see courseware/courses.py
 @import "course/textbook";
-@import "course/profile";
+@import "course/profile_rtl";
 @import "course/gradebook";
 @import "course/tabs";
 @import "course/staff_grading";

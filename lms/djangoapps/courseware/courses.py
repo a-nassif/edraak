@@ -21,6 +21,7 @@ from courseware.access import has_access
 from courseware.model_data import FieldDataCache
 from courseware.module_render import get_module
 import branding
+from student.models import BaytPublishedCertificate
 
 log = logging.getLogger(__name__)
 
@@ -374,3 +375,10 @@ def get_studio_url(course_key, page):
     if is_studio_course and is_mongo_course:
         studio_link = get_cms_course_link(course, page)
     return studio_link
+
+
+def check_user_certificate(user_id, course_id):
+    if BaytPublishedCertificate.objects.filter(user_id=user_id, course_id=course_id).count() > 0:
+        return True
+    else:
+        return False

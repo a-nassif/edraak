@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Views related to operations on course objects
 """

@@ -1,0 +1,30 @@
+@import "textbooks";
+
+.view-textbooks{
+  .content-primary{
+    .textbook{
+      .edit-textbook{
+        .chapters-fields, .textbook-fields{
+          .field-group{
+            .field{
+              .action-upload{
+                right: auto;
+                left: 0;
+              }
+            }
+          }
+        }
+      }
+      .view-textbook{
+        .textbook-title{
+          margin-right: 0;
+          margin-left: ($baseline*14);
+        }
+        .actions{
+          right: auto;
+          left: 0;
+        }
+      }
+    }
+  }
+}

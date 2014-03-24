@@ -33,6 +33,8 @@ define ["jquery", "jquery.ui", "backbone", "js/views/feedback_prompt", "js/views
     toggleVisibilityOfTab: (event, ui) =>
       checkbox_element = event.target
       tab_element = $(checkbox_element).parents(".course-tab")[0]
+      console.log(checkbox_element)
+      console.log(tab_element)
 
       saving = new NotificationView.Mini({title: gettext("Saving&hellip;")})
       saving.show()

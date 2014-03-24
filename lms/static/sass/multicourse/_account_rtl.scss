@@ -4,7 +4,31 @@
   form {
     .field-group {
       .field {
-        float: right;
+        float: right !important;
+        margin-right: 0;
+      }
+    }
+    .form-actions {
+      .action-primary {
+        float: left;
+      }
+    }
+  }
+}
+
+.view-register, .view-login, .view-passwordreset {
+  .introduction {
+    header {
+      .title {
+        .title-super {
+          text-align: right;
+        }
+        .title-sub {
+          text-align: right;
+          margin: 0;
+        }
+      }
+      h1 {
       }
     }
   }

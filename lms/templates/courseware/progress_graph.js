@@ -143,7 +143,7 @@ $(function () {
     
     %if show_grade_breakdown:
       var o = plot.pointOffset({x: ${overviewBarX} , y: ${totalScore}});
-      $grade_detail_graph.append('<div style="position:absolute;left:' + (o.left - 12) + 'px;top:' + (o.top - 20) + 'px">${"{totalscore:.0%}".format(totalscore=totalScore)}</div>');
+      $grade_detail_graph.append('<div style="position:absolute;left:' + (o.left - 12) + 'px;top:' + (o.top - 20) + 'px">${u"{totalscore:.0%}".format(totalscore=totalScore)}</div>');
     %endif
   }
       

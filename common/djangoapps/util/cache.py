@@ -45,7 +45,8 @@ def cache_if_anonymous(view_func):
             # same view accessed through different domain names may
             # return different things, so include the domain name in the key.
             domain = str(request.META.get('HTTP_HOST')) + '.'
-            cache_key = domain + "cache_if_anonymous." + request.path
+            lang = request.LANGUAGE_CODE or 'ar'
+            cache_key = domain + "." + lang + ".cache_if_anonymous." + request.path
             response = cache.get(cache_key)
             if not response:
                 response = view_func(request, *args, **kwargs)

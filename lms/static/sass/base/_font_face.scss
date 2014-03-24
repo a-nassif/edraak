@@ -2,4 +2,17 @@
 // ====================
 
 // import from google fonts - Open Sans (http://www.google.com/fonts/specimen/Open+Sans)
-@import url(//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,300,400,600,700);
+@font-face {
+  font-family: 'Droid Arabic Kufi';
+  src: url('/static/fonts/DroidKufi-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Droid Arabic Kufi';
+  src: url('/static/fonts/DroidKufi-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
